@@ -1,0 +1,62 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+Single-page personal portfolio: Next.js 16 (App Router, Turbopack, `cacheComponents` on), Tailwind CSS v4, shadcn/ui on **Base UI** (not Radix), Motion (`motion/react`). Use pnpm for everything. `Main.dc.html` is the original design reference. It is not code to port.
+
+Next.js 16 has breaking changes compared with older versions. Before using an unfamiliar Next API, read the bundled docs in `node_modules/next/dist/docs/` (see `AGENTS.md`).
+
+## Commands
+
+```bash
+pnpm dev                     # dev server
+pnpm build                   # production build; also type-checks
+pnpm start                   # serve the build
+pnpm lint                    # eslint
+pnpm exec tsc --noEmit       # type-check only (LayoutProps types appear after a dev/build run)
+pnpm dlx shadcn@latest add <component>
+```
+
+There is no test suite.
+
+## Architecture
+
+**Content is data, components only render it.** All copy lives in typed files in `content/`, with types in `content/types.ts`:
+- `projects.ts` holds every project.
+- `experience.ts` holds roles, `visibleRoles` and education.
+- `stack.ts` holds the stack groups, the marquee band words and the hero ticker.
+- `github.ts` holds stats, achievements, pinned languages and repos.
+- `site.ts` holds identity, hero, nav, section headings, socials and `labels`. `labels` is the interface copy such as "Problem" or "Copy email".
+
+Adding an entry should never require touching a component. Keep it that way, and put new copy in `content/` rather than in JSX.
+
+**Project priority system.** `Project` is a union keyed on `priority`. `lib/projects.ts` derives every view from it:
+- `1` renders as `FeatureCard`.
+- `2` renders as `CompactCard`.
+- `3` renders as an archive row in `ProjectArchive`.
+
+Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags.
+
+**Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar`, `HeroTitle`, `AgentGraph` and `components/motion/*`. `ListRow` is shared by the archive and the GitHub "Recently active" list.
+
+## Styling rules
+
+- **`app/globals.css` is the only stylesheet.** Use Tailwind utilities and shadcn tokens; no inline `style=` and no other CSS files. Theme values, `@keyframes`/`--animate-*` and the few `@utility` effects (`text-outline`, `bg-grid`, `animation-paused`) live there.
+- **The site is dark only.** The palette is in `:root`, and `<html>` carries the `dark` class so shadcn's `dark:` variants apply. The brand accent is `primary`, `#C8F560`. Extra tokens: `soft` (body copy), `faint` (labels), `elevated` (card hover) and `lang-*` (language colors).
+- **Display sizes** are theme tokens `text-hero`, `text-section` and `text-contact`. A new custom `text-*` size must also be registered in `lib/utils.ts`. Without that, `cn` treats it as a color and drops it in merges.
+- **Imports:** `cn` is created with `createCn` from the `cn` package, not clsx/tailwind-merge. Generated `components/ui/*` files are switched to import from `@/lib/utils`; do the same for newly added shadcn components.
+- **Language bar widths:** these use dynamic `grow-<n>` classes, safelisted by `@source inline("grow-{1..12}")` in `globals.css`.
+
+## Motion rules
+
+- **Animate only transform and opacity.** Generated shadcn components had `transition-all`/`transition` swapped for `transition-transform` or `transition-[transform,opacity]`, so hover color changes are instant. Re-apply that change to any new shadcn component.
+- **Reduced motion:** `MotionProvider` sets `MotionConfig reducedMotion="user"`. CSS loops must use `motion-safe:animate-*`, and purely decorative motion can use `motion-reduce:hidden`.
+- **Scroll reveals** use `Reveal`, or `RevealGroup` + `RevealItem` for staggers, from `components/motion/reveal.tsx`. Pass `onMount` for above-the-fold content.
+- **Stagger delays:** child variants must not set their own `delay`, because that overrides the parent's `delayChildren: stagger()`.
+
+## Base UI / shadcn notes
+
+- **Polymorphism** uses `render` rather than `asChild`. A Button rendered as a link needs `render={<a href=… />}` plus `nativeButton={false}`.
+- **ToggleGroup** `value` is an array, and clicking the active item yields `[]`. `ProjectArchive` ignores that so one filter is always selected.
+- **`SheetClose` with an `<a>`** gets `role="button"`. The mobile nav therefore uses plain links that close a controlled `Sheet`.
+- **`Card` is a plain `div`** with no `render` prop. Wrap it in `Reveal as="article"` for semantics, and resize its padding with `[--card-spacing:--spacing(n)]`.
