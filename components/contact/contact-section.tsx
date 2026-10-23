@@ -19,7 +19,7 @@ export function ContactSection() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-grid mask-radial-[80%_70%] mask-radial-from-30% mask-radial-to-75% mask-radial-at-[60%_30%]"
       />
-      <Container className="relative flex flex-col gap-10 pt-20 md:gap-16 md:pt-36">
+      <Container className="relative flex flex-col gap-10 pt-20 pb-1 md:gap-16 md:pt-36">
         <SectionHeading heading={heading} variant="contact" className="mb-0 md:mb-0" />
 
         <Reveal className="flex flex-wrap items-center gap-x-7 gap-y-4">
