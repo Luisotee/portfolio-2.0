@@ -1,0 +1,101 @@
+export type Link = {
+  href: string
+  label: string
+}
+
+export type Stat = {
+  value: string
+  label: string
+}
+
+export type SectionHeading = {
+  id: string
+  /** Shown before the eyebrow, e.g. "01". */
+  number: string
+  eyebrow: string
+  /** Each entry renders on its own line. */
+  titleLines: string[]
+  intro?: string
+}
+
+export type ProjectTag = "AI" | "Full-stack" | "Open source" | "Automation"
+
+type ProjectBase = {
+  title: string
+  year: string
+  /** Archive filters are built from the tags of priority 3 projects. */
+  tags: ProjectTag[]
+  stack: string[]
+}
+
+/** Priority 1 renders as a full feature card, priority 2 as a compact card. */
+export type FeatureProject = ProjectBase & {
+  priority: 1 | 2
+  client: string
+  role: string
+  problem: string
+  built: string[]
+  metric: Stat
+  impact?: string[]
+  link?: Link
+}
+
+/** Priority 3 renders as a row in the archive. */
+export type ArchiveProject = ProjectBase & {
+  priority: 3
+  summary: string
+  link?: Pick<Link, "href">
+}
+
+export type Project = FeatureProject | ArchiveProject
+
+export type Role = {
+  company: string
+  role: string
+  period: string
+  where: string
+  highlights: string[]
+  stack: string[]
+}
+
+export type Education = {
+  degree: string
+  school: string
+  period: string
+}
+
+export type StackGroup = {
+  group: string
+  items: string[]
+}
+
+export type Language = "TypeScript" | "Python" | "JavaScript"
+
+export type Repo = {
+  name: string
+  href: string
+  desc: string
+  lang: Language
+  stars?: string
+  forks?: string
+  badge?: string
+}
+
+export type RecentRepo = {
+  name: string
+  href: string
+  desc: string
+  lang: Language
+  when: string
+}
+
+export type Achievement = {
+  name: string
+  times?: string
+}
+
+export type Social = {
+  label: string
+  handle: string
+  href: string
+}

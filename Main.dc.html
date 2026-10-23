@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Luis Otavio, Full-stack Engineer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Geist:wght@300..700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0C0E}
+html{scroll-behavior:smooth}
+a{color:#EDEBE6}a:hover{color:#FFFFFF}
+::selection{background:var(--accent);color:#0B0C0E}
+.pf *{box-sizing:border-box}
+.pf :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.mono{font-family:"Geist Mono",ui-monospace,monospace}
+.disp{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-optical-sizing:auto}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(11,12,14,0.72);border-bottom:1px solid rgba(237,235,230,0.07)}
+.nl{position:relative;text-decoration:none;color:#B9B7B1;transition:color .3s ease}
+.nl::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.nl:hover{color:#EDEBE6}.nl:hover::after{transform:scaleX(1);transform-origin:left}
+@media (max-width:760px){.nav-links{display:none !important}}
+
+/* buttons */
+.btn{text-decoration:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),background-color .3s ease,border-color .3s ease,color .3s ease}
+.btn .arr{display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-2px)}.btn:hover .arr{transform:translateX(4px)}
+.btn-p{background:var(--accent);color:#0B0C0E !important}
+.btn-g:hover{border-color:var(--accent) !important}
+
+/* hero */
+.word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.lt{display:inline-block;animation:rise 1.1s cubic-bezier(.16,.84,.24,1) both}
+.outline{color:transparent;-webkit-text-stroke:2px #EDEBE6}
+.fade{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+.cursor{display:inline-block;width:.5em;height:1em;vertical-align:-0.14em;background:var(--accent);margin-left:6px;animation:blink 1.05s steps(1) infinite}
+.live{position:relative;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.live::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 2s cubic-bezier(0,0,.2,1) infinite}
+.gridbg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(237,235,230,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(237,235,230,0.045) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 30%,transparent 75%)}
+
+/* agent graph */
+.edge{stroke:rgba(237,235,230,0.26);stroke-width:1;stroke-dasharray:3 7;animation:flow 1.4s linear infinite}
+.edge.rev{animation-direction:reverse}
+.orbit{transform-origin:240px 240px;animation:spin 60s linear infinite}
+.orbit2{transform-origin:240px 240px;animation:spin 90s linear infinite reverse}
+.pkt{fill:var(--accent);animation:travel 2.6s cubic-bezier(.45,0,.55,1) infinite}
+.core-ring{transform-box:fill-box;transform-origin:center;animation:pulse 2.8s cubic-bezier(.2,.8,.2,1) infinite;stroke:var(--accent)}
+.acc-fill{fill:var(--accent)}
+.acc-stroke{stroke:var(--accent)}
+.node{animation:nodeIn .9s cubic-bezier(.2,.8,.2,1) both}
+.float{animation:float 9s ease-in-out infinite}
+
+/* marquee */
+.mq{display:flex;width:max-content;animation:marquee 48s linear infinite}
+.mq.slow{animation-duration:70s;animation-direction:reverse}
+.mq-wrap:hover .mq{animation-play-state:paused}
+
+/* cards */
+.fcard{transition:border-color .5s ease,transform .6s cubic-bezier(.2,.8,.2,1),background-color .5s ease}
+.fcard:hover{border-color:rgba(237,235,230,0.2) !important;background-color:#121317 !important}
+.corner{position:absolute;width:14px;height:14px;border-color:var(--accent);border-style:solid;border-width:0;opacity:.0;transition:all .5s cubic-bezier(.2,.8,.2,1)}
+.corner.tl{top:14px;left:14px;border-top-width:1.5px;border-left-width:1.5px}
+.corner.tr{top:14px;right:14px;border-top-width:1.5px;border-right-width:1.5px}
+.corner.bl{bottom:14px;left:14px;border-bottom-width:1.5px;border-left-width:1.5px}
+.corner.br{bottom:14px;right:14px;border-bottom-width:1.5px;border-right-width:1.5px}
+.fcard:hover .corner{opacity:1;width:26px;height:26px}
+.metric{background-image:linear-gradient(var(--accent),var(--accent));background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .8s cubic-bezier(.2,.8,.2,1)}
+.fcard:hover .metric{background-size:100% 1px}
+.mcard{transition:border-color .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+.mcard:hover{transform:translateY(-4px);border-color:rgba(237,235,230,0.22) !important}
+.tag{transition:border-color .3s ease,color .3s ease}
+.fcard:hover .tag,.mcard:hover .tag{border-color:rgba(237,235,230,0.2) !important}
+.ulink{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s cubic-bezier(.2,.8,.2,1)}
+.ulink:hover{background-size:100% 1px}
+.ulink .arr{display:inline-block;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.ulink:hover .arr{transform:translate(3px,-3px)}
+
+/* archive */
+.chip{appearance:none;cursor:pointer;font:inherit;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s ease}
+.chip:hover{border-color:rgba(237,235,230,0.3) !important;color:#EDEBE6 !important}
+.chip.on{background:var(--accent) !important;border-color:var(--accent) !important;color:#0B0C0E !important}
+.arow{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,280px) 48px;gap:24px;align-items:start;text-decoration:none;transition:background-color .35s ease,padding .45s cubic-bezier(.2,.8,.2,1)}
+.arow:hover{background-color:rgba(237,235,230,0.035);padding-left:20px !important}
+.arow .aar{transition:transform .45s cubic-bezier(.2,.8,.2,1),color .3s ease}
+.arow:hover .aar{transform:rotate(-45deg);color:var(--accent)}
+.arow:hover .at{color:#FFFFFF}
+.arow{animation:rowIn .6s cubic-bezier(.2,.8,.2,1) both}
+@media (max-width:820px){.arow{grid-template-columns:minmax(0,1fr) 40px}.arow .a-year{grid-column:1 / -1}.arow .a-stack{grid-column:1 / 2}}
+
+/* experience */
+.xrow{display:grid;grid-template-columns:minmax(0,220px) 28px minmax(0,1fr);gap:28px;align-items:start}
+.xdot{transition:background-color .4s ease,transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s ease}
+.xrow:hover .xdot{background-color:var(--accent) !important;transform:scale(1.25)}
+.xrow:hover .xco{color:#FFFFFF}
+@media (max-width:760px){.xrow{grid-template-columns:20px minmax(0,1fr);gap:18px}.xrow .xdate{grid-column:2 / 3;grid-row:1}.xrow .xrail{grid-row:1 / span 2;grid-column:1}.xrow .xbody{grid-column:2 / 3}}
+
+/* stack */
+.scard{transition:border-color .45s ease,background-color .45s ease}
+.scard:hover{border-color:rgba(237,235,230,0.2) !important;background-color:#121317 !important}
+.skill{transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+.skill:hover{background-color:var(--accent);color:#0B0C0E !important;border-color:var(--accent) !important;transform:translateY(-2px)}
+
+/* github */
+.repo{text-decoration:none;transition:border-color .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+.repo:hover{transform:translateY(-4px);border-color:rgba(237,235,230,0.22) !important}
+.repo:hover .rn{color:var(--accent) !important}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%}
+.lang-ts{background:#3178C6}.lang-py{background:#3572A5}.lang-js{background:#F1E05A}
+.bar{transform-origin:left;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}
+
+/* contact */
+.biglink{text-decoration:none;transition:color .4s ease}
+.biglink:hover{color:var(--accent) !important}
+.soc{text-decoration:none;transition:border-color .4s ease,background-color .4s ease}
+.soc:hover{border-color:var(--accent) !important;background-color:rgba(237,235,230,0.03) !important}
+.soc .arr{display:inline-block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.soc:hover .arr{transform:translate(4px,-4px);color:var(--accent)}
+
+/* scroll reveal: CSS only, compositor-friendly */
+@supports (animation-timeline: view()){
+.reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+.reveal-x{animation:revealX linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+.bar{animation:grow linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+}
+
+@keyframes rise{from{transform:translateY(108%)}to{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes reveal{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes revealX{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes rowIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+@keyframes nodeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}12%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+
+.motion-off *,.motion-off *::before,.motion-off *::after{animation:none !important;transition:none !important}
+@media (prefers-reduced-motion: reduce){
+html{scroll-behavior:auto}
+.pf *,.pf *::before,.pf *::after{animation:none !important;transition-duration:.01ms !important}
+}
+</style>
+</helmet>
+
+<div class="pf {{motionClass}}" style="--accent: {{accent}}; background: #0B0C0E; color: #EDEBE6; font-family: Geist, system-ui, sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh; overflow-x: clip; -webkit-font-smoothing: antialiased">
+
+<!-- NAV -->
+<header class="nav">
+<nav aria-label="Primary" style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#top" aria-label="Luis Otavio, back to top" style="text-decoration: none; display: flex; align-items: center; gap: 12px">
+<span class="disp" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(237,235,230,0.16); font-weight: 700; font-size: 15px; letter-spacing: -0.02em">LO</span>
+<span class="mono" style="font-size: 13px; color: #B9B7B1">luisotee</span>
+</a>
+<div class="nav-links mono" style="display: flex; align-items: center; gap: 32px; font-size: 13px">
+<a class="nl" href="#work">Work</a>
+<a class="nl" href="#experience">Experience</a>
+<a class="nl" href="#stack">Stack</a>
+<a class="nl" href="#github">GitHub</a>
+</div>
+<a class="btn btn-p mono" href="#contact" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 13px; font-weight: 500">Contact <span class="arr" aria-hidden="true">→</span></a>
+</nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="top" aria-labelledby="hero-title" style="position: relative; overflow: hidden; padding-top: clamp(40px, 7vw, 104px)">
+<div class="gridbg" aria-hidden="true"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: center; gap: clamp(32px, 4vw, 64px)">
+
+<div style="flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<p class="mono fade" style="margin: 0; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: #B9B7B1; animation-delay: 80ms">
+<span class="live" aria-hidden="true"></span> Full-stack engineer · Frontend, backend and AI
+</p>
+
+<h1 id="hero-title" class="disp" aria-label="Luis Otavio" style="margin: 0; font-size: clamp(76px, 14.5vw, 216px); line-height: 0.86; font-weight: 700; letter-spacing: -0.05em">
+<span aria-hidden="true" style="display: block">
+<span class="word"><span class="lt" style="animation-delay: 120ms">L</span><span class="lt" style="animation-delay: 170ms">u</span><span class="lt" style="animation-delay: 220ms">i</span><span class="lt" style="animation-delay: 270ms">s</span></span>
+</span>
+<span aria-hidden="true" style="display: block">
+<span class="word"><span class="lt outline" style="animation-delay: 330ms">O</span><span class="lt outline" style="animation-delay: 380ms">t</span><span class="lt outline" style="animation-delay: 430ms">a</span><span class="lt outline" style="animation-delay: 480ms">v</span><span class="lt outline" style="animation-delay: 530ms">i</span><span class="lt outline" style="animation-delay: 580ms">o</span><span class="lt" style="animation-delay: 640ms; color: var(--accent)">.</span></span>
+</span>
+</h1>
+
+<p class="fade" style="margin: 0; max-width: 620px; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; color: #CFCDC7; animation-delay: 760ms">
+I build web products end to end: <span style="color: #EDEBE6">polished React frontends, solid backends and APIs</span>, and AI features where they earn their place.<span class="cursor" aria-hidden="true"></span>
+</p>
+
+<div class="fade" style="display: flex; flex-wrap: wrap; gap: 12px; animation-delay: 880ms">
+<a class="btn btn-p" href="mailto:luisotaviomgrcont@gmail.com" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; font-weight: 600; font-size: 16px">Start a conversation <span class="arr" aria-hidden="true">→</span></a>
+<a class="btn btn-g" href="https://github.com/Luisotee" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.2); font-weight: 500; font-size: 16px; color: #EDEBE6">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+github.com/Luisotee
+</a>
+</div>
+</div>
+
+<!-- agent graph (decorative) -->
+<div class="fade" aria-hidden="true" style="flex: 1 1 380px; min-width: 0; max-width: 500px; margin: 0 auto; animation-delay: 400ms">
+<div class="float">
+<svg viewBox="0 0 480 480" width="100%" style="display: block; overflow: visible">
+<g class="orbit"><circle cx="240" cy="240" r="212" fill="none" stroke="rgba(237,235,230,0.12)" stroke-dasharray="2 10"></circle><circle cx="240" cy="28" r="3.5" class="acc-fill"></circle></g>
+<g class="orbit2"><circle cx="240" cy="240" r="128" fill="none" stroke="rgba(237,235,230,0.08)"></circle><circle cx="368" cy="240" r="2.5" fill="#EDEBE6"></circle></g>
+<line class="edge" x1="240" y1="240" x2="240" y2="74"></line>
+<line class="edge rev" x1="240" y1="240" x2="384" y2="157"></line>
+<line class="edge" x1="240" y1="240" x2="384" y2="323"></line>
+<line class="edge rev" x1="240" y1="240" x2="240" y2="406"></line>
+<line class="edge" x1="240" y1="240" x2="96" y2="323"></line>
+<line class="edge rev" x1="240" y1="240" x2="96" y2="157"></line>
+<circle r="3.5" class="pkt" style="offset-path: path('M240 240 L240 74'); animation-delay: 0s"></circle>
+<circle r="3.5" class="pkt" style="offset-path: path('M384 157 L240 240'); animation-delay: .45s"></circle>
+<circle r="3.5" class="pkt" style="offset-path: path('M240 240 L384 323'); animation-delay: .9s"></circle>
+<circle r="3.5" class="pkt" style="offset-path: path('M240 406 L240 240'); animation-delay: 1.35s"></circle>
+<circle r="3.5" class="pkt" style="offset-path: path('M240 240 L96 323'); animation-delay: 1.8s"></circle>
+<circle r="3.5" class="pkt" style="offset-path: path('M96 157 L240 240'); animation-delay: 2.25s"></circle>
+<g font-family="Geist Mono, monospace" font-size="12" text-anchor="middle">
+<g class="node" style="animation-delay: .5s"><rect x="196" y="58" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="240" y="78" fill="#EDEBE6">frontend</text></g>
+<g class="node" style="animation-delay: .6s"><rect x="340" y="141" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="384" y="161" fill="#EDEBE6">api</text></g>
+<g class="node" style="animation-delay: .7s"><rect x="340" y="307" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="384" y="327" fill="#EDEBE6">database</text></g>
+<g class="node" style="animation-delay: .8s"><rect x="196" y="390" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="240" y="410" fill="#EDEBE6">auth</text></g>
+<g class="node" style="animation-delay: .9s"><rect x="52" y="307" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="96" y="327" fill="#EDEBE6">infra</text></g>
+<g class="node" style="animation-delay: 1s"><rect x="52" y="141" width="88" height="32" rx="16" fill="#111215" stroke="rgba(237,235,230,0.2)"></rect><text x="96" y="161" fill="#EDEBE6">ai</text></g>
+</g>
+<circle cx="240" cy="240" r="46" fill="none" stroke-width="1.5" class="core-ring"></circle>
+<circle cx="240" cy="240" r="46" class="acc-fill"></circle>
+<text x="240" y="245" text-anchor="middle" font-family="Geist Mono, monospace" font-size="13" font-weight="500" fill="#0B0C0E">product</text>
+</svg>
+</div>
+</div>
+</div>
+
+<!-- proof strip -->
+<div style="position: relative; max-width: 1280px; margin: clamp(56px, 7vw, 96px) auto 0; padding: 0 clamp(20px, 5vw, 64px)">
+<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); border-top: 1px solid rgba(237,235,230,0.1)">
+<sc-for list="{{proof}}" as="f" hint-placeholder-count="4">
+<li class="fade" style="padding: 28px 24px 28px 0; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid rgba(237,235,230,0.1); animation-delay: {{f.delay}}">
+<span class="disp" style="font-size: clamp(36px, 3.4vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1">{{f.value}}</span>
+<span style="font-size: 14px; color: #A7A5A0; max-width: 240px">{{f.label}}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+
+<!-- token stream -->
+<div class="mq-wrap mono" aria-hidden="true" style="margin-top: 40px; padding: 18px 0; border-top: 1px solid rgba(237,235,230,0.07); border-bottom: 1px solid rgba(237,235,230,0.07); overflow: hidden; font-size: 13px; color: #8E8C87; white-space: nowrap">
+<div class="mq">
+<sc-for list="{{streamTwice}}" as="t" hint-placeholder-count="24">
+<span style="padding: 0 22px; display: inline-flex; align-items: center; gap: 22px">{{t}}<span style="color: var(--accent)">/</span></span>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- SELECTED WORK -->
+<section id="work" aria-labelledby="work-title" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 12vw, 168px) clamp(20px, 5vw, 64px) 0">
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 5vw, 72px)">
+<div>
+<p class="mono" style="margin: 0 0 16px; font-size: 13px; color: var(--accent)">01 / Selected work</p>
+<h2 id="work-title" class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.95; font-weight: 650; letter-spacing: -0.04em">Things I have<br>shipped.</h2>
+</div>
+<p style="margin: 0; max-width: 400px; color: #A7A5A0; font-size: 16px">Featured work first, each broken down into the problem, what I built, the stack and the outcome. Everything else lives in the archive below.</p>
+</div>
+
+<!-- priority 1: full feature -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{featured}}" as="p" hint-placeholder-count="4">
+<article class="fcard reveal" style="position: relative; overflow: hidden; border: 1px solid rgba(237,235,230,0.09); border-radius: 24px; background: #0F1013; padding: clamp(24px, 3.6vw, 56px); display: flex; flex-wrap: wrap; gap: clamp(28px, 4vw, 64px)">
+<span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div class="mono" style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 12.5px; color: #A7A5A0">
+<span style="color: var(--accent)">{{p.num}}</span>
+<span>{{p.client}}</span>
+<span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: #5A5955"></span>
+<span>{{p.year}}</span>
+<span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: #5A5955"></span>
+<span>{{p.role}}</span>
+</div>
+<h3 class="disp" style="margin: 0; font-size: clamp(34px, 4vw, 56px); line-height: 1; font-weight: 650; letter-spacing: -0.035em">{{p.title}}</h3>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 28px 40px">
+<div>
+<p class="mono" style="margin: 0 0 10px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">Problem</p>
+<p style="margin: 0; color: #CFCDC7; font-size: 16px">{{p.problem}}</p>
+</div>
+<div>
+<p class="mono" style="margin: 0 0 10px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">What I built</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{p.built}}" as="b" hint-placeholder-count="2">
+<li style="display: flex; gap: 12px; color: #CFCDC7; font-size: 15.5px"><span aria-hidden="true" style="flex: none; margin-top: 11px; width: 10px; height: 1px; background: var(--accent)"></span><span>{{b}}</span></li>
+</sc-for>
+</ul>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{p.stack}}" as="s" hint-placeholder-count="6">
+<span class="tag mono" style="font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.12); color: #B9B7B1">{{s}}</span>
+</sc-for>
+</div>
+</div>
+
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: clamp(24px, 2.6vw, 36px); border-radius: 18px; background: #0B0C0E; border: 1px solid rgba(237,235,230,0.07)">
+<div>
+<p class="mono" style="margin: 0 0 18px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">Impact</p>
+<p class="disp metric" style="margin: 0; display: inline-block; padding-bottom: 8px; font-size: clamp(48px, 5vw, 76px); line-height: 1; font-weight: 700; letter-spacing: -0.045em; color: var(--accent)">{{p.metric.value}}</p>
+<p style="margin: 12px 0 0; color: #A7A5A0; font-size: 14.5px">{{p.metric.label}}</p>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(237,235,230,0.08); padding-top: 22px">
+<sc-for list="{{p.impact}}" as="i" hint-placeholder-count="2">
+<li style="display: flex; gap: 10px; font-size: 14.5px; color: #CFCDC7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: var(--accent)"><path d="M20 6 9 17l-5-5"></path></svg><span>{{i}}</span></li>
+</sc-for>
+</ul>
+<sc-if value="{{p.hasLink}}" hint-placeholder-val="{{ true }}">
+<a class="ulink mono" href="{{p.link.href}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13.5px; color: #EDEBE6">{{p.link.label}} <span class="arr" aria-hidden="true">↗</span></a>
+</sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+
+<!-- priority 2: compact feature -->
+<div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px">
+<sc-for list="{{secondary}}" as="p" hint-placeholder-count="2">
+<article class="mcard reveal" style="position: relative; border: 1px solid rgba(237,235,230,0.09); border-radius: 24px; background: #0F1013; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 22px">
+<div class="mono" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px; color: #A7A5A0">
+<span><span style="color: var(--accent)">{{p.num}}</span>  {{p.client}}</span>
+<span>{{p.year}}</span>
+</div>
+<h3 class="disp" style="margin: 0; font-size: clamp(30px, 3vw, 40px); line-height: 1.02; font-weight: 650; letter-spacing: -0.03em">{{p.title}}</h3>
+<p style="margin: 0; color: #CFCDC7">{{p.problem}}</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{p.built}}" as="b" hint-placeholder-count="3">
+<li style="display: flex; gap: 12px; color: #B9B7B1; font-size: 15px"><span aria-hidden="true" style="flex: none; margin-top: 11px; width: 10px; height: 1px; background: var(--accent)"></span><span>{{b}}</span></li>
+</sc-for>
+</ul>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px; padding-top: 22px; border-top: 1px solid rgba(237,235,230,0.08)">
+<div>
+<p class="disp" style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent)">{{p.metric.value}}</p>
+<p style="margin: 8px 0 0; color: #A7A5A0; font-size: 14px">{{p.metric.label}}</p>
+</div>
+<sc-if value="{{p.hasLink}}" hint-placeholder-val="{{ true }}">
+<a class="ulink mono" href="{{p.link.href}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; color: #EDEBE6">{{p.link.label}} <span class="arr" aria-hidden="true">↗</span></a>
+</sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{p.stack}}" as="s" hint-placeholder-count="5">
+<span class="tag mono" style="font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.12); color: #B9B7B1">{{s}}</span>
+</sc-for>
+</div>
+</article>
+</sc-for>
+</div>
+
+<!-- archive -->
+<div style="margin-top: clamp(80px, 9vw, 128px)">
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 28px">
+<div>
+<p class="mono" style="margin: 0 0 12px; font-size: 13px; color: #A7A5A0">Archive <span style="color: var(--accent)">{{archiveCount}}</span></p>
+<h3 class="disp" style="margin: 0; font-size: clamp(32px, 3.6vw, 48px); line-height: 1; font-weight: 650; letter-spacing: -0.03em">All projects</h3>
+</div>
+<div role="group" aria-label="Filter projects" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{filters}}" as="c" hint-placeholder-count="5">
+<button type="button" class="chip mono {{c.cls}}" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.14); background: transparent; color: #B9B7B1; font-size: 12.5px">{{c.label}} <span style="opacity: 0.6">{{c.count}}</span></button>
+</sc-for>
+</div>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(237,235,230,0.1)">
+<sc-for list="{{archive}}" as="a" hint-placeholder-count="6">
+<li style="border-bottom: 1px solid rgba(237,235,230,0.1)">
+<a class="arow" href="{{a.href}}" style="padding: 26px 0; color: #EDEBE6; animation-delay: {{a.delay}}">
+<span class="a-year mono" style="font-size: 13px; color: #A7A5A0; padding-top: 4px">{{a.year}}</span>
+<span style="min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span class="at disp" style="font-size: clamp(21px, 2vw, 26px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; transition: color .3s ease">{{a.title}}</span>
+<span style="font-size: 15px; color: #A7A5A0">{{a.summary}}</span>
+</span>
+<span class="a-stack mono" style="font-size: 12.5px; color: #A7A5A0; padding-top: 6px">{{a.stackLine}}</span>
+<span class="aar" aria-hidden="true" style="justify-self: end; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(237,235,230,0.14); color: #B9B7B1">→</span>
+</a>
+</li>
+</sc-for>
+</ul>
+<sc-if value="{{archiveEmpty}}" hint-placeholder-val="{{ false }}">
+<p class="mono" style="margin: 0; padding: 32px 0; color: #A7A5A0; font-size: 13px">Nothing in this category yet.</p>
+</sc-if>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" aria-labelledby="exp-title" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 12vw, 168px) clamp(20px, 5vw, 64px) 0">
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 5vw, 72px)">
+<div>
+<p class="mono" style="margin: 0 0 16px; font-size: 13px; color: var(--accent)">02 / Experience</p>
+<h2 id="exp-title" class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.95; font-weight: 650; letter-spacing: -0.04em">Where I have<br>worked.</h2>
+</div>
+<p style="margin: 0; max-width: 400px; color: #A7A5A0">Remote, embedded in teams across Poland, Germany, Italy, the US, Brazil and Israel.</p>
+</div>
+
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<sc-for list="{{experience}}" as="x" hint-placeholder-count="4">
+<li class="xrow reveal" style="padding: 36px 0; border-top: 1px solid rgba(237,235,230,0.1)">
+<div class="xdate mono" style="font-size: 13px; color: #A7A5A0; padding-top: 6px; display: flex; flex-direction: column; gap: 4px">
+<span>{{x.period}}</span>
+<span style="color: #8E8C87">{{x.where}}</span>
+</div>
+<div class="xrail" aria-hidden="true" style="position: relative; align-self: stretch; display: flex; justify-content: center">
+<span style="position: absolute; top: 0; bottom: -36px; width: 1px; background: rgba(237,235,230,0.1)"></span>
+<span class="xdot" style="position: relative; margin-top: 10px; width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); background-color: #0B0C0E"></span>
+</div>
+<div class="xbody" style="min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px">
+<h3 class="xco disp" style="margin: 0; font-size: clamp(28px, 3vw, 40px); line-height: 1.05; font-weight: 650; letter-spacing: -0.03em; transition: color .3s ease">{{x.company}}</h3>
+<span style="font-size: 16px; color: #CFCDC7">{{x.role}}</span>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px 32px">
+<sc-for list="{{x.highlights}}" as="h" hint-placeholder-count="3">
+<li style="display: flex; gap: 12px; color: #B9B7B1; font-size: 15.5px"><span aria-hidden="true" style="flex: none; margin-top: 11px; width: 10px; height: 1px; background: var(--accent)"></span><span>{{h}}</span></li>
+</sc-for>
+</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{x.stack}}" as="s" hint-placeholder-count="4">
+<span class="mono" style="font-size: 12px; padding: 5px 11px; border-radius: 999px; background: rgba(237,235,230,0.05); color: #B9B7B1">{{s}}</span>
+</sc-for>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+<sc-if value="{{hasMoreRoles}}" hint-placeholder-val="{{ true }}">
+<div style="border-top: 1px solid rgba(237,235,230,0.1); padding-top: 28px">
+<button type="button" class="chip mono" onClick="{{toggleRoles}}" aria-expanded="{{rolesExpanded}}" style="min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.18); background: transparent; color: #EDEBE6; font-size: 13px">{{rolesLabel}}</button>
+</div>
+</sc-if>
+
+<div class="reveal" style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
+<sc-for list="{{education}}" as="e" hint-placeholder-count="2">
+<div style="padding: 24px 28px; border-radius: 18px; border: 1px solid rgba(237,235,230,0.09); display: flex; flex-direction: column; gap: 6px">
+<span class="mono" style="font-size: 12.5px; color: #A7A5A0">{{e.period}}</span>
+<span class="disp" style="font-size: 21px; font-weight: 600; letter-spacing: -0.02em">{{e.degree}}</span>
+<span style="font-size: 14.5px; color: #A7A5A0">{{e.school}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- STACK -->
+<section id="stack" aria-labelledby="stack-title" style="padding-top: clamp(96px, 12vw, 168px)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px)">
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 5vw, 64px)">
+<div>
+<p class="mono" style="margin: 0 0 16px; font-size: 13px; color: var(--accent)">03 / Stack</p>
+<h2 id="stack-title" class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.95; font-weight: 650; letter-spacing: -0.04em">What I build<br>with.</h2>
+</div>
+<p style="margin: 0; max-width: 400px; color: #A7A5A0">TypeScript across the stack, Python where it fits. React and Next.js on the front, Node.js and FastAPI behind it, and AI tooling when the product calls for it.</p>
+</div>
+</div>
+
+<div class="mq-wrap disp" aria-hidden="true" style="overflow: hidden; padding: 8px 0 40px; white-space: nowrap">
+<div class="mq slow" style="font-size: clamp(56px, 8vw, 120px); font-weight: 700; letter-spacing: -0.045em; line-height: 1.05">
+<sc-for list="{{bandTwice}}" as="w" hint-placeholder-count="12">
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="{{w.cls}}">{{w.text}}</span><span style="width: 18px; height: 18px; border-radius: 50%; background: var(--accent)"></span></span>
+</sc-for>
+</div>
+</div>
+
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px">
+<sc-for list="{{stack}}" as="g" hint-placeholder-count="6">
+<div class="scard reveal" style="padding: 28px; border-radius: 20px; border: 1px solid rgba(237,235,230,0.09); background: #0F1013; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<h3 class="disp" style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{g.group}}</h3>
+<span class="mono" style="font-size: 12px; color: #8E8C87">{{g.count}}</span>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{g.items}}" as="s" hint-placeholder-count="5">
+<li class="skill mono" style="font-size: 13px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.14); color: #CFCDC7; cursor: default">{{s}}</li>
+</sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- GITHUB -->
+<section id="github" aria-labelledby="gh-title" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 12vw, 168px) clamp(20px, 5vw, 64px) 0">
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 5vw, 64px)">
+<div>
+<p class="mono" style="margin: 0 0 16px; font-size: 13px; color: var(--accent)">04 / GitHub</p>
+<h2 id="gh-title" class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.95; font-weight: 650; letter-spacing: -0.04em">In the open.</h2>
+</div>
+<a class="ulink mono" href="https://github.com/Luisotee" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: #EDEBE6">@Luisotee on GitHub <span class="arr" aria-hidden="true">↗</span></a>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<div class="reveal" style="flex: 1 1 340px; min-width: 0; padding: clamp(24px, 3vw, 36px); border-radius: 24px; border: 1px solid rgba(237,235,230,0.09); background: #0F1013; display: flex; flex-direction: column; gap: 28px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px">
+<sc-for list="{{ghStats}}" as="s" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="disp" style="font-size: clamp(40px, 4vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1">{{s.value}}</span>
+<span style="font-size: 14px; color: #A7A5A0">{{s.label}}</span>
+</div>
+</sc-for>
+</div>
+<div style="border-top: 1px solid rgba(237,235,230,0.08); padding-top: 24px">
+<p class="mono" style="margin: 0 0 14px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">Achievements</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{achievements}}" as="a" hint-placeholder-count="5">
+<li class="mono" style="font-size: 12.5px; padding: 7px 13px; border-radius: 999px; background: rgba(237,235,230,0.05); color: #CFCDC7">{{a.name}} <span style="color: var(--accent)">{{a.times}}</span></li>
+</sc-for>
+</ul>
+</div>
+<div style="border-top: 1px solid rgba(237,235,230,0.08); padding-top: 24px">
+<p class="mono" style="margin: 0 0 14px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">Pinned languages</p>
+<div aria-hidden="true" style="display: flex; height: 8px; border-radius: 999px; overflow: hidden; gap: 3px">
+<span class="bar lang-ts" style="flex: 3"></span>
+<span class="bar lang-py" style="flex: 2; animation-delay: .15s"></span>
+<span class="bar lang-js" style="flex: 1; animation-delay: .3s"></span>
+</div>
+<p class="mono" style="margin: 12px 0 0; font-size: 12.5px; color: #A7A5A0; display: flex; flex-wrap: wrap; gap: 6px 18px"><span><span class="dot lang-ts"></span> TypeScript 3</span><span><span class="dot lang-py"></span> Python 2</span><span><span class="dot lang-js"></span> JavaScript 1</span></p>
+</div>
+</div>
+
+<div style="flex: 2 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 16px">
+<sc-for list="{{pinned}}" as="r" hint-placeholder-count="4">
+<a class="repo reveal" href="{{r.href}}" style="padding: 26px; border-radius: 20px; border: 1px solid rgba(237,235,230,0.09); background: #0F1013; display: flex; flex-direction: column; gap: 14px; color: #EDEBE6">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+<span style="display: flex; align-items: center; gap: 10px; min-width: 0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: #8E8C87"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+<span class="rn mono" style="font-size: 14px; font-weight: 500; overflow-wrap: anywhere; transition: color .3s ease">{{r.name}}</span>
+</span>
+<sc-if value="{{r.hasBadge}}" hint-placeholder-val="{{ false }}">
+<span class="mono" style="flex: none; font-size: 11.5px; padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.16); color: #A7A5A0">{{r.badge}}</span>
+</sc-if>
+</div>
+<p style="margin: 0; font-size: 15px; color: #B9B7B1; flex: 1">{{r.desc}}</p>
+<div class="mono" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font-size: 12.5px; color: #A7A5A0">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="dot {{r.langClass}}"></span>{{r.lang}}</span>
+<sc-if value="{{r.hasStars}}" hint-placeholder-val="{{ true }}">
+<span style="display: inline-flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"></path></svg>{{r.stars}}</span>
+</sc-if>
+<sc-if value="{{r.hasForks}}" hint-placeholder-val="{{ false }}">
+<span style="display: inline-flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.5"></circle><circle cx="18" cy="5" r="2.5"></circle><circle cx="12" cy="19" r="2.5"></circle><path d="M6 7.5v1a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-1M12 11.5v5"></path></svg>{{r.forks}}</span>
+</sc-if>
+</div>
+</a>
+</sc-for>
+</div>
+</div>
+
+<div class="reveal" style="margin-top: 16px; border-radius: 24px; border: 1px solid rgba(237,235,230,0.09); overflow: hidden">
+<p class="mono" style="margin: 0; padding: 18px 26px; font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid rgba(237,235,230,0.08); display: flex; align-items: center; gap: 10px"><span class="live" aria-hidden="true"></span> Recently active</p>
+<ul style="margin: 0; padding: 0; list-style: none">
+<sc-for list="{{recent}}" as="r" hint-placeholder-count="3">
+<li style="border-bottom: 1px solid rgba(237,235,230,0.06)">
+<a class="arow" href="{{r.href}}" style="padding: 20px 26px; color: #EDEBE6">
+<span class="a-year mono" style="font-size: 12.5px; color: #A7A5A0; padding-top: 3px">{{r.when}}</span>
+<span style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span class="at mono" style="font-size: 15px; font-weight: 500; transition: color .3s ease">{{r.name}}</span>
+<span style="font-size: 14.5px; color: #A7A5A0">{{r.desc}}</span>
+</span>
+<span class="a-stack mono" style="font-size: 12.5px; color: #A7A5A0; display: inline-flex; align-items: center; gap: 8px; padding-top: 3px"><span class="dot {{r.langClass}}"></span>{{r.lang}}</span>
+<span class="aar" aria-hidden="true" style="justify-self: end; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(237,235,230,0.14); color: #B9B7B1">→</span>
+</a>
+</li>
+</sc-for>
+</ul>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-title" style="position: relative; overflow: hidden; margin-top: clamp(96px, 12vw, 168px); border-top: 1px solid rgba(237,235,230,0.08)">
+<div class="gridbg" aria-hidden="true"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 64px) clamp(56px, 6vw, 80px); display: flex; flex-direction: column; gap: clamp(40px, 5vw, 64px)">
+<div class="reveal">
+<p class="mono" style="margin: 0 0 20px; font-size: 13px; color: var(--accent)">05 / Contact</p>
+<h2 id="contact-title" class="disp" style="margin: 0; font-size: clamp(52px, 9vw, 148px); line-height: 0.9; font-weight: 700; letter-spacing: -0.05em">Have something<br><span class="outline">to build?</span></h2>
+</div>
+
+<div class="reveal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
+<a class="biglink disp" href="mailto:luisotaviomgrcont@gmail.com" style="font-size: clamp(24px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.03em; color: #EDEBE6; overflow-wrap: anywhere">luisotaviomgrcont@gmail.com</a>
+<button type="button" class="chip mono {{copyCls}}" onClick="{{copyEmail}}" style="min-height: 48px; padding: 0 20px; border-radius: 999px; border: 1px solid rgba(237,235,230,0.18); background: transparent; color: #EDEBE6; font-size: 13px; display: inline-flex; align-items: center; gap: 8px">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+<span aria-live="polite">{{copyLabel}}</span>
+</button>
+</div>
+
+<ul class="reveal" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px">
+<sc-for list="{{socials}}" as="s" hint-placeholder-count="3">
+<li>
+<a class="soc" href="{{s.href}}" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 96px; padding: 24px 28px; border-radius: 20px; border: 1px solid rgba(237,235,230,0.12); color: #EDEBE6">
+<span style="display: flex; flex-direction: column; gap: 4px">
+<span class="mono" style="font-size: 12px; color: #8E8C87; text-transform: uppercase; letter-spacing: 0.08em">{{s.label}}</span>
+<span class="disp" style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{s.handle}}</span>
+</span>
+<span class="arr" aria-hidden="true" style="font-size: 22px; color: #B9B7B1">↗</span>
+</a>
+</li>
+</sc-for>
+</ul>
+
+<footer class="mono" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 28px; border-top: 1px solid rgba(237,235,230,0.08); font-size: 12.5px; color: #A7A5A0">
+<span>© 2026 Luis Otavio</span>
+<span>Portuguese (native) · English (C2) · Spanish (A2) · German (A1)</span>
+<a class="ulink" href="#top" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #EDEBE6">Back to top <span class="arr" aria-hidden="true">↑</span></a>
+</footer>
+</div>
+</section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F560","options":["#C8F560","#7DD3FC","#FF8A5B","#E9E4D8"],"section":"Look"},"animations":{"editor":"boolean","default":true,"section":"Motion"},"$preview":{"width":1440,"height":9200}}'>
+class Component extends DCLogic {
+
+  /* ------------------------------------------------------------------
+     CONTENT. Add, remove or reorder entries here; no markup changes.
+     priority 1 = full feature card, 2 = compact feature card,
+     3 = archive row. Archive filters are built from "tags".
+     ------------------------------------------------------------------ */
+  content() {
+    return {
+      email: "luisotaviomgrcont@gmail.com",
+
+      proof: [
+        { value: "30,000+", label: "active subscribers on Tapnote, whose web app I built as sole developer" },
+        { value: "6", label: "countries of remote teams I have shipped with" },
+        { value: "40+ h", label: "of manual work saved per week through 20+ automations" },
+        { value: "124", label: "GitHub stars on my open-source WhatsApp assistant" }
+      ],
+
+      stream: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "PostgreSQL", "Express", "Prisma", "Drizzle", "Supabase", "Better Auth", "Docker", "AWS", "FastAPI", "Python", "React Native", "LangChain", "Redis Streams"],
+
+      projects: [
+        {
+          priority: 1, title: "Tapnote Web", client: "Tapnote, Poland", year: "2026", role: "Sole developer", tags: ["AI", "Full-stack"],
+          problem: "Poland's #1 AI tutor app, with 30,000+ active subscribers, lived on mobile. Students needed the same tutor on the web.",
+          built: [
+            "Architected the full-stack web app with Next.js, React, TypeScript, Tailwind CSS and Node.js, reaching feature parity with the native mobile app.",
+            "Engineered AI tutoring features with LLMs and RAG on a PostgreSQL / Supabase backend for context-aware homework help and personalized study assistance."
+          ],
+          stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Supabase", "LLMs", "RAG"],
+          metric: { value: "30,000+", label: "active subscribers on the app it extends" },
+          impact: ["Feature parity with the native mobile app", "Context-aware tutoring grounded with RAG"],
+          link: { href: "https://web.tapnote.app", label: "web.tapnote.app" }
+        },
+        {
+          priority: 1, title: "Enterprise Training Platform", client: "Akdo.ai, Germany", year: "2025–26", role: "Full-stack developer", tags: ["Full-stack", "AI"],
+          problem: "Companies needed a training platform where courses could be created automatically, with each organization's users and data strictly isolated.",
+          built: [
+            "Architected the platform in Next.js, integrating automated course creation with LLM-driven content generation.",
+            "Owned the end-to-end multi-organization authentication system with Better Auth for secure tenant isolation.",
+            "Designed and shipped a peer review system so training creators receive structured feedback and ratings.",
+            "Implemented multi-ISO compliance with Kertos across the codebase and repository configuration."
+          ],
+          stack: ["Next.js", "Better Auth", "Kertos", "LLMs"],
+          metric: { value: "Multi-tenant", label: "auth with secure isolation per organization" },
+          impact: ["Secure tenant isolation across organizations", "Multi-ISO compliance across code and repository configs", "Structured peer feedback and ratings for course creators"],
+          link: null
+        },
+        {
+          priority: 1, title: "AI Personal Assistant", client: "Personal project", year: "2026", role: "Design and build", tags: ["AI", "Full-stack", "Open source"],
+          problem: "One assistant inside WhatsApp that answers from a personal knowledge base, understands voice in several languages and keeps track of spending.",
+          built: [
+            "Production WhatsApp AI agent with a RAG-powered knowledge base and citation generation.",
+            "Multi-language speech processing (STT / TTS) and automated expense tracking.",
+            "Full-stack finance dashboard with transaction analytics."
+          ],
+          stack: ["Python", "FastAPI", "Pydantic AI", "TypeScript", "Next.js", "shadcn/ui", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
+          metric: { value: "In production", label: "WhatsApp agent with cited answers and voice" },
+          impact: ["Answers carry citations back to their source", "Automated expense tracking feeding a transaction-analytics dashboard"],
+          link: { href: "https://github.com/Luisotee/ai-personal-assistant", label: "Luisotee/ai-personal-assistant" }
+        },
+        {
+          priority: 1, title: "WhatsApp Chatbot Assistant", client: "Open source, WAppAI", year: "OSS", role: "Author", tags: ["AI", "Open source"],
+          problem: "Bring context-aware LLM answers into the chat app people already use every day.",
+          built: [
+            "Open-source WhatsApp chatbot that connects LLMs, including Bing AI, to WhatsApp conversations.",
+            "Built with TypeScript, Node.js, LangChain, Prisma and Docker."
+          ],
+          stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
+          metric: { value: "124 ★", label: "GitHub stars and 38 forks" },
+          impact: ["Most-starred repository on my profile", "Forked 38 times by other developers"],
+          link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" }
+        },
+        {
+          priority: 2, title: "Amazon Challenge with Terra Krya", client: "Awana Digital, USA", year: "2024", role: "AI Engineer", tags: ["AI"],
+          problem: "Make environmental data reachable through conversation instead of raw datasets.",
+          built: [
+            "Engineered autonomous AI agents with LangChain, Smolagents and Mem0 that power conversational interfaces for environmental data.",
+            "Led the Amazon Challenge implementation with Terra Krya."
+          ],
+          stack: ["LangChain", "Smolagents", "Mem0", "Python", "AI Agents"],
+          metric: { value: "3rd place", label: "Amazon Challenge, R$ 100,000 in funding" },
+          impact: ["Placed 3rd in the Amazon Challenge", "Secured R$ 100,000 in funding"],
+          link: null
+        },
+        {
+          priority: 2, title: "Web Platform, CRM and Automation", client: "Underdogs, Italy", year: "2024–25", role: "Full-stack & Automation Lead", tags: ["Full-stack", "Automation"],
+          problem: "Operations depended on third-party automation tools and hours of manual work every week.",
+          built: [
+            "Led IT infrastructure and built the full-stack web platform with Next.js, React and Tailwind CSS.",
+            "Designed and shipped a custom CRM from scratch, removing the dependency on third-party automation tools.",
+            "Automated 20+ business workflows with Zapier, n8n and Make, plus an internal chatbot handling 100+ daily queries."
+          ],
+          stack: ["Next.js", "React", "Tailwind CSS", "Zapier", "n8n", "Make"],
+          metric: { value: "40+ h / week", label: "of manual work saved across teams" },
+          link: null
+        },
+        {
+          priority: 2, title: "Google Routes Tool", client: "LangChain.js, open source", year: "OSS", role: "Contributor", tags: ["AI", "Open source"],
+          problem: "Give LangChain.js agents a native tool for route planning with Google Routes.",
+          built: ["Contributed the Google Routes Tool to the LangChain.js framework."],
+          stack: ["TypeScript", "LangChain.js", "Google Routes API"],
+          metric: { value: "Upstream", label: "tool contributed to LangChain.js" },
+          link: { href: "https://github.com/Luisotee/langchainjsRoutes", label: "Luisotee/langchainjsRoutes" }
+        },
+        {
+          priority: 3, title: "ai-boilerplate", year: "2026", tags: ["AI", "Open source"],
+          summary: "Extensible multi-client AI agent with RAG, STT and TTS. TypeScript client layer, Python core on FastAPI, Pydantic AI and Gemini, WhatsApp via Baileys.",
+          stack: ["Python", "FastAPI", "Pydantic AI", "TypeScript"],
+          link: { href: "https://github.com/Luisotee/ai-boilerplate" }
+        },
+        {
+          priority: 3, title: "BrightConnect Voicebot", year: "2026", tags: ["AI", "Open source"],
+          summary: "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
+          stack: ["TypeScript", "Vapi.ai"],
+          link: { href: "https://github.com/Luisotee/brightconnect-voicebot" }
+        },
+        {
+          priority: 3, title: "Emergency advisory chatbot", year: "2023–24", tags: ["AI"],
+          summary: "Sole developer of an Israeli startup's MVP chatbot delivering real-time crisis guidance.",
+          stack: ["Chatbot", "MVP"], link: null
+        },
+        {
+          priority: 3, title: "Inventory and ad automation", year: "2023–24", tags: ["Full-stack", "Automation"],
+          summary: "Designed and shipped an inventory management and advertisement automation system as a freelancer.",
+          stack: ["Full-stack"], link: null
+        }
+      ],
+
+      experience: [
+        { company: "Tapnote", role: "Full-stack Developer", period: "Feb 2026 – Jun 2026", where: "Poland · Remote",
+          highlights: ["Sole developer of the web counterpart to Poland's #1 AI tutor app, serving 30,000+ active subscribers.", "Reached feature parity with the native app; built LLM and RAG tutoring on PostgreSQL / Supabase."],
+          stack: ["Next.js", "TypeScript", "Supabase", "RAG"] },
+        { company: "Akdo.ai", role: "Full-stack Developer", period: "Jul 2025 – Jan 2026", where: "Germany · Remote",
+          highlights: ["Architected an AI enterprise training platform with LLM-driven course generation.", "Owned multi-organization auth with Better Auth, shipped peer review, implemented multi-ISO compliance with Kertos."],
+          stack: ["Next.js", "Better Auth", "LLMs", "Kertos"] },
+        { company: "Underdogs", role: "Full-stack Developer & Automation Lead", period: "Nov 2024 – Jul 2025", where: "Italy · Remote",
+          highlights: ["Led IT infrastructure; built the web platform and a custom CRM from scratch.", "Automated 20+ workflows saving 40+ hours a week; shipped a chatbot handling 100+ daily queries."],
+          stack: ["Next.js", "Zapier", "n8n", "Make"] },
+        { company: "Awana Digital", role: "AI Engineer", period: "Apr 2024 – Nov 2024", where: "USA · Remote",
+          highlights: ["Engineered autonomous agents with LangChain, Smolagents and Mem0 for conversational access to environmental data.", "Led the Amazon Challenge implementation with Terra Krya: 3rd place, R$ 100,000 in funding."],
+          stack: ["LangChain", "Smolagents", "Mem0"] },
+        { company: "Freelance", role: "Full-stack Developer", period: "Sep 2023 – Mar 2024", where: "Brazil, Israel · Remote",
+          highlights: ["Designed and shipped an inventory management and advertisement automation system.", "Sole developer of an Israeli startup's emergency advisory chatbot MVP with real-time crisis guidance."],
+          stack: ["Full-stack", "Chatbots"] }
+      ],
+      visibleRoles: 4,
+
+      education: [
+        { degree: "BS, Computer Engineering", school: "Sorocaba University of Engineering", period: "2019 – 2023" },
+        { degree: "BS, System Development", school: "Pontifical Catholic University of Paraná", period: "2024 – Present" }
+      ],
+
+      stack: [
+        { group: "Frontend", items: ["React", "Next.js", "React Native", "Tailwind CSS", "shadcn/ui"] },
+        { group: "Backend", items: ["Node.js", "Express", "FastAPI", "RESTful APIs", "Better Auth", "NextAuth"] },
+        { group: "Languages", items: ["TypeScript", "JavaScript", "Python", "C / C++"] },
+        { group: "Databases", items: ["PostgreSQL", "MongoDB", "Prisma", "Drizzle", "Firebase", "Supabase", "pgvector", "Redis Streams"] },
+        { group: "DevOps", items: ["Git", "Docker", "AWS", "CI/CD", "Linux"] },
+        { group: "AI", items: ["LLMs", "LangChain", "Pydantic AI", "CrewAI", "Smolagents", "Mem0", "RAG", "AI Agents", "Prompt Engineering"] }
+      ],
+      band: ["Frontend", "Backend", "Full-stack", "APIs", "Product UI", "AI features"],
+
+      github: {
+        stats: [
+          { value: "45", label: "public repositories" },
+          { value: "124", label: "stars on WAppAI/assistant" },
+          { value: "38", label: "forks of WAppAI/assistant" },
+          { value: "13", label: "stars on earth-defenders-assistant" }
+        ],
+        achievements: [
+          { name: "Pair Extraordinaire", times: "×4" },
+          { name: "Pull Shark", times: "×3" },
+          { name: "Quickdraw", times: "" },
+          { name: "YOLO", times: "" },
+          { name: "Arctic Code Vault", times: "" }
+        ],
+        pinned: [
+          { name: "WAppAI/assistant", desc: "A WhatsApp chatbot using Bing AI and other LLMs.", lang: "TypeScript", stars: "124", forks: "38", badge: "Archived" },
+          { name: "Luisotee/ai-personal-assistant", desc: "AI personal assistant with RAG, voice support and finance tracking.", lang: "Python" },
+          { name: "digidem/earth-defenders-assistant", desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.", lang: "Python", stars: "13" },
+          { name: "Luisotee/langchainjsRoutes", desc: "LangChain.js fork behind the Google Routes Tool contribution.", lang: "TypeScript", badge: "Fork" }
+        ],
+        recent: [
+          { name: "ai-boilerplate", when: "Oct 2026", lang: "Python", desc: "Extensible multi-client AI agent with RAG, STT and TTS." },
+          { name: "brightconnect-voicebot", when: "Aug 2026", lang: "TypeScript", desc: "Customer support voicebot built on Vapi.ai with a tool-calling backend." },
+          { name: "ai-personal-assistant", when: "Jan 2026", lang: "Python", desc: "AI-powered personal assistant with RAG, voice support and finance tracking." }
+        ]
+      },
+
+      socials: [
+        { label: "GitHub", handle: "Luisotee", href: "https://github.com/Luisotee" },
+        { label: "LinkedIn", handle: "in/luisotee", href: "https://www.linkedin.com/in/luisotee" },
+        { label: "Website", handle: "luisotee.com", href: "https://luisotee.com" }
+      ]
+    };
+  }
+
+  langClass(lang) {
+    if (lang === "TypeScript") return "lang-ts";
+    if (lang === "Python") return "lang-py";
+    return "lang-js";
+  }
+
+  renderVals() {
+    const c = this.content();
+    const st = this.state || {};
+    const filter = st.filter || "All";
+    const rolesExpanded = !!st.rolesExpanded;
+    const pad = (n) => (n < 10 ? "0" : "") + n;
+
+    const byPriority = (p) => c.projects.filter((x) => (x.priority || 3) === p);
+    let n = 0;
+    const decorate = (p) => {
+      n += 1;
+      return Object.assign({}, p, { num: pad(n), hasLink: !!(p.link && p.link.href), impact: p.impact || [] });
+    };
+    const featured = byPriority(1).map(decorate);
+    const secondary = byPriority(2).map(decorate);
+
+    const archiveAll = byPriority(3);
+    const tagSet = [];
+    archiveAll.forEach((p) => (p.tags || []).forEach((t) => { if (tagSet.indexOf(t) < 0) tagSet.push(t); }));
+    const labels = ["All"].concat(tagSet);
+    const filters = labels.map((l) => {
+      const count = l === "All" ? archiveAll.length : archiveAll.filter((p) => (p.tags || []).indexOf(l) >= 0).length;
+      return { label: l, count: String(count), cls: l === filter ? "on" : "", pressed: l === filter ? "true" : "false", pick: () => this.setState({ filter: l }) };
+    });
+    const archive = archiveAll
+      .filter((p) => filter === "All" || (p.tags || []).indexOf(filter) >= 0)
+      .map((p, i) => ({
+        title: p.title, year: p.year, summary: p.summary,
+        stackLine: (p.stack || []).join(" · "),
+        href: p.link && p.link.href ? p.link.href : "#contact",
+        delay: (i * 60) + "ms"
+      }));
+
+    const allRoles = c.experience;
+    const limit = c.visibleRoles || allRoles.length;
+    const experience = rolesExpanded ? allRoles : allRoles.slice(0, limit);
+    const hidden = allRoles.length - limit;
+
+    const gh = c.github;
+    const pinned = gh.pinned.map((r) => ({
+      name: r.name, desc: r.desc, lang: r.lang, langClass: this.langClass(r.lang),
+      href: "https://github.com/" + r.name,
+      stars: r.stars || "", hasStars: !!r.stars, forks: r.forks || "", hasForks: !!r.forks,
+      badge: r.badge || "", hasBadge: !!r.badge
+    }));
+    const recent = gh.recent.map((r) => ({
+      name: r.name, desc: r.desc, when: r.when, lang: r.lang, langClass: this.langClass(r.lang),
+      href: "https://github.com/Luisotee/" + r.name
+    }));
+
+    const band = c.band.map((t, i) => ({ text: t, cls: i % 2 ? "outline" : "" }));
+
+    return {
+      accent: this.props.accent ?? "#C8F560",
+      motionClass: (this.props.animations ?? true) ? "" : "motion-off",
+
+      proof: c.proof.map((f, i) => Object.assign({}, f, { delay: (980 + i * 90) + "ms" })),
+      streamTwice: c.stream.concat(c.stream),
+
+      featured: featured,
+      secondary: secondary,
+      filters: filters,
+      archive: archive,
+      archiveCount: String(archiveAll.length).padStart(2, "0"),
+      archiveEmpty: archive.length === 0,
+
+      experience: experience,
+      hasMoreRoles: hidden > 0,
+      rolesExpanded: rolesExpanded ? "true" : "false",
+      rolesLabel: rolesExpanded ? "Show fewer roles" : ("Show " + hidden + " earlier role" + (hidden === 1 ? "" : "s")),
+      toggleRoles: () => this.setState({ rolesExpanded: !rolesExpanded }),
+      education: c.education,
+
+      stack: c.stack.map((g) => Object.assign({}, g, { count: pad(g.items.length) })),
+      bandTwice: band.concat(band),
+
+      ghStats: gh.stats,
+      achievements: gh.achievements,
+      pinned: pinned,
+      recent: recent,
+
+      socials: c.socials,
+      copyLabel: st.copied ? "Copied" : "Copy email",
+      copyCls: st.copied ? "on" : "",
+      copyEmail: () => {
+        try { if (navigator.clipboard) navigator.clipboard.writeText(c.email); } catch (e) {}
+        this.setState({ copied: true });
+        clearTimeout(this._t);
+        this._t = setTimeout(() => this.setState({ copied: false }), 1800);
+      }
+    };
+  }
+
+  componentWillUnmount() { clearTimeout(this._t); }
+}
+</script>
+</body>
+</html>

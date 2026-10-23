@@ -1,0 +1,170 @@
+import type { Project } from "./types"
+
+/**
+ * Add, remove or reorder entries here; no component changes needed.
+ * priority 1 = full feature card, 2 = compact card, 3 = archive row.
+ * Archive filters are built from the tags of priority 3 entries.
+ */
+export const projects: Project[] = [
+  {
+    priority: 1,
+    title: "Tapnote Web",
+    client: "Tapnote, Poland",
+    year: "2026",
+    role: "Sole developer",
+    tags: ["AI", "Full-stack"],
+    problem:
+      "Poland's #1 AI tutor app, with 30,000+ active subscribers, lived on mobile. Students needed the same tutor on the web.",
+    built: [
+      "Architected the full-stack web app with Next.js, React, TypeScript, Tailwind CSS and Node.js, reaching feature parity with the native mobile app.",
+      "Engineered AI tutoring features with LLMs and RAG on a PostgreSQL / Supabase backend for context-aware homework help and personalized study assistance.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Supabase", "LLMs", "RAG"],
+    metric: { value: "30,000+", label: "active subscribers on the app it extends" },
+    impact: ["Feature parity with the native mobile app", "Context-aware tutoring grounded with RAG"],
+    link: { href: "https://web.tapnote.app", label: "web.tapnote.app" },
+  },
+  {
+    priority: 1,
+    title: "Enterprise Training Platform",
+    client: "Akdo.ai, Germany",
+    year: "2025–26",
+    role: "Full-stack developer",
+    tags: ["Full-stack", "AI"],
+    problem:
+      "Companies needed a training platform where courses could be created automatically, with each organization's users and data strictly isolated.",
+    built: [
+      "Architected the platform in Next.js, integrating automated course creation with LLM-driven content generation.",
+      "Owned the end-to-end multi-organization authentication system with Better Auth for secure tenant isolation.",
+      "Designed and shipped a peer review system so training creators receive structured feedback and ratings.",
+      "Implemented multi-ISO compliance with Kertos across the codebase and repository configuration.",
+    ],
+    stack: ["Next.js", "Better Auth", "Kertos", "LLMs"],
+    metric: { value: "Multi-tenant", label: "auth with secure isolation per organization" },
+    impact: [
+      "Secure tenant isolation across organizations",
+      "Multi-ISO compliance across code and repository configs",
+      "Structured peer feedback and ratings for course creators",
+    ],
+  },
+  {
+    priority: 1,
+    title: "AI Personal Assistant",
+    client: "Personal project",
+    year: "2026",
+    role: "Design and build",
+    tags: ["AI", "Full-stack", "Open source"],
+    problem:
+      "One assistant inside WhatsApp that answers from a personal knowledge base, understands voice in several languages and keeps track of spending.",
+    built: [
+      "Production WhatsApp AI agent with a RAG-powered knowledge base and citation generation.",
+      "Multi-language speech processing (STT / TTS) and automated expense tracking.",
+      "Full-stack finance dashboard with transaction analytics.",
+    ],
+    stack: ["Python", "FastAPI", "Pydantic AI", "TypeScript", "Next.js", "shadcn/ui", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
+    metric: { value: "In production", label: "WhatsApp agent with cited answers and voice" },
+    impact: [
+      "Answers carry citations back to their source",
+      "Automated expense tracking feeding a transaction-analytics dashboard",
+    ],
+    link: { href: "https://github.com/Luisotee/ai-personal-assistant", label: "Luisotee/ai-personal-assistant" },
+  },
+  {
+    priority: 1,
+    title: "WhatsApp Chatbot Assistant",
+    client: "Open source, WAppAI",
+    year: "OSS",
+    role: "Author",
+    tags: ["AI", "Open source"],
+    problem: "Bring context-aware LLM answers into the chat app people already use every day.",
+    built: [
+      "Open-source WhatsApp chatbot that connects LLMs, including Bing AI, to WhatsApp conversations.",
+      "Built with TypeScript, Node.js, LangChain, Prisma and Docker.",
+    ],
+    stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
+    metric: { value: "124 ★", label: "GitHub stars and 38 forks" },
+    impact: ["Most-starred repository on my profile", "Forked 38 times by other developers"],
+    link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
+  },
+  {
+    priority: 2,
+    title: "Amazon Challenge with Terra Krya",
+    client: "Awana Digital, USA",
+    year: "2024",
+    role: "AI Engineer",
+    tags: ["AI"],
+    problem: "Make environmental data reachable through conversation instead of raw datasets.",
+    built: [
+      "Engineered autonomous AI agents with LangChain, Smolagents and Mem0 that power conversational interfaces for environmental data.",
+      "Led the Amazon Challenge implementation with Terra Krya.",
+    ],
+    stack: ["LangChain", "Smolagents", "Mem0", "Python", "AI Agents"],
+    metric: { value: "3rd place", label: "Amazon Challenge, R$ 100,000 in funding" },
+    impact: ["Placed 3rd in the Amazon Challenge", "Secured R$ 100,000 in funding"],
+  },
+  {
+    priority: 2,
+    title: "Web Platform, CRM and Automation",
+    client: "Underdogs, Italy",
+    year: "2024–25",
+    role: "Full-stack & Automation Lead",
+    tags: ["Full-stack", "Automation"],
+    problem: "Operations depended on third-party automation tools and hours of manual work every week.",
+    built: [
+      "Led IT infrastructure and built the full-stack web platform with Next.js, React and Tailwind CSS.",
+      "Designed and shipped a custom CRM from scratch, removing the dependency on third-party automation tools.",
+      "Automated 20+ business workflows with Zapier, n8n and Make, plus an internal chatbot handling 100+ daily queries.",
+    ],
+    stack: ["Next.js", "React", "Tailwind CSS", "Zapier", "n8n", "Make"],
+    metric: { value: "40+ h / week", label: "of manual work saved across teams" },
+  },
+  {
+    priority: 2,
+    title: "Google Routes Tool",
+    client: "LangChain.js, open source",
+    year: "OSS",
+    role: "Contributor",
+    tags: ["AI", "Open source"],
+    problem: "Give LangChain.js agents a native tool for route planning with Google Routes.",
+    built: ["Contributed the Google Routes Tool to the LangChain.js framework."],
+    stack: ["TypeScript", "LangChain.js", "Google Routes API"],
+    metric: { value: "Upstream", label: "tool contributed to LangChain.js" },
+    link: { href: "https://github.com/Luisotee/langchainjsRoutes", label: "Luisotee/langchainjsRoutes" },
+  },
+  {
+    priority: 3,
+    title: "ai-boilerplate",
+    year: "2026",
+    tags: ["AI", "Open source"],
+    summary:
+      "Extensible multi-client AI agent with RAG, STT and TTS. TypeScript client layer, Python core on FastAPI, Pydantic AI and Gemini, WhatsApp via Baileys.",
+    stack: ["Python", "FastAPI", "Pydantic AI", "TypeScript"],
+    link: { href: "https://github.com/Luisotee/ai-boilerplate" },
+  },
+  {
+    priority: 3,
+    title: "BrightConnect Voicebot",
+    year: "2026",
+    tags: ["AI", "Open source"],
+    summary:
+      "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
+    stack: ["TypeScript", "Vapi.ai"],
+    link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
+  },
+  {
+    priority: 3,
+    title: "Emergency advisory chatbot",
+    year: "2023–24",
+    tags: ["AI"],
+    summary: "Sole developer of an Israeli startup's MVP chatbot delivering real-time crisis guidance.",
+    stack: ["Chatbot", "MVP"],
+  },
+  {
+    priority: 3,
+    title: "Inventory and ad automation",
+    year: "2023–24",
+    tags: ["Full-stack", "Automation"],
+    summary: "Designed and shipped an inventory management and advertisement automation system as a freelancer.",
+    stack: ["Full-stack"],
+  },
+]

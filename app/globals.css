@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Language bar segments size themselves with grow-<count> at runtime. */
+@source inline("grow-{1..12}");
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-soft: var(--soft);
+  --color-faint: var(--faint);
+  --color-elevated: var(--elevated);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bricolage);
+  --font-heading: var(--font-bricolage);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@theme {
+  /* GitHub language colors */
+  --color-lang-typescript: #3178c6;
+  --color-lang-python: #3572a5;
+  --color-lang-javascript: #f1e05a;
+
+  /* Display type: the only sizes outside Tailwind's scale */
+  --text-hero: clamp(4.75rem, 14.5vw, 13.5rem);
+  --text-hero--line-height: 0.86;
+  --text-hero--letter-spacing: -0.05em;
+  --text-hero--font-weight: 700;
+  --text-section: clamp(2.75rem, 6.4vw, 6rem);
+  --text-section--line-height: 0.95;
+  --text-section--letter-spacing: -0.04em;
+  --text-section--font-weight: 650;
+  --text-contact: clamp(2.75rem, 9vw, 9.25rem);
+  --text-contact--line-height: 0.9;
+  --text-contact--letter-spacing: -0.05em;
+  --text-contact--font-weight: 700;
+
+  --ease-out-expo: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Ambient loops. Transform and opacity only. */
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite reverse;
+  --animate-orbit: orbit 60s linear infinite;
+  --animate-orbit-slow: orbit 90s linear infinite reverse;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-ping-soft: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-pulse-ring: pulse-ring 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  --animate-blink: blink 1.05s steps(1) infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes ping-soft {
+    75%,
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.9);
+      opacity: 0;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #0b0c0e;
+  --foreground: #edebe6;
+  --soft: #cfcdc7;
+  --faint: #8e8c87;
+  --elevated: #121317;
+  --card: #0f1013;
+  --card-foreground: #edebe6;
+  --popover: #111215;
+  --popover-foreground: #edebe6;
+  --primary: #c8f560;
+  --primary-foreground: #0b0c0e;
+  --secondary: rgb(237 235 230 / 0.05);
+  --secondary-foreground: #cfcdc7;
+  --muted: rgb(237 235 230 / 0.06);
+  --muted-foreground: #a7a5a0;
+  --accent: rgb(237 235 230 / 0.06);
+  --accent-foreground: #edebe6;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgb(237 235 230 / 0.1);
+  --input: rgb(237 235 230 / 0.15);
+  --ring: #c8f560;
+  --chart-1: #c8f560;
+  --chart-2: #3178c6;
+  --chart-3: #3572a5;
+  --chart-4: #f1e05a;
+  --chart-5: #a7a5a0;
+  --sidebar: #0f1013;
+  --sidebar-foreground: #edebe6;
+  --sidebar-primary: #c8f560;
+  --sidebar-primary-foreground: #0b0c0e;
+  --sidebar-accent: rgb(237 235 230 / 0.06);
+  --sidebar-accent-foreground: #edebe6;
+  --sidebar-border: rgb(237 235 230 / 0.1);
+  --sidebar-ring: #c8f560;
+}
+
+/* Outlined display letters */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-foreground);
+}
+
+/* Hairline grid behind the hero and contact sections */
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgb(237 235 230 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(237 235 230 / 0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+@utility animation-paused {
+  animation-play-state: paused;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-pt-20 scroll-smooth bg-background font-sans motion-reduce:scroll-auto;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+  :where(a, [tabindex]):focus-visible {
+    @apply rounded-sm outline-2 outline-offset-4 outline-ring;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
