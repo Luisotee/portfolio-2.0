@@ -19,9 +19,9 @@ export const roles: Role[] = [
     where: "Germany · Remote",
     highlights: [
       "Architected an AI enterprise training platform with LLM-driven course generation.",
-      "Owned multi-organization auth with Better Auth, shipped peer review, implemented multi-ISO compliance with Kertos.",
+      "Owned multi-organization auth with Better Auth and shipped a peer review system for course creators.",
     ],
-    stack: ["Next.js", "Better Auth", "LLMs", "Kertos"],
+    stack: ["Next.js", "Better Auth", "LLMs"],
   },
   {
     company: "Underdogs",
@@ -29,7 +29,7 @@ export const roles: Role[] = [
     period: "Nov 2024 – Jul 2025",
     where: "Italy · Remote",
     highlights: [
-      "Led IT infrastructure; built the web platform and a custom CRM from scratch.",
+      "Built the web platform and a custom CRM from scratch.",
       "Automated 20+ workflows saving 40+ hours a week; shipped a chatbot handling 100+ daily queries.",
     ],
     stack: ["Next.js", "Zapier", "n8n", "Make"],
@@ -54,7 +54,18 @@ export const roles: Role[] = [
       "Designed and shipped an inventory management and advertisement automation system.",
       "Sole developer of an Israeli startup's emergency advisory chatbot MVP with real-time crisis guidance.",
     ],
-    stack: ["Full-stack", "Chatbots"],
+    stack: ["Chatbots"],
+  },
+  {
+    company: "Huawei",
+    role: "Intern",
+    period: "Jan 2023 – Nov 2023",
+    where: "Sorocaba, Brazil · On-site",
+    highlights: [
+      "Worked on Claro's 5G rollout and the maintenance of its 4G, 3G and 2G networks.",
+      "Built a Python and React scraping API for the Claro portal, and a VBA tool converting Excel files to PDF that saved each teammate about an hour a day.",
+    ],
+    stack: ["Python", "React", "VBA"],
   },
 ]
 

@@ -6,20 +6,15 @@ import { cn } from "@/lib/utils"
  */
 export function Marquee({
   children,
-  slow = false,
   className,
 }: {
   children: React.ReactNode
-  slow?: boolean
   className?: string
 }) {
   return (
     <div aria-hidden className={cn("group overflow-hidden whitespace-nowrap", className)}>
       <div
-        className={cn(
-          "flex w-max group-hover:animation-paused",
-          slow ? "motion-safe:animate-marquee-slow" : "motion-safe:animate-marquee"
-        )}
+        className="flex w-max group-hover:animation-paused motion-safe:animate-marquee"
       >
         {children}
         {children}

@@ -18,7 +18,15 @@ export type SectionHeading = {
   intro?: string
 }
 
-export type ProjectTag = "AI" | "Full-stack" | "Open source" | "Automation"
+export type ProjectTag =
+  | "AI"
+  | "Full-stack"
+  | "Frontend"
+  | "Mobile"
+  | "Automation"
+  | "Tools"
+  | "Learning"
+  | "Open source"
 
 type ProjectBase = {
   title: string
@@ -62,11 +70,6 @@ export type Education = {
   degree: string
   school: string
   period: string
-}
-
-export type StackGroup = {
-  group: string
-  items: string[]
 }
 
 export type Language = "TypeScript" | "Python" | "JavaScript"

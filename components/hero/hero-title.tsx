@@ -35,8 +35,9 @@ export function HeroTitle() {
           <Letters text={site.firstName} />
         </span>
       </span>
+      {/* nowrap keeps the period on the same line as the last name. */}
       <span aria-hidden className="block">
-        <span className="inline-block overflow-hidden pe-[0.08em] pb-[0.06em] align-top">
+        <span className="inline-block overflow-hidden pe-[0.08em] pb-[0.06em] align-top whitespace-nowrap">
           <Letters text={site.lastName} className="text-outline" />
           <Letters text="." className="text-primary" />
         </span>

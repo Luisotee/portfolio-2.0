@@ -50,11 +50,11 @@ export const pinnedRepos: Repo[] = [
     stars: "13",
   },
   {
-    name: "Luisotee/langchainjsRoutes",
-    href: "https://github.com/Luisotee/langchainjsRoutes",
-    desc: "LangChain.js fork behind the Google Routes Tool contribution.",
+    name: "langchain-ai/langchainjs#5329",
+    href: "https://github.com/langchain-ai/langchainjs/pull/5329",
+    desc: "Google Routes Tool, merged into LangChain.js.",
     lang: "TypeScript",
-    badge: "Fork",
+    badge: "Merged PR",
   },
 ]
 

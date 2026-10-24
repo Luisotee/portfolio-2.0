@@ -79,7 +79,6 @@
 
   /* Ambient loops. Transform and opacity only. */
   --animate-marquee: marquee 48s linear infinite;
-  --animate-marquee-slow: marquee 70s linear infinite reverse;
   --animate-orbit: orbit 60s linear infinite;
   --animate-orbit-slow: orbit 90s linear infinite reverse;
   --animate-float: float 9s ease-in-out infinite;
