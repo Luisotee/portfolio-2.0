@@ -60,3 +60,10 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 - **ToggleGroup** `value` is an array, and clicking the active item yields `[]`. `ProjectArchive` ignores that so one filter is always selected.
 - **`SheetClose` with an `<a>`** gets `role="button"`. The mobile nav therefore uses plain links that close a controlled `Sheet`.
 - **`Card` is a plain `div`** with no `render` prop. Wrap it in `Reveal as="article"` for semantics, and resize its padding with `[--card-spacing:--spacing(n)]`.
+
+## Analytics
+
+- **PostHog** is initialized in `instrumentation-client.ts`, in production only and only when `NEXT_PUBLIC_POSTHOG_KEY` is set (see `.env.example`). It runs with `cookieless_mode: "always"`. Autocapture records clicks, page views, scroll depth, heatmaps and replays, so components need no tracking code.
+- **Proxy:** PostHog requests go through the `/ingest` rewrites in `next.config.ts`, to EU Cloud. `skipTrailingSlashRedirect` has to stay on, or capture breaks.
+- **Vercel:** `<Analytics />` and `<SpeedInsights />` sit in `app/layout.tsx`. Both are cookieless.
+- **No consent banner** is needed only while nothing is stored on the device. Don't call `posthog.identify()`, and don't add cookies or localStorage tracking, without adding a consent banner first.

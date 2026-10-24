@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next"
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
@@ -37,6 +39,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <MotionProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </MotionProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
