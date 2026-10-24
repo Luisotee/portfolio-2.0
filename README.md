@@ -1,6 +1,6 @@
 # Portfolio
 
-Next.js (App Router) · Tailwind CSS v4 · shadcn/ui (Base UI) · Motion. `Main.dc.html` is the original design reference.
+Next.js (App Router) · Tailwind CSS v4 · shadcn/ui (Base UI) · Motion.
 
 ```bash
 pnpm install

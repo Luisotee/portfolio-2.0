@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Single-page personal portfolio: Next.js 16 (App Router, Turbopack, `cacheComponents` on), Tailwind CSS v4, shadcn/ui on **Base UI** (not Radix), Motion (`motion/react`). Use pnpm for everything. `Main.dc.html` is the original design reference. It is not code to port.
+Single-page personal portfolio: Next.js 16 (App Router, Turbopack, `cacheComponents` on), Tailwind CSS v4, shadcn/ui on **Base UI** (not Radix), Motion (`motion/react`). Use pnpm for everything.
 
 Next.js 16 has breaking changes compared with older versions. Before using an unfamiliar Next API, read the bundled docs in `node_modules/next/dist/docs/` (see `AGENTS.md`).
 

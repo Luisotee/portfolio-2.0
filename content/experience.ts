@@ -49,10 +49,10 @@ export const roles: Role[] = [
     company: "Freelance",
     role: "Full-stack Developer",
     period: "Sep 2023 – Mar 2024",
-    where: "Brazil, Israel · Remote",
+    where: "Brazil · Remote",
     highlights: [
       "Designed and shipped an inventory management and advertisement automation system.",
-      "Sole developer of an Israeli startup's emergency advisory chatbot MVP with real-time crisis guidance.",
+      "Sole developer of a startup's emergency advisory chatbot MVP with real-time crisis guidance.",
     ],
     stack: ["Chatbots"],
   },

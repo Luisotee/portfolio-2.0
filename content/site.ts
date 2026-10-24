@@ -55,7 +55,7 @@ export const sections = {
     number: "02",
     eyebrow: "Experience",
     titleLines: ["Where I have", "worked."],
-    intro: "Remote with teams in Poland, Germany, Italy, the US and Israel, after starting on-site at Huawei in Brazil.",
+    intro: "Remote with teams in Poland, Germany, Italy and the US, after starting on-site at Huawei in Brazil.",
   },
   github: {
     id: "github",
