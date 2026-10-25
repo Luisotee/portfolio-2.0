@@ -5,9 +5,9 @@ export const github = {
 }
 
 export const githubStats: Stat[] = [
-  { value: "45", label: "public repositories" },
-  { value: "124", label: "stars on WAppAI/assistant" },
-  { value: "38", label: "forks of WAppAI/assistant" },
+  { value: "48", label: "public repositories" },
+  { value: "125", label: "stars on WAppAI/assistant" },
+  { value: "39", label: "forks of WAppAI/assistant" },
   { value: "13", label: "stars on earth-defenders-assistant" },
 ]
 
@@ -22,8 +22,7 @@ export const achievements: Achievement[] = [
 /** Pinned-repository language split, in pinned repo counts. */
 export const pinnedLanguages: { lang: Language; count: number }[] = [
   { lang: "TypeScript", count: 3 },
-  { lang: "Python", count: 2 },
-  { lang: "JavaScript", count: 1 },
+  { lang: "Python", count: 3 },
 ]
 
 export const pinnedRepos: Repo[] = [
@@ -32,22 +31,9 @@ export const pinnedRepos: Repo[] = [
     href: "https://github.com/WAppAI/assistant",
     desc: "A WhatsApp chatbot using Bing AI and other LLMs.",
     lang: "TypeScript",
-    stars: "124",
-    forks: "38",
+    stars: "125",
+    forks: "39",
     badge: "Archived",
-  },
-  {
-    name: "Luisotee/ai-personal-assistant",
-    href: "https://github.com/Luisotee/ai-personal-assistant",
-    desc: "AI personal assistant with RAG, voice support and finance tracking.",
-    lang: "Python",
-  },
-  {
-    name: "digidem/earth-defenders-assistant",
-    href: "https://github.com/digidem/earth-defenders-assistant",
-    desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.",
-    lang: "Python",
-    stars: "13",
   },
   {
     name: "langchain-ai/langchainjs#5329",
@@ -56,22 +42,48 @@ export const pinnedRepos: Repo[] = [
     lang: "TypeScript",
     badge: "Merged PR",
   },
+  {
+    name: "Luisotee/agent-mesh",
+    href: "https://github.com/Luisotee/agent-mesh",
+    desc: "Claude Code and Antigravity agents planning and executing across repos: expensive models plan, cheap models type.",
+    lang: "Python",
+  },
+  {
+    name: "Luisotee/ai-boilerplate",
+    href: "https://github.com/Luisotee/ai-boilerplate",
+    desc: "Extensible multi-client AI agent with RAG, STT and TTS, with WhatsApp support via Baileys.",
+    lang: "Python",
+    badge: "Template",
+  },
+  {
+    name: "Luisotee/portfolio-2.0",
+    href: "https://github.com/Luisotee/portfolio-2.0",
+    desc: "This portfolio, built with Next.js, Tailwind CSS, shadcn/ui and Motion.",
+    lang: "TypeScript",
+  },
+  {
+    name: "digidem/earth-defenders-assistant",
+    href: "https://github.com/digidem/earth-defenders-assistant",
+    desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.",
+    lang: "Python",
+    stars: "13",
+  },
 ]
 
 export const recentRepos: RecentRepo[] = [
+  {
+    name: "agent-mesh",
+    href: "https://github.com/Luisotee/agent-mesh",
+    when: "Oct 2026",
+    lang: "Python",
+    desc: "Claude Code and Antigravity agents planning and executing across repos.",
+  },
   {
     name: "ai-boilerplate",
     href: "https://github.com/Luisotee/ai-boilerplate",
     when: "Oct 2026",
     lang: "Python",
     desc: "Extensible multi-client AI agent with RAG, STT and TTS.",
-  },
-  {
-    name: "brightconnect-voicebot",
-    href: "https://github.com/Luisotee/brightconnect-voicebot",
-    when: "Aug 2026",
-    lang: "TypeScript",
-    desc: "Customer support voicebot built on Vapi.ai with a tool-calling backend.",
   },
   {
     name: "ai-personal-assistant",
