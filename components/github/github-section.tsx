@@ -1,5 +1,4 @@
 import { Container } from "@/components/container"
-import { RecentActivity } from "@/components/github/recent-activity"
 import { RepoCard } from "@/components/github/repo-card"
 import { StatsCard } from "@/components/github/stats-card"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
@@ -30,10 +29,6 @@ export function GithubSection() {
             ))}
           </RevealGroup>
         </div>
-
-        <Reveal className="mt-4">
-          <RecentActivity />
-        </Reveal>
       </Container>
     </section>
   )

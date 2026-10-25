@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 /**
- * One row of a ruled list (project archive, recent GitHub activity).
+ * One row of a ruled list (project archive).
  * Renders as a link with a turning arrow when `href` is set, otherwise as static text.
  */
 export function ListRow({
@@ -12,7 +12,6 @@ export function ListRow({
   title,
   description,
   meta,
-  mono = false,
   className,
 }: {
   href?: string
@@ -20,8 +19,6 @@ export function ListRow({
   title: string
   description: string
   meta: React.ReactNode
-  /** Mono title (repository names) instead of display type. */
-  mono?: boolean
   className?: string
 }) {
   const shift = "transition-transform duration-500 ease-out-expo group-hover/row:translate-x-2 md:group-hover/row:translate-x-5"
@@ -31,14 +28,7 @@ export function ListRow({
         {lead}
       </span>
       <span className={cn("flex min-w-0 flex-col gap-1.5", shift)}>
-        <span
-          className={cn(
-            "text-foreground",
-            mono ? "font-mono text-base font-medium" : "font-display text-xl font-semibold tracking-tight md:text-2xl"
-          )}
-        >
-          {title}
-        </span>
+        <span className="font-display text-xl font-semibold tracking-tight text-foreground md:text-2xl">{title}</span>
         <span className="text-muted-foreground">{description}</span>
       </span>
       <span className={cn("col-start-1 font-mono text-sm text-muted-foreground md:col-start-auto md:pt-1.5", shift)}>

@@ -97,7 +97,6 @@ export const labels = {
   impact: "Impact",
   achievements: "Achievements",
   pinnedLanguages: "Pinned languages",
-  recentlyActive: "Recently active",
   stars: "stars",
   forks: "forks",
   copyEmail: "Copy email",

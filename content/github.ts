@@ -1,4 +1,4 @@
-import type { Achievement, Language, RecentRepo, Repo, Stat } from "./types"
+import type { Achievement, Language, Repo, Stat } from "./types"
 
 export const github = {
   profile: { href: "https://github.com/Luisotee", label: "@Luisotee on GitHub" },
@@ -67,29 +67,5 @@ export const pinnedRepos: Repo[] = [
     desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.",
     lang: "Python",
     stars: "13",
-  },
-]
-
-export const recentRepos: RecentRepo[] = [
-  {
-    name: "agent-mesh",
-    href: "https://github.com/Luisotee/agent-mesh",
-    when: "Oct 2026",
-    lang: "Python",
-    desc: "Claude Code and Antigravity agents planning and executing across repos.",
-  },
-  {
-    name: "ai-boilerplate",
-    href: "https://github.com/Luisotee/ai-boilerplate",
-    when: "Oct 2026",
-    lang: "Python",
-    desc: "Extensible multi-client AI agent with RAG, STT and TTS.",
-  },
-  {
-    name: "ai-personal-assistant",
-    href: "https://github.com/Luisotee/ai-personal-assistant",
-    when: "Jan 2026",
-    lang: "Python",
-    desc: "AI-powered personal assistant with RAG, voice support and finance tracking.",
   },
 ]

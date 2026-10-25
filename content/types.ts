@@ -84,14 +84,6 @@ export type Repo = {
   badge?: string
 }
 
-export type RecentRepo = {
-  name: string
-  href: string
-  desc: string
-  lang: Language
-  when: string
-}
-
 export type Achievement = {
   name: string
   times?: string

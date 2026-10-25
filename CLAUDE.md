@@ -37,7 +37,7 @@ Adding an entry should never require touching a component. Keep it that way, and
 
 Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags.
 
-**Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar`, `HeroTitle`, `AgentGraph` and `components/motion/*`. `ListRow` is shared by the archive and the GitHub "Recently active" list.
+**Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar`, `HeroTitle`, `AgentGraph` and `components/motion/*`. `ListRow` renders the archive rows.
 
 ## Styling rules
 
