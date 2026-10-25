@@ -19,6 +19,14 @@ pnpm dlx shadcn@latest add <component>
 
 There is no test suite.
 
+## Tasks
+
+`TODO.md` is the project's running task list. Tasks there are goals, not specs, so choose the implementation within the rules in this file. A task flagged 🙋 needs something from Luis, such as a file, a figure, a decision or an account action. Build the code side and leave a clear placeholder, or ask. Tick or remove a task when it's done, and add new ones as they come up.
+
+## Deployment
+
+Vercel deploys `main` automatically. The canonical domain is `www.luisotee.com`; `portfolio-20-neon.vercel.app` serves the same site.
+
 ## Architecture
 
 **Content is data, components only render it.** All copy lives in typed files in `content/`, with types in `content/types.ts`:
@@ -29,6 +37,10 @@ There is no test suite.
 - `site.ts` holds identity, hero, nav, section headings, socials and `labels`. `labels` is the interface copy such as "Problem" or "Copy email".
 
 Adding an entry should never require touching a component. Keep it that way, and put new copy in `content/` rather than in JSX.
+
+**Copy rules.** This repo is public.
+- Luis's location is Essen, Germany (CET/CEST). Use that wherever copy, metadata or structured data gives a location or timezone.
+- Mindprint and BrightConnect Voicebot are throwaway projects. Keep them as priority 3 archive rows and never feature them.
 
 **Project priority system.** `Project` is a union keyed on `priority`. `lib/projects.ts` derives every view from it:
 - `1` renders as `FeatureCard`.
