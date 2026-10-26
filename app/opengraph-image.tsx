@@ -25,8 +25,6 @@ const [display, mono] = await Promise.all([
   readFile(join(fontDir, "GeistMono-Regular.ttf")),
 ])
 
-const domain = new URL(site.url).hostname.replace(/^www\./, "")
-
 export default function Image() {
   return new ImageResponse(
     <div
@@ -64,7 +62,7 @@ export default function Image() {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 26 }}>
-        <div style={{ display: "flex", color: color.primary }}>{domain}</div>
+        <div style={{ display: "flex", color: color.primary }}>{site.domain}</div>
         <svg width="56" height="56" viewBox="0 0 32 32">
           <path d="M4 8h4v12h6v4H4z" fill={color.primary} />
           <rect x="18" y="10" width="8" height="12" rx="4" fill="none" stroke={color.primary} strokeWidth="4" />

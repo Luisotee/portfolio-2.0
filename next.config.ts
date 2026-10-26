@@ -14,13 +14,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  // The Vercel production alias serves the same site; send it to the canonical domain.
-  // Exact host only, so preview deployments on other *.vercel.app hosts keep working.
+  // Production also answers on its *.vercel.app aliases; send every other host to the canonical
+  // domain. Only production builds get the rule, so preview deployments and local dev keep working.
   async redirects() {
+    if (process.env.VERCEL_ENV !== "production") return [];
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "portfolio-20-neon.vercel.app" }],
+        missing: [{ type: "host", value: new URL(site.url).host }],
         destination: `${site.url}/:path*`,
         permanent: true,
       },

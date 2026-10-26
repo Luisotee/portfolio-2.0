@@ -6,7 +6,8 @@ import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 import { MotionProvider } from "@/components/motion/motion-provider"
 import { PersonJsonLd } from "@/components/person-json-ld"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { labels, seo, site } from "@/content/site"
+import { labels, site } from "@/content/site"
+import { openGraph } from "@/lib/metadata"
 import { cn } from "@/lib/utils"
 
 import "./globals.css"
@@ -24,18 +25,7 @@ export const metadata: Metadata = {
   title: site.title,
   description: site.description,
   authors: [{ name: site.name, url: site.url }],
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "profile",
-    url: "/",
-    siteName: site.name,
-    title: site.title,
-    description: site.description,
-    locale: seo.locale,
-    firstName: site.firstName,
-    lastName: site.lastName,
-    username: site.handle,
-  },
+  openGraph,
   twitter: {
     card: "summary_large_image",
     title: site.title,

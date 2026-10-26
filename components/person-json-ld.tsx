@@ -1,6 +1,12 @@
 import { seo, site, socials } from "@/content/site"
 
-const ownHost = new URL(site.url).hostname.replace(/^www\./, "")
+/** Absolute http(s) links to somewhere other than this site's own domain. */
+function isOffSite(href: string) {
+  if (!URL.canParse(href)) return false
+  const { protocol, hostname } = new URL(href)
+  const isOwn = hostname === site.domain || hostname.endsWith(`.${site.domain}`)
+  return (protocol === "https:" || protocol === "http:") && !isOwn
+}
 
 /** schema.org Person for search engines. Profiles on this site's own domain are left out of `sameAs`. */
 export function PersonJsonLd() {
@@ -18,9 +24,7 @@ export function PersonJsonLd() {
       addressLocality: seo.location.locality,
       addressCountry: seo.location.countryCode,
     },
-    sameAs: socials
-      .map((social) => social.href)
-      .filter((href) => !new URL(href).hostname.replace(/^www\./, "").endsWith(ownHost)),
+    sameAs: socials.map((social) => social.href).filter(isOffSite),
   }
 
   return (
