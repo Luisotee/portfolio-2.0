@@ -82,7 +82,7 @@ export const archiveCopy = {
 export const socials: Social[] = [
   { label: "GitHub", handle: "Luisotee", href: "https://github.com/Luisotee" },
   { label: "LinkedIn", handle: "in/luisotee", href: "https://www.linkedin.com/in/luisotee" },
-  { label: "Website", handle: "luisotee.com", href: "https://luisotee.com" },
+  // Résumé card goes here once the PDF is in public/: { label: "Résumé", handle: "PDF", href: "/<file>.pdf" }
 ]
 
 /** Interface copy that isn't tied to a single entry. */

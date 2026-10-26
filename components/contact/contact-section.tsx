@@ -32,7 +32,7 @@ export function ContactSection() {
           <CopyEmailButton email={site.email} />
         </Reveal>
 
-        <RevealGroup as="ul" className="grid gap-4 md:grid-cols-3">
+        <RevealGroup as="ul" className="grid gap-4 md:auto-cols-fr md:grid-flow-col">
           {socials.map((social) => (
             <RevealItem as="li" key={social.label}>
               <Card className="group/social relative rounded-2xl bg-transparent ring-foreground/12 hover:bg-foreground/3 hover:ring-primary">
