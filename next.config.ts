@@ -17,11 +17,16 @@ const nextConfig: NextConfig = {
   // Production also answers on its *.vercel.app aliases; send every other host to the canonical
   // domain. Only production builds get the rule, so preview deployments and local dev keep working.
   async redirects() {
-    // Not permanent, so browsers don't cache it and the Drive link can change.
-    const resumeRedirect = { source: resume.path, destination: resume.driveUrl, permanent: false };
-    if (process.env.VERCEL_ENV !== "production") return [resumeRedirect];
+    // Not permanent, so browsers don't cache it and the Drive link can change. The trailing-slash
+    // form needs its own rule because skipTrailingSlashRedirect is on.
+    const resumeRedirects = [resume.path, `${resume.path}/`].map((source) => ({
+      source,
+      destination: resume.driveUrl,
+      permanent: false,
+    }));
+    if (process.env.VERCEL_ENV !== "production") return resumeRedirects;
     return [
-      resumeRedirect,
+      ...resumeRedirects,
       {
         source: "/:path*",
         missing: [{ type: "host", value: new URL(site.url).host }],

@@ -15,6 +15,9 @@ import { cn } from "@/lib/utils"
 // classes are safelisted in globals.css up to 1000.
 const proofDelay = (i: number) => `delay-${Math.min(250 + i * 50, 1000)}`
 
+const outlineCta =
+  "h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
+
 /**
  * Who, what and proof in the first screen. Mobile stacks text, proof, CTAs, graph; from xl the
  * graph sits beside the text and CTAs, with the proof row spanning both underneath.
@@ -88,7 +91,7 @@ export function Hero() {
             nativeButton={false}
             size="lg"
             variant="outline"
-            className="h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
+            className={outlineCta}
           >
             <FileText data-icon="inline-start" className="size-4.5" />
             {hero.resumeCta.label}
@@ -98,7 +101,7 @@ export function Hero() {
             nativeButton={false}
             size="lg"
             variant="outline"
-            className="h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
+            className={outlineCta}
           >
             <GithubIcon data-icon="inline-start" className="size-4.5" />
             {hero.secondaryCta.label}

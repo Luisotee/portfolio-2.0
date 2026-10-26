@@ -65,7 +65,7 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
     // Usage figures: FleetView totals, 2026-10-26.
-    metric: { value: "8,500+", label: "messages from 84 users across 10 brigade groups of 30+ people" },
+    metric: { value: "84 users", label: "and 8,500+ messages across 10 brigade groups of 30+ people" },
     impact: [
       "Field reports reach the platform straight from the group chat",
       "Brigades are notified when a fire is registered in their area",

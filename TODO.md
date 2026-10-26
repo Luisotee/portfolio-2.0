@@ -13,7 +13,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 ## 1. Quick fixes
 
-- [x] **Search Console.** Domain property `sc-domain:luisotee.com` is verified (Cloudflare TXT record) and owned by Luis's Google account. `/sitemap.xml` was submitted on 2026-10-26 and read with no errors. The API calls run through the free Google Cloud project `luisotee-site`.
+- [x] **Search Console.** Domain property `sc-domain:luisotee.com` is verified (Cloudflare TXT record) and owned by Luis's Google account. `/sitemap.xml` was submitted on 2026-10-26 and read with no errors.
   - 🙋 Optional: click "Request indexing" for `https://www.luisotee.com/` under URL Inspection. Google last crawled it on 2026-10-13, before the new metadata.
 - [x] **Say what Luis is looking for, and where he is.** `hero.status` shows two lines under the eyebrow: contract and B2B work, remote, hybrid or on-site; Essen, Germany (CET), EU citizen, open to relocation.
 - [x] **Résumé link.** `/resume` redirects (307) to the PDF on Google Drive, which stays synced with the LaTeX source. It's linked from a hero button and a contact card; change `resume.driveUrl` in `content/site.ts` if the file ever moves.
@@ -21,7 +21,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 ## 2. Performance
 
 - [x] **Hero shouldn't wait for JS.** The hero entrance is CSS now, so the server HTML shows it before hydration.
-- [x] **Sections below the hero show without JS.** `Reveal` and `RevealItem` carry `data-reveal`, which an `@media (scripting: none)` rule in `globals.css` forces visible. It doesn't cover JS that is enabled but fails to load: those blocks still wait for hydration.
+- [x] **Sections below the hero show without JS.** Elements that motion starts hidden (`Reveal`, `RevealItem`, archive rows, language bar segments) carry `data-reveal`, which an `@media (scripting: none)` rule in `globals.css` forces visible. It doesn't cover JS that is enabled but fails to load: those blocks still wait for hydration.
 - [x] **Lighter analytics bundle.** posthog-js loads after the page is idle, out of first-load JS (377 → 273 KB gzipped, measured locally).
 
 ## 3. Content and hierarchy
@@ -41,7 +41,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 - [ ] ⏸ **Later.** **Case-study pages** for the strongest AI work, starting with Curupira and OCA IÊ. Cover the problem, the architecture, key decisions and the alternatives rejected, what went wrong and what changed, and results. For the bots, include evals, latency and cost per conversation. This is what AI hiring managers say sets candidates apart. Keep the content-as-data approach, and give each page its own link preview.
   - Repo research for Curupira, OCA IÊ and FleetView is done (2026-10-26) and kept outside this public repo. The repos give architecture, decisions and failures in detail, but no usage numbers, no LLM evals and no token or latency logging, so evals and cost per conversation need new instrumentation in the bots first. FleetView fits better as a section of a bot-fleet case study than as its own page.
   - 🙋 Luis provides the details the code can't tell you: numbers, eval results, and Terra Krya's OK to publish a case study.
-- [ ] **A bot people can try.** A public demo of one of the bots, such as a Telegram demo bot, or failing that a short recording of a real conversation. Don't link the production Curupira or OCA IÊ bots: they are client deployments, their rate limit is shared by all users (visitors would crowd out brigades and producers), nothing caps cost per user, and messages go to third-party LLMs. A demo needs its own instance with a per-user quota and demo data.
+- [ ] **A bot people can try.** A public demo of one of the bots, such as a Telegram demo bot, or failing that a short recording of a real conversation. Don't link the production Curupira or OCA IÊ bots: they are client deployments, not demos. A demo needs its own instance with demo data.
   - 🙋 Luis creates the bot account/token or records the conversation, and decides what the demo is allowed to do.
 - [ ] ⏸ **Later.** **Writing.** Add 3–5 short notes on real problems, for example lessons from building WhatsApp agents, evals for a group-chat bot, or how agent-mesh works. Decide on the format and where it lives on the site.
   - 🙋 Luis writes or approves the content.

@@ -81,7 +81,7 @@ export function ProjectArchive() {
           className="border-t"
         >
           {shown.map((project) => (
-            <motion.li key={project.title} variants={fadeUp} className="border-b">
+            <motion.li key={project.title} data-reveal variants={fadeUp} className="border-b">
               <ArchiveListRow project={project} />
             </motion.li>
           ))}
