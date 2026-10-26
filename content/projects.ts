@@ -102,7 +102,7 @@ export const projects: Project[] = [
     tags: ["AI", "Open source"],
     problem: "Bring context-aware LLM answers into the chat app people already use every day.",
     built: [
-      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Routes, voice messages, reminders and group chats, plus Google Calendar on OpenAI models.",
+      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Routes, voice messages and group chats, plus Google Calendar on OpenAI models.",
     ],
     stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
     metric: { value: `${formatCount(wappai.stars)} ★`, label: `GitHub stars and ${formatCount(wappai.forks)} forks` },
