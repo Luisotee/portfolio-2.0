@@ -1,3 +1,4 @@
+import { formatCount, repoCounts } from "./github"
 import type { SectionHeading, Social, Stat } from "./types"
 
 export const site = {
@@ -38,7 +39,7 @@ export const proof: Stat[] = [
   { value: "30,000+", label: "active subscribers on Tapnote, whose web app I built as sole developer" },
   { value: "3rd place", label: "in the Amazon Challenge with Terra Krya, R$ 100,000 in funding" },
   { value: "3+ years", label: "shipping production software, since Jan 2023" },
-  { value: "124", label: "GitHub stars on my open-source WhatsApp assistant" },
+  { value: formatCount(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
 ]
 
 export const sections = {

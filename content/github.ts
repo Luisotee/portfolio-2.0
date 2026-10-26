@@ -4,11 +4,24 @@ export const github = {
   profile: { href: "https://github.com/Luisotee", label: "@Luisotee on GitHub" },
 }
 
+/**
+ * Star and fork counts, kept by hand. Every count on the page reads from here.
+ * WAppAI/assistant is archived, so they change slowly; check github.com now and then.
+ */
+export const repoCounts = {
+  wappai: { stars: 125, forks: 39 },
+  earthDefenders: { stars: 13 },
+}
+
+export const formatCount = (n: number) => n.toLocaleString("en-US")
+
+const { wappai, earthDefenders } = repoCounts
+
 export const githubStats: Stat[] = [
   { value: "48", label: "public repositories" },
-  { value: "125", label: "stars on WAppAI/assistant" },
-  { value: "39", label: "forks of WAppAI/assistant" },
-  { value: "13", label: "stars on earth-defenders-assistant" },
+  { value: formatCount(wappai.stars), label: "stars on WAppAI/assistant" },
+  { value: formatCount(wappai.forks), label: "forks of WAppAI/assistant" },
+  { value: formatCount(earthDefenders.stars), label: "stars on earth-defenders-assistant" },
 ]
 
 export const achievements: Achievement[] = [
@@ -29,10 +42,10 @@ export const pinnedRepos: Repo[] = [
   {
     name: "WAppAI/assistant",
     href: "https://github.com/WAppAI/assistant",
-    desc: "A WhatsApp chatbot using Bing AI and other LLMs.",
+    desc: "A WhatsApp AI assistant on LangChain: pick an LLM provider, with web search, Google Calendar and Routes tools, and voice messages.",
     lang: "TypeScript",
-    stars: "125",
-    forks: "39",
+    stars: formatCount(wappai.stars),
+    forks: formatCount(wappai.forks),
     badge: "Archived",
   },
   {
@@ -66,6 +79,6 @@ export const pinnedRepos: Repo[] = [
     href: "https://github.com/digidem/earth-defenders-assistant",
     desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.",
     lang: "Python",
-    stars: "13",
+    stars: formatCount(earthDefenders.stars),
   },
 ]

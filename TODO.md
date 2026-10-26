@@ -19,8 +19,6 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis decides: full-time, freelance or both, and the exact wording.
 - [ ] **Résumé link.** Add a résumé download in the hero and/or contact section, at a stable URL.
   - 🙋 Luis provides the PDF (the LaTeX source lives in the sibling `Resume` repo).
-- [ ] **GitHub numbers drift.** WAppAI stars and forks are typed by hand in three places and already disagree (124/38 vs 125/39). Make them come from one place: fetch them at build time with caching, round them, or something else. The "Bing AI" wording in the WAppAI descriptions reads as dated, so refresh it.
-  - 🙋 *Only if you fetch from the GitHub API and hit rate limits:* Luis adds a token to the Vercel env.
 - [ ] **Small accessibility fixes.** The skip link is cramped and overlaps the LO logo when focused. Archive row links are announced as run-on text ("2026agent-meshClaude Code and…"). Also decide whether external links should open in a new tab.
 
 ## 2. Performance

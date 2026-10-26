@@ -1,4 +1,7 @@
+import { formatCount, repoCounts } from "./github"
 import type { Project } from "./types"
+
+const { wappai } = repoCounts
 
 /**
  * Add, remove or reorder entries here; no component changes needed.
@@ -98,10 +101,12 @@ export const projects: Project[] = [
     role: "Author",
     tags: ["AI", "Open source"],
     problem: "Bring context-aware LLM answers into the chat app people already use every day.",
-    built: ["Open-source WhatsApp chatbot that connects LLMs, including Bing AI, to WhatsApp conversations."],
+    built: [
+      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Calendar and Routes tools, voice messages, reminders and group chats.",
+    ],
     stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
-    metric: { value: "124 ★", label: "GitHub stars and 38 forks" },
-    impact: ["Most-starred repository on my profile", "Forked 38 times by other developers"],
+    metric: { value: `${formatCount(wappai.stars)} ★`, label: `GitHub stars and ${formatCount(wappai.forks)} forks` },
+    impact: ["Most-starred repository on my profile", `Forked ${formatCount(wappai.forks)} times by other developers`],
     link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
