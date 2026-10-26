@@ -7,10 +7,20 @@ export const site = {
   initials: "LO",
   handle: "luisotee",
   email: "luisotaviomgrcont@gmail.com",
+  /** The one canonical origin. Metadata, the sitemap and the domain redirect derive from it. */
+  url: "https://www.luisotee.com",
+  jobTitle: "Full-stack Engineer",
   title: "Luis Otavio, Full-stack Engineer",
   description:
     "I build web products end to end: polished React frontends, solid backends and APIs, and AI features where they earn their place.",
   copyright: "© 2026 Luis Otavio",
+}
+
+/** Link previews and structured data. */
+export const seo = {
+  locale: "en_US",
+  location: { locality: "Essen", country: "Germany", countryCode: "DE" },
+  ogImageAlt: "Luis Otavio, Full-stack Engineer, on a dark card with a lime accent",
 }
 
 export const nav = [

@@ -4,8 +4,9 @@ import type { Metadata } from "next"
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
 import { MotionProvider } from "@/components/motion/motion-provider"
+import { PersonJsonLd } from "@/components/person-json-ld"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { labels, site } from "@/content/site"
+import { labels, seo, site } from "@/content/site"
 import { cn } from "@/lib/utils"
 
 import "./globals.css"
@@ -19,8 +20,27 @@ const bricolage = Bricolage_Grotesque({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: site.title,
   description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: seo.locale,
+    firstName: site.firstName,
+    lastName: site.lastName,
+    username: site.handle,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+  },
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -36,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {labels.skipToContent}
         </a>
+        <PersonJsonLd />
         <MotionProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </MotionProvider>

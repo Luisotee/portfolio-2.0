@@ -54,6 +54,7 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 ## Styling rules
 
 - **`app/globals.css` is the only stylesheet.** Use Tailwind utilities and shadcn tokens; no inline `style=` and no other CSS files. Theme values, `@keyframes`/`--animate-*` and the few `@utility` effects (`text-outline`, `bg-grid`, `animation-paused`) live there.
+  - The one exception is `app/opengraph-image.tsx`. `ImageResponse` only understands inline style objects, so leave its `style={{…}}` and its palette constant (a mirror of `:root`) as they are.
 - **The site is dark only.** The palette is in `:root`, and `<html>` carries the `dark` class so shadcn's `dark:` variants apply. The brand accent is `primary`, `#C8F560`. Extra tokens: `soft` (body copy), `faint` (labels), `elevated` (card hover) and `lang-*` (language colors).
 - **Display sizes** are theme tokens `text-hero`, `text-section` and `text-contact`. A new custom `text-*` size must also be registered in `lib/utils.ts`. Without that, `cn` treats it as a color and drops it in merges.
 - **Imports:** `cn` is created with `createCn` from the `cn` package, not clsx/tailwind-merge. Generated `components/ui/*` files are switched to import from `@/lib/utils`; do the same for newly added shadcn components.

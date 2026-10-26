@@ -12,7 +12,6 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 ## 1. Quick fixes
 
-- [ ] **Sharing and search basics.** Today a link shared on LinkedIn or Slack shows a bare URL. The site needs proper link previews (title, description, image), a canonical URL, robots, a sitemap and structured data describing Luis as a person. Use the Next 16 metadata file conventions.
 - [ ] **One canonical domain.** The site is served at both `www.luisotee.com` and `portfolio-20-neon.vercel.app`. Make `www.luisotee.com` the only one that counts: a canonical tag at minimum, and a redirect if you can do it in code (e.g. a host-based redirect).
   - 🙋 *Optional:* if you'd rather redirect in Vercel's domain settings, Luis does that in the dashboard (the Vercel CLI isn't installed or logged in here).
 - [ ] **Say what Luis is looking for, and where he is.** Nothing on the page says whether he's available, and the latest role ended Jun 2026 with no "Present" role after it. Add an availability/status line and the location (Essen, Germany · CET) somewhere above the fold. Make the CTAs read right for both hiring managers and clients.
