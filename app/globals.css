@@ -64,7 +64,7 @@
   --color-lang-javascript: #f1e05a;
 
   /* Display type: the only sizes outside Tailwind's scale */
-  --text-hero: clamp(4.75rem, 14.5vw, 13.5rem);
+  --text-hero: clamp(4.75rem, 14.5vw, 10.5rem);
   --text-hero--line-height: 0.86;
   --text-hero--letter-spacing: -0.05em;
   --text-hero--font-weight: 700;

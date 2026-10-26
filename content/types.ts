@@ -8,6 +8,12 @@ export type Stat = {
   label: string
 }
 
+/** One box around the hero graph's core; packets run toward the core ("in") or away from it ("out"). */
+export type GraphNode = {
+  label: string
+  flow: "in" | "out"
+}
+
 export type SectionHeading = {
   id: string
   /** Shown before the eyebrow, e.g. "01". */

@@ -17,18 +17,20 @@ const POSITIONS = [
 const PACKET_DELAYS = ["delay-0", "delay-450", "delay-900", "delay-1350", "delay-1800", "delay-2250"]
 const LABEL_DELAYS = ["delay-300", "delay-350", "delay-400", "delay-450", "delay-500", "delay-550"]
 
-/** Decorative diagram: product at the core, the layers around it, packets flowing along the edges. */
+/** Curupira at a high level: the agent at the core, what it talks to around it, packets showing which way data flows. */
 export function AgentGraph() {
-  const nodes = hero.graph.nodes.slice(0, POSITIONS.length).map((label, i) => {
+  const { core, caption } = hero.graph
+  const nodes = hero.graph.nodes.slice(0, POSITIONS.length).map(({ label, flow }, i) => {
     const [x, y] = POSITIONS[i]
     // Rotation that turns the upward packet path onto this edge.
     const angle = (Math.atan2(x - CENTER, CENTER - y) * 180) / Math.PI
-    return { label, x, y, angle, outbound: i % 2 === 0 }
+    return { label, x, y, angle, outbound: flow === "out" }
   })
 
   return (
-    <div className="motion-safe:animate-float">
-      <svg viewBox="0 0 480 480" className="block w-full overflow-visible">
+    <figure className="flex flex-col items-center gap-6">
+      {/* The caption describes the diagram, so the SVG itself is hidden from screen readers. */}
+      <svg aria-hidden viewBox="0 0 480 480" className="block w-full overflow-visible motion-safe:animate-float">
         <g className="origin-[240px_240px] motion-safe:animate-orbit">
           <circle cx={CENTER} cy={CENTER} r="212" fill="none" className="stroke-foreground/12" strokeDasharray="2 10" />
           <circle cx={CENTER} cy="28" r="3.5" className="fill-primary" />
@@ -101,9 +103,12 @@ export function AgentGraph() {
           textAnchor="middle"
           className="fill-primary-foreground font-mono text-[13px] font-medium"
         >
-          {hero.graph.core}
+          {core}
         </text>
       </svg>
-    </div>
+      <figcaption className="max-w-sm text-center font-mono text-xs/relaxed text-faint">
+        <span className="text-soft">{caption.title}</span> · {caption.text}
+      </figcaption>
+    </figure>
   )
 }
