@@ -165,36 +165,6 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
-    title: "Mindprint",
-    year: "2026",
-    tags: ["Frontend"],
-    summary:
-      "Free, private self-screening for ADHD traits, autistic traits and reasoning, in five languages. Runs entirely in the browser.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://mindprint-lilac.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "BrightConnect Voicebot",
-    year: "2026",
-    tags: ["AI"],
-    summary:
-      "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
-    stack: ["TypeScript", "Vapi.ai"],
-    link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
-  },
-  {
-    priority: 3,
-    title: "SENTINEL onboarding assessment",
-    year: "2026",
-    tags: ["Full-stack"],
-    summary:
-      "Take-home: a client onboarding risk assessment that derives the risk tier from regulatory criteria and keeps an attributable compliance record.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://challenge-new-page.vercel.app" },
-  },
-  {
-    priority: 3,
     title: "Invoice Generator",
     year: "2026",
     tags: ["Frontend"],
@@ -492,5 +462,36 @@ export const projects: Project[] = [
       "Firefighter robot that searches a four-room maze for a candle and puts it out. 2nd place at the TecnoFacens tournament.",
     stack: ["C++", "Arduino"],
     link: { href: "https://github.com/Luisotee/BombeiroTARS" },
+  },
+  // Minor work, kept last so it sits behind "Show more" in every archive filter.
+  {
+    priority: 3,
+    title: "Mindprint",
+    year: "2026",
+    tags: ["Frontend"],
+    summary:
+      "Free, private self-screening for ADHD traits, autistic traits and reasoning, in five languages. Runs entirely in the browser.",
+    stack: ["TypeScript", "Next.js"],
+    link: { href: "https://mindprint-lilac.vercel.app" },
+  },
+  {
+    priority: 3,
+    title: "BrightConnect Voicebot",
+    year: "2026",
+    tags: ["AI"],
+    summary:
+      "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
+    stack: ["TypeScript", "Vapi.ai"],
+    link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
+  },
+  {
+    priority: 3,
+    title: "SENTINEL onboarding assessment",
+    year: "2026",
+    tags: ["Full-stack"],
+    summary:
+      "Take-home: a client onboarding risk assessment that derives the risk tier from regulatory criteria and keeps an attributable compliance record.",
+    stack: ["TypeScript", "Next.js"],
+    link: { href: "https://challenge-new-page.vercel.app" },
   },
 ]
