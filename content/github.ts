@@ -5,7 +5,7 @@ export const github = {
 }
 
 /**
- * Star and fork counts, kept by hand. Every count on the page reads from here.
+ * Star and fork counts, kept by hand. Every star and fork count on the page reads from here.
  * WAppAI/assistant is archived, so they change slowly; check github.com now and then.
  */
 export const repoCounts = {
@@ -42,7 +42,7 @@ export const pinnedRepos: Repo[] = [
   {
     name: "WAppAI/assistant",
     href: "https://github.com/WAppAI/assistant",
-    desc: "A WhatsApp AI assistant on LangChain: pick an LLM provider, with web search, Google Calendar and Routes tools, and voice messages.",
+    desc: "A WhatsApp AI assistant on LangChain: pick an LLM provider, with web search, Google Routes and voice messages, plus Google Calendar on OpenAI models.",
     lang: "TypeScript",
     stars: formatCount(wappai.stars),
     forks: formatCount(wappai.forks),
