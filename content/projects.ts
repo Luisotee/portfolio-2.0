@@ -28,7 +28,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Supabase", "LLMs", "RAG"],
     metric: { value: "30,000+", label: "active subscribers on the app it extends" },
     impact: ["Feature parity with the native mobile app", "Context-aware tutoring grounded with RAG"],
-    link: { href: "https://web.tapnote.app", label: "web.tapnote.app" },
+    link: { href: "https://web.tapnote.app", label: "web.tapnote.app (sign-in required)" },
   },
   {
     priority: 1,

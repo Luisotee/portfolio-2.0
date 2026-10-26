@@ -32,7 +32,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis provides real figures where they exist, such as users, adoption or time saved.
 - [ ] **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.
   - 🙋 Luis provides material for anything behind a login (Tapnote web, Akdo, the bots' chats). Public sites can be captured by an agent.
-- [ ] **Stale project copy.** akdo.ai now calls itself "The AI Safety and Procedure Platform", which doesn't match the "Enterprise Training Platform" card. web.tapnote.app opens on a login page, so make clear there's no public demo.
+- [ ] **Stale project copy.** akdo.ai now calls itself "The AI Safety and Procedure Platform", which doesn't match the "Enterprise Training Platform" card.
   - 🙋 Luis confirms how the Akdo work should be described.
 - [ ] **Short stints and the "3+ years" stat.** Tapnote (5 months) and Akdo (7 months) read as short stays. Label the contract roles as contracts if they were. The "3+ years" stat counts the Huawei internship.
   - 🙋 Luis confirms the contract types and how he wants the years framed.
