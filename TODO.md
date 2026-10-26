@@ -20,12 +20,13 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 ## 2. Performance
 
-- [ ] **Hero shouldn't wait for JS.** The server HTML starts the hero name and intro at opacity 0 or translated off-screen. Mobile LCP is 3.8s, measured on the intro paragraph. Make the above-the-fold content visible without JS while keeping a tasteful entrance.
-- [ ] **Lighter analytics bundle.** posthog-js, including session replay, is imported eagerly in `instrumentation-client.ts` and ends up in the main first-load chunk. The page ships about 330 KB of gzipped JS for static content. Defer it or slim it down without losing the analytics we rely on. Keep the cookieless setup and the `/ingest` proxy working.
+- [x] **Hero shouldn't wait for JS.** The hero entrance is CSS now, so the server HTML shows it before hydration.
+- [ ] **Sections below the hero stay hidden without JS.** `Reveal` starts every scroll-revealed block at opacity 0 in the server HTML, so with JS off or failing, everything after the hero is invisible. Give it a no-JS fallback or a CSS-first reveal.
+- [x] **Lighter analytics bundle.** posthog-js loads after the page is idle, out of first-load JS (377 → 273 KB gzipped, measured locally).
 
 ## 3. Content and hierarchy
 
-- [ ] **Proof above the fold.** At 1440px the first screen is the name, a generic line and a decorative graph. The strongest proof (30,000+ subscribers, 3rd place in the Amazon Challenge) sits below it, and further down on mobile. Rework the hero so a recruiter gets who, what, where and the best proof in about five seconds. Sharpen the headline copy while you're there.
+- [x] **Proof above the fold.** The proof row sits in the first screen at 1440×900 and 390×844, and the headline says what Luis builds. The "where" part comes with the availability/status line task above (`hero.status` in `content/site.ts` renders under the eyebrow once set).
 - [ ] **Metrics that are outcomes.** Some feature-card metrics describe the work, not results: "Multi-tenant" (Akdo), "Merged" (Google Routes). Tapnote's 30k counts users of the app it extends. Reframe or replace these.
   - 🙋 Luis provides real figures where they exist, such as users, adoption or time saved.
 - [ ] **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.
@@ -36,7 +37,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis confirms the contract types and how he wants the years framed.
 - [ ] **Location consistency.** Check that the location copy across the site, metadata and structured data agrees with Essen, Germany, including the experience intro and the role entries.
   - 🙋 Luis approves any change to how past roles are described.
-- [ ] **Hero graph with a purpose.** The agent graph is decorative today (product → frontend/api/…). Consider making it show the real architecture of a shipped bot, linking to that bot's case study once one exists.
+- [ ] **Link the hero graph to Curupira's case study.** The graph now shows Curupira's architecture at a high level; link it to the case study once that page exists.
 
 ## 4. Bigger additions
 

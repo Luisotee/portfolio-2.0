@@ -1,11 +1,9 @@
-"use client"
-
-import { motion, stagger } from "motion/react"
-
 import { hero } from "@/content/site"
+import { cn } from "@/lib/utils"
 
 const CENTER = 240
-// Node centers on a hexagon around the core, clockwise from the top.
+// Node centers on a hexagon around the core, clockwise from the top. Each is 166 units from the
+// core, the distance the packet keyframe travels.
 const POSITIONS = [
   [240, 74],
   [384, 157],
@@ -15,18 +13,24 @@ const POSITIONS = [
   [96, 157],
 ] as const
 
-const PACKET_DURATION = 2.6
+// Literal classes so Tailwind sees them. Packets leave 0.45s apart; labels rise after the core.
+const PACKET_DELAYS = ["delay-0", "delay-450", "delay-900", "delay-1350", "delay-1800", "delay-2250"]
+const LABEL_DELAYS = ["delay-300", "delay-350", "delay-400", "delay-450", "delay-500", "delay-550"]
 
-/** Decorative diagram: product at the core, the layers around it, packets flowing along the edges. */
+/** Curupira at a high level: the agent at the core, what it talks to around it, packets showing which way data flows. */
 export function AgentGraph() {
-  const nodes = hero.graph.nodes.slice(0, POSITIONS.length).map((label, i) => {
+  const { core, caption } = hero.graph
+  const nodes = hero.graph.nodes.slice(0, POSITIONS.length).map(({ label, flow }, i) => {
     const [x, y] = POSITIONS[i]
-    return { label, x, y, outbound: i % 2 === 0 }
+    // Rotation that turns the upward packet path onto this edge.
+    const angle = (Math.atan2(x - CENTER, CENTER - y) * 180) / Math.PI
+    return { label, x, y, angle, outbound: flow === "out" }
   })
 
   return (
-    <div className="motion-safe:animate-float">
-      <svg viewBox="0 0 480 480" className="block w-full overflow-visible">
+    <figure className="flex flex-col items-center gap-6">
+      {/* The caption describes the diagram, so the SVG itself is hidden from screen readers. */}
+      <svg aria-hidden viewBox="0 0 480 480" className="block w-full overflow-visible motion-safe:animate-float">
         <g className="origin-[240px_240px] motion-safe:animate-orbit">
           <circle cx={CENTER} cy={CENTER} r="212" fill="none" className="stroke-foreground/12" strokeDasharray="2 10" />
           <circle cx={CENTER} cy="28" r="3.5" className="fill-primary" />
@@ -48,55 +52,27 @@ export function AgentGraph() {
           />
         ))}
 
-        {/* Packets travel by translating along each straight edge. Hidden for reduced motion. */}
+        {/* Each packet travels up its own rotated edge; inbound ones play in reverse. Hidden for reduced motion. */}
         <g className="motion-reduce:hidden">
-          {nodes.map((node, i) => {
-            const dx = node.x - CENTER
-            const dy = node.y - CENTER
-            const timing = {
-              duration: PACKET_DURATION,
-              repeat: Infinity,
-              delay: i * 0.45,
-              ease: [0.45, 0, 0.55, 1] as const,
-            }
-            return (
-              <motion.circle
-                key={`packet-${node.label}`}
+          {nodes.map((node, i) => (
+            <g key={`packet-${node.label}`} transform={`rotate(${node.angle} ${CENTER} ${CENTER})`}>
+              <circle
                 cx={CENTER}
                 cy={CENTER}
                 r="3.5"
-                className="fill-primary"
-                initial={{ opacity: 0 }}
-                animate={{
-                  x: node.outbound ? [0, dx] : [dx, 0],
-                  y: node.outbound ? [0, dy] : [dy, 0],
-                  opacity: [0, 1, 1, 0],
-                }}
-                transition={{
-                  x: timing,
-                  y: timing,
-                  opacity: { ...timing, ease: "linear", times: [0, 0.12, 0.88, 1] },
-                }}
+                className={cn(
+                  "fill-primary opacity-0 motion-safe:animate-packet",
+                  PACKET_DELAYS[i],
+                  !node.outbound && "direction-reverse",
+                )}
               />
-            )
-          })}
+            </g>
+          ))}
         </g>
 
-        <motion.g
-          initial="hidden"
-          animate="visible"
-          variants={{ visible: { transition: { delayChildren: stagger(0.1, { startDelay: 0.5 }) } } }}
-          className="font-mono text-xs"
-          textAnchor="middle"
-        >
-          {nodes.map((node) => (
-            <motion.g
-              key={node.label}
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.2, 0.8, 0.2, 1] } },
-              }}
-            >
+        <g className="font-mono text-xs" textAnchor="middle">
+          {nodes.map((node, i) => (
+            <g key={node.label} className={cn("motion-safe:animate-rise-sm", LABEL_DELAYS[i])}>
               <rect
                 x={node.x - 44}
                 y={node.y - 16}
@@ -108,9 +84,9 @@ export function AgentGraph() {
               <text x={node.x} y={node.y + 4} className="fill-foreground">
                 {node.label}
               </text>
-            </motion.g>
+            </g>
           ))}
-        </motion.g>
+        </g>
 
         <circle
           cx={CENTER}
@@ -127,9 +103,12 @@ export function AgentGraph() {
           textAnchor="middle"
           className="fill-primary-foreground font-mono text-[13px] font-medium"
         >
-          {hero.graph.core}
+          {core}
         </text>
       </svg>
-    </div>
+      <figcaption className="max-w-sm text-center font-mono text-xs/relaxed text-faint">
+        <span className="text-soft">{caption.title}</span> · {caption.text}
+      </figcaption>
+    </figure>
   )
 }

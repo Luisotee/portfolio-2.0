@@ -1,7 +1,7 @@
 // next.config.ts loads this file: keep its imports relative and dependency-free (no `@/` aliases,
 // React or packages), or the config fails to load.
 import { formatCount, repoCounts } from "./github"
-import type { SectionHeading, Social, SpokenLanguage, Stat } from "./types"
+import type { GraphNode, SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
 const name = "Luis Otavio"
 const jobTitle = "Full-stack Engineer"
@@ -40,16 +40,30 @@ export const nav = [
 
 export const hero = {
   eyebrow: "Full-stack engineer · Frontend, backend and AI",
+  /** Availability and location line, shown under the eyebrow once set. 🙋 Luis decides the wording (TODO.md). */
+  status: null as string | null,
   intro: {
-    before: "I build web products end to end: ",
-    emphasis: "polished React frontends, solid backends and APIs",
-    after: ", and AI features where they earn their place.",
+    before: "I build AI products end to end: ",
+    emphasis: "the web app, the API and the LLM agent behind them",
+    after: ", from an AI tutor on the web to WhatsApp bots for fire brigades.",
   },
   primaryCta: { label: "Start a conversation", href: `mailto:${site.email}` },
   secondaryCta: { label: "github.com/Luisotee", href: "https://github.com/Luisotee" },
+  /** Curupira's shape at a high level, from its card in projects.ts. Six nodes, clockwise from the top. */
   graph: {
-    core: "product",
-    nodes: ["frontend", "api", "database", "auth", "infra", "ai"],
+    core: "agent",
+    nodes: [
+      { label: "whatsapp", flow: "in" },
+      { label: "platform", flow: "out" },
+      { label: "fire risk", flow: "in" },
+      { label: "voice", flow: "out" },
+      { label: "telegram", flow: "in" },
+      { label: "docs · rag", flow: "in" },
+    ] satisfies GraphNode[],
+    caption: {
+      title: "Curupira",
+      text: "one agent on WhatsApp and Telegram that files fire reports, reads the fire-risk forecast and answers from brigade documents.",
+    },
   },
 }
 
