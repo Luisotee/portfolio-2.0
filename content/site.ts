@@ -102,6 +102,8 @@ export const labels = {
   menu: "Menu",
   contact: "Contact",
   languages: "Languages",
+  languageList: (languages: SpokenLanguage[]) =>
+    languages.map((l) => `${l.name} (${l.level})`).join(" · "),
   problem: "Problem",
   built: "What I built",
   impact: "Impact",
