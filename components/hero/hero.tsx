@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { Container } from "@/components/container"
 import { AgentGraph } from "@/components/hero/agent-graph"
@@ -14,6 +14,9 @@ import { cn } from "@/lib/utils"
 // Entrances are CSS so the hero shows before JS. Stat n rises at 250 + n * 50 ms; the delay-*
 // classes are safelisted in globals.css up to 1000.
 const proofDelay = (i: number) => `delay-${Math.min(250 + i * 50, 1000)}`
+
+const outlineCta =
+  "h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
 
 /**
  * Who, what and proof in the first screen. Mobile stacks text, proof, CTAs, graph; from xl the
@@ -33,7 +36,11 @@ export function Hero() {
             <p className="inline-flex items-center gap-3">
               <LiveDot /> {hero.eyebrow}
             </p>
-            {hero.status && <p className="ps-5">{hero.status}</p>}
+            {hero.status.map((line) => (
+              <p key={line} className="ps-5">
+                {line}
+              </p>
+            ))}
           </div>
 
           <HeroTitle />
@@ -80,11 +87,21 @@ export function Hero() {
             />
           </Button>
           <Button
+            render={<a href={hero.resumeCta.href} />}
+            nativeButton={false}
+            size="lg"
+            variant="outline"
+            className={outlineCta}
+          >
+            <FileText data-icon="inline-start" className="size-4.5" />
+            {hero.resumeCta.label}
+          </Button>
+          <Button
             render={<a href={hero.secondaryCta.href} />}
             nativeButton={false}
             size="lg"
             variant="outline"
-            className="h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
+            className={outlineCta}
           >
             <GithubIcon data-icon="inline-start" className="size-4.5" />
             {hero.secondaryCta.label}

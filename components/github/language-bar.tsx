@@ -24,6 +24,7 @@ export function LanguageBar({ languages }: { languages: { lang: Language; count:
             <TooltipTrigger
               render={
                 <motion.span
+                  data-reveal
                   variants={{
                     hidden: { scaleX: 0 },
                     visible: { scaleX: 1, transition: { duration: 1.4, ease: [0.2, 0.8, 0.2, 1] } },

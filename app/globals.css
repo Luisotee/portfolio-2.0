@@ -253,4 +253,11 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+  /* Scroll reveals start hidden in the server HTML (motion's inline styles); show them when JS is off. */
+  @media (scripting: none) {
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
