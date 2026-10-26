@@ -76,7 +76,7 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 
 ## Analytics
 
-- **PostHog** is initialized in `instrumentation-client.ts`, in production only and only when `NEXT_PUBLIC_POSTHOG_KEY` is set (see `.env.example`). It runs with `cookieless_mode: "always"`. Autocapture records clicks, page views, scroll depth, heatmaps and replays, so components need no tracking code.
+- **PostHog** is initialized in `instrumentation-client.ts`, in production only and only when `NEXT_PUBLIC_POSTHOG_KEY` is set (see `.env.example`). posthog-js is loaded with a dynamic `import()` once the page is idle after `load`, so it stays out of first-load JS; keep it that way rather than importing it statically. It runs with `cookieless_mode: "always"`. Autocapture records clicks, page views, scroll depth, heatmaps and replays, so components need no tracking code.
 - **Proxy:** PostHog requests go through the `/ingest` rewrites in `next.config.ts`, to EU Cloud. `skipTrailingSlashRedirect` has to stay on, or capture breaks.
 - **Vercel:** `<Analytics />` and `<SpeedInsights />` sit in `app/layout.tsx`. Both are cookieless.
 - **No consent banner** is needed only while nothing is stored on the device. Don't call `posthog.identify()`, and don't add cookies or localStorage tracking, without adding a consent banner first.

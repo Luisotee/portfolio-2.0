@@ -29,7 +29,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 - [x] **Hero shouldn't wait for JS.** The hero entrance is CSS now, so the server HTML shows it before hydration.
 - [ ] **Sections below the hero stay hidden without JS.** `Reveal` starts every scroll-revealed block at opacity 0 in the server HTML, so with JS off or failing, everything after the hero is invisible. Give it a no-JS fallback or a CSS-first reveal.
-- [ ] **Lighter analytics bundle.** posthog-js, including session replay, is imported eagerly in `instrumentation-client.ts` and ends up in the main first-load chunk. The page ships about 330 KB of gzipped JS for static content. Defer it or slim it down without losing the analytics we rely on. Keep the cookieless setup and the `/ingest` proxy working.
+- [x] **Lighter analytics bundle.** posthog-js loads after the page is idle, out of first-load JS (377 → 273 KB gzipped, measured locally).
 
 ## 3. Content and hierarchy
 
