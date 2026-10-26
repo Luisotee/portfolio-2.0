@@ -51,6 +51,8 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 
 **Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar`, `HeroTitle`, `AgentGraph` and `components/motion/*`. `ListRow` renders the archive rows.
 
+**Links.** External links open in the same tab: no `target="_blank"`. Visitors who want a new tab can middle-click or ⌘-click, and Back restores the page from the back-forward cache.
+
 ## Styling rules
 
 - **`app/globals.css` is the only stylesheet.** Use Tailwind utilities and shadcn tokens; no inline `style=` and no other CSS files. Theme values, `@keyframes`/`--animate-*` and the few `@utility` effects (`text-outline`, `bg-grid`, `animation-paused`) live there.

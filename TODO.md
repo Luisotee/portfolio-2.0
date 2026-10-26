@@ -19,7 +19,6 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis decides: full-time, freelance or both, and the exact wording.
 - [ ] **Résumé link.** Add a résumé download in the hero and/or contact section, at a stable URL.
   - 🙋 Luis provides the PDF (the LaTeX source lives in the sibling `Resume` repo).
-- [ ] **Small accessibility fixes.** The skip link is cramped and overlaps the LO logo when focused. Archive row links are announced as run-on text ("2026agent-meshClaude Code and…"). Also decide whether external links should open in a new tab.
 
 ## 2. Performance
 

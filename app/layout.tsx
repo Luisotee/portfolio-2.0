@@ -32,7 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-svh overflow-x-clip">
         <a
           href="#main"
-          className="sr-only rounded-full bg-primary px-4 py-2 font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100"
+          className="sr-only inline-flex h-11 items-center rounded-full bg-primary px-5 font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-21 focus:left-4 focus:z-100 sm:focus:left-8 lg:focus:left-16"
         >
           {labels.skipToContent}
         </a>
