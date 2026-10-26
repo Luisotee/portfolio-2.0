@@ -18,9 +18,13 @@ const numbered: NumberedProject[] = [
 export const featuredProjects = numbered.filter((p) => p.priority === 1)
 export const compactProjects = numbered.filter((p) => p.priority === 2)
 
-export const archiveProjects = projects.filter(
-  (p): p is ArchiveProject => p.priority === 3
-)
+const archiveAll = projects.filter((p): p is ArchiveProject => p.priority === 3)
+
+// Minor rows go last; each part keeps its order from content/projects.ts.
+export const archiveProjects = [
+  ...archiveAll.filter((p) => !p.minor),
+  ...archiveAll.filter((p) => p.minor),
+]
 
 export type ArchiveFilter = { value: "All" | ProjectTag; count: number }
 

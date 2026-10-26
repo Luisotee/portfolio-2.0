@@ -1,16 +1,35 @@
-import type { GraphNode, SectionHeading, Social, Stat } from "./types"
+// next.config.ts loads this file: keep its imports relative and dependency-free (no `@/` aliases,
+// React or packages), or the config fails to load.
+import { formatCount, repoCounts } from "./github"
+import type { GraphNode, SectionHeading, Social, SpokenLanguage, Stat } from "./types"
+
+const name = "Luis Otavio"
+const jobTitle = "Full-stack Engineer"
+/** The one canonical origin. Metadata, the sitemap and the domain redirect derive from it. */
+const url = "https://www.luisotee.com"
 
 export const site = {
-  name: "Luis Otavio",
+  name,
   firstName: "Luis",
   lastName: "Otavio",
   initials: "LO",
   handle: "luisotee",
   email: "luisotaviomgrcont@gmail.com",
-  title: "Luis Otavio, Full-stack Engineer",
+  url,
+  /** The bare domain, e.g. for display: "luisotee.com". */
+  domain: new URL(url).hostname.replace(/^www\./, ""),
+  jobTitle,
+  title: `${name}, ${jobTitle}`,
   description:
     "I build web products end to end: polished React frontends, solid backends and APIs, and AI features where they earn their place.",
   copyright: "© 2026 Luis Otavio",
+}
+
+/** Link previews and structured data. */
+export const seo = {
+  locale: "en_US",
+  location: { locality: "Essen", countryCode: "DE" },
+  ogImageAlt: `${name}, ${jobTitle}, on a dark card with a lime accent`,
 }
 
 export const nav = [
@@ -52,7 +71,7 @@ export const proof: Stat[] = [
   { value: "30,000+", label: "active subscribers on Tapnote, whose web app I built as sole developer" },
   { value: "3rd place", label: "in the Amazon Challenge with Terra Krya, R$ 100,000 in funding" },
   { value: "3+ years", label: "shipping production software, since Jan 2023" },
-  { value: "124", label: "GitHub stars on my open-source WhatsApp assistant" },
+  { value: formatCount(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
 ]
 
 export const sections = {
@@ -96,7 +115,15 @@ export const archiveCopy = {
 export const socials: Social[] = [
   { label: "GitHub", handle: "Luisotee", href: "https://github.com/Luisotee" },
   { label: "LinkedIn", handle: "in/luisotee", href: "https://www.linkedin.com/in/luisotee" },
-  { label: "Website", handle: "luisotee.com", href: "https://luisotee.com" },
+  // Résumé card goes here once the PDF is in public/: { label: "Résumé", handle: "PDF", href: "/<file>.pdf" }
+]
+
+/** Spoken languages and levels, as on the résumé. */
+export const spokenLanguages: SpokenLanguage[] = [
+  { name: "Portuguese", level: "native" },
+  { name: "English", level: "C2" },
+  { name: "Spanish", level: "A2" },
+  { name: "German", level: "A1" },
 ]
 
 /** Interface copy that isn't tied to a single entry. */
@@ -106,6 +133,9 @@ export const labels = {
   openMenu: "Open menu",
   menu: "Menu",
   contact: "Contact",
+  languages: "Languages",
+  languageList: (languages: SpokenLanguage[]) =>
+    languages.map((l) => `${l.name} (${l.level})`).join(" · "),
   problem: "Problem",
   built: "What I built",
   impact: "Impact",

@@ -57,6 +57,8 @@ export type FeatureProject = ProjectBase & {
 /** Priority 3 renders as a row in the archive. */
 export type ArchiveProject = ProjectBase & {
   priority: 3
+  /** Sorts after every other archive row, so it sits behind "Show more" when a filter has more rows than `visibleArchive`. */
+  minor?: true
   summary: string
   link?: Pick<Link, "href">
 }
@@ -99,4 +101,9 @@ export type Social = {
   label: string
   handle: string
   href: string
+}
+
+export type SpokenLanguage = {
+  name: string
+  level: string
 }

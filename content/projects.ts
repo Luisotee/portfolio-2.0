@@ -1,4 +1,7 @@
+import { formatCount, repoCounts } from "./github"
 import type { Project } from "./types"
+
+const { wappai } = repoCounts
 
 /**
  * Add, remove or reorder entries here; no component changes needed.
@@ -25,7 +28,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Supabase", "LLMs", "RAG"],
     metric: { value: "30,000+", label: "active subscribers on the app it extends" },
     impact: ["Feature parity with the native mobile app", "Context-aware tutoring grounded with RAG"],
-    link: { href: "https://web.tapnote.app", label: "web.tapnote.app" },
+    link: { href: "https://web.tapnote.app", label: "web.tapnote.app (sign-in required)" },
   },
   {
     priority: 1,
@@ -98,10 +101,12 @@ export const projects: Project[] = [
     role: "Author",
     tags: ["AI", "Open source"],
     problem: "Bring context-aware LLM answers into the chat app people already use every day.",
-    built: ["Open-source WhatsApp chatbot that connects LLMs, including Bing AI, to WhatsApp conversations."],
+    built: [
+      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Routes, voice messages and group chats, plus Google Calendar on OpenAI models.",
+    ],
     stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
-    metric: { value: "124 ★", label: "GitHub stars and 38 forks" },
-    impact: ["Most-starred repository on my profile", "Forked 38 times by other developers"],
+    metric: { value: `${formatCount(wappai.stars)} ★`, label: `GitHub stars and ${formatCount(wappai.forks)} forks` },
+    impact: ["Most-starred repository on my profile", `Forked ${formatCount(wappai.forks)} times by other developers`],
     link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
@@ -165,6 +170,7 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
+    minor: true,
     title: "Mindprint",
     year: "2026",
     tags: ["Frontend"],
@@ -175,6 +181,7 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
+    minor: true,
     title: "BrightConnect Voicebot",
     year: "2026",
     tags: ["AI"],
@@ -185,6 +192,7 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
+    minor: true,
     title: "SENTINEL onboarding assessment",
     year: "2026",
     tags: ["Full-stack"],

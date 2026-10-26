@@ -47,13 +47,16 @@ Adding an entry should never require touching a component. Keep it that way, and
 - `2` renders as `CompactCard`.
 - `3` renders as an archive row in `ProjectArchive`.
 
-Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags.
+Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags. Archive rows flagged `minor: true` sort after all others, so they stay behind "Show more".
 
 **Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar` and `components/motion/*`. `ListRow` renders the archive rows.
+
+**Links.** External links open in the same tab: no `target="_blank"`. Visitors who want a new tab can middle-click or ⌘-click, and Back restores the page from the back-forward cache.
 
 ## Styling rules
 
 - **`app/globals.css` is the only stylesheet.** Use Tailwind utilities and shadcn tokens; no inline `style=` and no other CSS files. Theme values, `@keyframes`/`--animate-*` and the few `@utility` effects (`text-outline`, `bg-grid`, `animation-paused`) live there.
+  - The one exception is `app/opengraph-image.tsx`. `ImageResponse` only understands inline style objects, so leave its `style={{…}}` and its palette constant (a mirror of `:root`) as they are.
 - **The site is dark only.** The palette is in `:root`, and `<html>` carries the `dark` class so shadcn's `dark:` variants apply. The brand accent is `primary`, `#C8F560`. Extra tokens: `soft` (body copy), `faint` (labels), `elevated` (card hover) and `lang-*` (language colors).
 - **Display sizes** are theme tokens `text-hero`, `text-section` and `text-contact`. A new custom `text-*` size must also be registered in `lib/utils.ts`. Without that, `cn` treats it as a color and drops it in merges.
 - **Imports:** `cn` is created with `createCn` from the `cn` package, not clsx/tailwind-merge. Generated `components/ui/*` files are switched to import from `@/lib/utils`; do the same for newly added shadcn components.
