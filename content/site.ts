@@ -25,6 +25,15 @@ export const site = {
   copyright: "© 2026 Luis Otavio",
 }
 
+/**
+ * The résumé PDF on Google Drive, kept in sync with the LaTeX source. The site links to the stable
+ * `/resume` path, which next.config.ts redirects here, so the Drive link can change without touching links.
+ */
+export const resume = {
+  path: "/resume",
+  driveUrl: "https://drive.google.com/file/d/1qLX_rTdpwaI694l22se_8XcVDqUSwhqR/view",
+}
+
 /** Link previews and structured data. */
 export const seo = {
   locale: "en_US",
@@ -40,14 +49,18 @@ export const nav = [
 
 export const hero = {
   eyebrow: "Full-stack engineer · Frontend, backend and AI",
-  /** Availability and location line, shown under the eyebrow once set. 🙋 Luis decides the wording (TODO.md). */
-  status: null as string | null,
+  /** Availability and location, one line each under the eyebrow. */
+  status: [
+    "Open to contract and B2B work · Remote, hybrid or on-site",
+    "Essen, Germany (CET) · EU citizen, open to relocation",
+  ],
   intro: {
     before: "I build AI products end to end: ",
     emphasis: "the web app, the API and the LLM agent behind them",
     after: ", from an AI tutor on the web to WhatsApp bots for fire brigades.",
   },
   primaryCta: { label: "Start a conversation", href: `mailto:${site.email}` },
+  resumeCta: { label: "Résumé", href: resume.path },
   secondaryCta: { label: "github.com/Luisotee", href: "https://github.com/Luisotee" },
   /** Curupira's shape at a high level, from its card in projects.ts. Six nodes, clockwise from the top. */
   graph: {
@@ -115,7 +128,7 @@ export const archiveCopy = {
 export const socials: Social[] = [
   { label: "GitHub", handle: "Luisotee", href: "https://github.com/Luisotee" },
   { label: "LinkedIn", handle: "in/luisotee", href: "https://www.linkedin.com/in/luisotee" },
-  // Résumé card goes here once the PDF is in public/: { label: "Résumé", handle: "PDF", href: "/<file>.pdf" }
+  { label: "Résumé", handle: "PDF", href: resume.path },
 ]
 
 /** Spoken languages and levels, as on the résumé. */

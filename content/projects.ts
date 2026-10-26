@@ -61,10 +61,11 @@ export const projects: Project[] = [
     built: [
       "WhatsApp and Telegram agent with one shared memory: brigade members sign in from the chat, then report alerts and fires with a location pin and photos, each write confirmed before it is saved.",
       "Fire status updates, field actions, area notifications and the INPE fire-risk forecast up to three days ahead, all by conversation.",
-      "RAG over brigade documents with citations, plus voice notes in and out.",
+      "RAG over 68 brigade documents with citations, plus voice notes in and out.",
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    metric: { value: "84 users", label: "across 10 brigade groups of 30+ people" },
+    // Usage figures: FleetView totals, 2026-10-26.
+    metric: { value: "8,500+", label: "messages from 84 users across 10 brigade groups of 30+ people" },
     impact: [
       "Field reports reach the platform straight from the group chat",
       "Brigades are notified when a fire is registered in their area",
@@ -86,7 +87,8 @@ export const projects: Project[] = [
       "The Caderno da Safra harvest survey answered by conversation, plus operator broadcasts paced to stay clear of spam detection.",
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    metric: { value: "34 users", label: "across 5 producer groups of 10+ people" },
+    // Usage figures: FleetView totals, 2026-10-26.
+    metric: { value: "34 users", label: "and 400+ messages across 5 producer groups of 10+ people" },
     impact: [
       "Prices shared across regions every week, from the platform's own data",
       "Harvest survey filled in without leaving WhatsApp",

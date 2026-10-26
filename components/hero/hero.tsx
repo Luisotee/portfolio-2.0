@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { Container } from "@/components/container"
 import { AgentGraph } from "@/components/hero/agent-graph"
@@ -33,7 +33,11 @@ export function Hero() {
             <p className="inline-flex items-center gap-3">
               <LiveDot /> {hero.eyebrow}
             </p>
-            {hero.status && <p className="ps-5">{hero.status}</p>}
+            {hero.status.map((line) => (
+              <p key={line} className="ps-5">
+                {line}
+              </p>
+            ))}
           </div>
 
           <HeroTitle />
@@ -78,6 +82,16 @@ export function Hero() {
               data-icon="inline-end"
               className="transition-transform duration-300 group-hover/button:translate-x-1"
             />
+          </Button>
+          <Button
+            render={<a href={hero.resumeCta.href} />}
+            nativeButton={false}
+            size="lg"
+            variant="outline"
+            className="h-13.5 rounded-full border-foreground/20 px-6 text-base hover:-translate-y-0.5 hover:border-primary"
+          >
+            <FileText data-icon="inline-start" className="size-4.5" />
+            {hero.resumeCta.label}
           </Button>
           <Button
             render={<a href={hero.secondaryCta.href} />}

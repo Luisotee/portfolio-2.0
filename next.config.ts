@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-import { site } from "./content/site";
+import { resume, site } from "./content/site";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -17,8 +17,11 @@ const nextConfig: NextConfig = {
   // Production also answers on its *.vercel.app aliases; send every other host to the canonical
   // domain. Only production builds get the rule, so preview deployments and local dev keep working.
   async redirects() {
-    if (process.env.VERCEL_ENV !== "production") return [];
+    // Not permanent, so browsers don't cache it and the Drive link can change.
+    const resumeRedirect = { source: resume.path, destination: resume.driveUrl, permanent: false };
+    if (process.env.VERCEL_ENV !== "production") return [resumeRedirect];
     return [
+      resumeRedirect,
       {
         source: "/:path*",
         missing: [{ type: "host", value: new URL(site.url).host }],

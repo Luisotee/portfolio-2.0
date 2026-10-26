@@ -34,14 +34,15 @@ type RevealProps = {
   delay?: number
 }
 
-// Above-the-fold content uses CSS entrances (animate-rise) instead, so it shows before JS.
+// Above-the-fold content uses CSS entrances (animate-rise) instead, so it shows before JS. Elements that
+// start hidden carry `data-reveal`, which globals.css shows when scripting is off.
 const trigger = { initial: "hidden", whileInView: "visible", viewport: { once: true, amount: 0.15 } } as const
 
 /** Fades a single element up into place. */
 export function Reveal({ as = "div", className, children, delay = 0 }: RevealProps) {
   const Element = elements[as] as typeof motion.div
   return (
-    <Element className={className} variants={fadeUp} custom={delay} {...trigger}>
+    <Element data-reveal className={className} variants={fadeUp} custom={delay} {...trigger}>
       {children}
     </Element>
   )
@@ -73,7 +74,7 @@ export function RevealGroup({
 export function RevealItem({ as = "div", className, children }: Omit<RevealProps, "delay">) {
   const Element = elements[as] as typeof motion.div
   return (
-    <Element className={className} variants={fadeUp}>
+    <Element data-reveal className={className} variants={fadeUp}>
       {children}
     </Element>
   )
