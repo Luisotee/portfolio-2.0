@@ -5,7 +5,7 @@ import { Container } from "@/components/container"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { SectionHeading } from "@/components/section-heading"
 import { Card, CardContent } from "@/components/ui/card"
-import { sections, site, socials } from "@/content/site"
+import { labels, sections, site, socials, spokenLanguages } from "@/content/site"
 
 export function ContactSection() {
   const heading = sections.contact
@@ -55,6 +55,11 @@ export function ContactSection() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal as="p" className="flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-sm text-soft">
+          <span className="text-xs tracking-widest text-faint uppercase">{labels.languages}</span>
+          <span>{spokenLanguages.map((l) => `${l.name} (${l.level})`).join(" · ")}</span>
+        </Reveal>
       </Container>
     </section>
   )

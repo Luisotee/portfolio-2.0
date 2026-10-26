@@ -50,7 +50,6 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis writes or approves the content.
 - [ ] **Testimonials.** Add one or two named quotes from Terra Krya or past clients/employers, with name, role and org.
   - 🙋 Luis collects the quotes and permission.
-- [ ] **Languages note.** Add a one-line mention of the languages Luis works in (e.g. English, Portuguese) near the contact section. Don't build full translation.
 
 ## Deliberately skipped
 

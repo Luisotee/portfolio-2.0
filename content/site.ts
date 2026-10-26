@@ -1,5 +1,5 @@
 import { formatCount, repoCounts } from "./github"
-import type { SectionHeading, Social, Stat } from "./types"
+import type { SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
 export const site = {
   name: "Luis Otavio",
@@ -86,6 +86,14 @@ export const socials: Social[] = [
   // Résumé card goes here once the PDF is in public/: { label: "Résumé", handle: "PDF", href: "/<file>.pdf" }
 ]
 
+/** Spoken languages and levels, as on the résumé. */
+export const spokenLanguages: SpokenLanguage[] = [
+  { name: "Portuguese", level: "native" },
+  { name: "English", level: "C2" },
+  { name: "Spanish", level: "A2" },
+  { name: "German", level: "A1" },
+]
+
 /** Interface copy that isn't tied to a single entry. */
 export const labels = {
   skipToContent: "Skip to content",
@@ -93,6 +101,7 @@ export const labels = {
   openMenu: "Open menu",
   menu: "Menu",
   contact: "Contact",
+  languages: "Languages",
   problem: "Problem",
   built: "What I built",
   impact: "Impact",

@@ -94,3 +94,8 @@ export type Social = {
   handle: string
   href: string
 }
+
+export type SpokenLanguage = {
+  name: string
+  level: string
+}
