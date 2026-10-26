@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { site } from "./content/site";
+
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
@@ -11,6 +13,18 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // The Vercel production alias serves the same site; send it to the canonical domain.
+  // Exact host only, so preview deployments on other *.vercel.app hosts keep working.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "portfolio-20-neon.vercel.app" }],
+        destination: `${site.url}/:path*`,
+        permanent: true,
+      },
+    ];
   },
   // Proxy PostHog through our own domain so ad blockers don't drop events.
   async rewrites() {
