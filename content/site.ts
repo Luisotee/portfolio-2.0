@@ -1,17 +1,35 @@
+// next.config.ts loads this file: keep its imports relative and dependency-free (no `@/` aliases,
+// React or packages), or the config fails to load.
 import { formatCount, repoCounts } from "./github"
 import type { SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
+const name = "Luis Otavio"
+const jobTitle = "Full-stack Engineer"
+/** The one canonical origin. Metadata, the sitemap and the domain redirect derive from it. */
+const url = "https://www.luisotee.com"
+
 export const site = {
-  name: "Luis Otavio",
+  name,
   firstName: "Luis",
   lastName: "Otavio",
   initials: "LO",
   handle: "luisotee",
   email: "luisotaviomgrcont@gmail.com",
-  title: "Luis Otavio, Full-stack Engineer",
+  url,
+  /** The bare domain, e.g. for display: "luisotee.com". */
+  domain: new URL(url).hostname.replace(/^www\./, ""),
+  jobTitle,
+  title: `${name}, ${jobTitle}`,
   description:
     "I build web products end to end: polished React frontends, solid backends and APIs, and AI features where they earn their place.",
   copyright: "© 2026 Luis Otavio",
+}
+
+/** Link previews and structured data. */
+export const seo = {
+  locale: "en_US",
+  location: { locality: "Essen", countryCode: "DE" },
+  ogImageAlt: `${name}, ${jobTitle}, on a dark card with a lime accent`,
 }
 
 export const nav = [

@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { site } from "./content/site";
+
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
@@ -11,6 +13,19 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // Production also answers on its *.vercel.app aliases; send every other host to the canonical
+  // domain. Only production builds get the rule, so preview deployments and local dev keep working.
+  async redirects() {
+    if (process.env.VERCEL_ENV !== "production") return [];
+    return [
+      {
+        source: "/:path*",
+        missing: [{ type: "host", value: new URL(site.url).host }],
+        destination: `${site.url}/:path*`,
+        permanent: true,
+      },
+    ];
   },
   // Proxy PostHog through our own domain so ad blockers don't drop events.
   async rewrites() {
