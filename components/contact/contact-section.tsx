@@ -5,7 +5,7 @@ import { Container } from "@/components/container"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { SectionHeading } from "@/components/section-heading"
 import { Card, CardContent } from "@/components/ui/card"
-import { sections, site, socials } from "@/content/site"
+import { labels, sections, site, socials, spokenLanguages } from "@/content/site"
 
 export function ContactSection() {
   const heading = sections.contact
@@ -32,7 +32,7 @@ export function ContactSection() {
           <CopyEmailButton email={site.email} />
         </Reveal>
 
-        <RevealGroup as="ul" className="grid gap-4 md:grid-cols-3">
+        <RevealGroup as="ul" className="grid gap-4 md:grid-cols-[repeat(auto-fit,minmax(13rem,1fr))]">
           {socials.map((social) => (
             <RevealItem as="li" key={social.label}>
               <Card className="group/social relative rounded-2xl bg-transparent ring-foreground/12 hover:bg-foreground/3 hover:ring-primary">
@@ -55,6 +55,11 @@ export function ContactSection() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal as="p" className="flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-sm text-soft">
+          <span className="text-xs tracking-widest text-faint uppercase">{labels.languages}</span>
+          <span>{labels.languageList(spokenLanguages)}</span>
+        </Reveal>
       </Container>
     </section>
   )

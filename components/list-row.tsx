@@ -1,10 +1,12 @@
 import { ArrowRight } from "lucide-react"
+import { useId } from "react"
 
 import { cn } from "@/lib/utils"
 
 /**
  * One row of a ruled list (project archive).
  * Renders as a link with a turning arrow when `href` is set, otherwise as static text.
+ * The link is named by its title alone; lead, description and meta describe it.
  */
 export function ListRow({
   href,
@@ -21,17 +23,20 @@ export function ListRow({
   meta: React.ReactNode
   className?: string
 }) {
+  const id = useId()
   const shift = "transition-transform duration-500 ease-out-expo group-hover/row:translate-x-2 md:group-hover/row:translate-x-5"
   const content = (
     <>
-      <span className={cn("col-span-full font-mono text-sm text-muted-foreground md:col-span-1 md:pt-1", shift)}>
+      <span id={`${id}-lead`} className={cn("col-span-full font-mono text-sm text-muted-foreground md:col-span-1 md:pt-1", shift)}>
         {lead}
       </span>
       <span className={cn("flex min-w-0 flex-col gap-1.5", shift)}>
-        <span className="font-display text-xl font-semibold tracking-tight text-foreground md:text-2xl">{title}</span>
-        <span className="text-muted-foreground">{description}</span>
+        <span id={`${id}-title`} className="font-display text-xl font-semibold tracking-tight text-foreground md:text-2xl">{title}</span>
+        <span id={`${id}-desc`} className="text-muted-foreground">
+          {description}
+        </span>
       </span>
-      <span className={cn("col-start-1 font-mono text-sm text-muted-foreground md:col-start-auto md:pt-1.5", shift)}>
+      <span id={`${id}-meta`} className={cn("col-start-1 font-mono text-sm text-muted-foreground md:col-start-auto md:pt-1.5", shift)}>
         {meta}
       </span>
       {href && (
@@ -51,7 +56,12 @@ export function ListRow({
   )
 
   return href ? (
-    <a href={href} className={cn("group/row hover:bg-foreground/4", rowClass)}>
+    <a
+      href={href}
+      aria-labelledby={`${id}-title`}
+      aria-describedby={`${id}-lead ${id}-desc ${id}-meta`}
+      className={cn("group/row hover:bg-foreground/4", rowClass)}
+    >
       {content}
     </a>
   ) : (
