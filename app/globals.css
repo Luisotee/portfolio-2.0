@@ -6,6 +6,8 @@
 
 /* Language bar segments size themselves with grow-<count> at runtime. */
 @source inline("grow-{1..12}");
+/* Hero name letters stagger with delay-<ms> classes computed from their index. */
+@source inline("delay-{0..1000..50}");
 
 @theme inline {
   --color-background: var(--background);
@@ -125,6 +127,42 @@
   @keyframes blink {
     50% {
       opacity: 0;
+    }
+  }
+}
+
+/* Entrances that play from the first paint, before JS. Staggered with tw-animate-css's delay-*, which
+   sets --tw-animation-delay. Inline so that var resolves on the element, not on :root. Fill "both"
+   keeps each one hidden until its delay ends. Transform and opacity only. */
+@theme inline {
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) var(--tw-animation-delay, 0s) both;
+  --animate-letter: letter 1.1s cubic-bezier(0.16, 0.84, 0.24, 1) var(--tw-animation-delay, 0s) both;
+  --animate-packet: packet 2.6s cubic-bezier(0.45, 0, 0.55, 1) var(--tw-animation-delay, 0s) infinite var(--tw-animation-direction, normal) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+  }
+  @keyframes letter {
+    from {
+      transform: translateY(108%);
+    }
+  }
+  /* Along a hero graph edge: every edge is 166 units long and drawn pointing up. */
+  @keyframes packet {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    12%,
+    88% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-166px);
     }
   }
 }

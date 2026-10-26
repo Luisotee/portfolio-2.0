@@ -27,7 +27,8 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 ## 2. Performance
 
-- [ ] **Hero shouldn't wait for JS.** The server HTML starts the hero name and intro at opacity 0 or translated off-screen. Mobile LCP is 3.8s, measured on the intro paragraph. Make the above-the-fold content visible without JS while keeping a tasteful entrance.
+- [x] **Hero shouldn't wait for JS.** The hero entrance is CSS now, so the server HTML shows it before hydration.
+- [ ] **Sections below the hero stay hidden without JS.** `Reveal` starts every scroll-revealed block at opacity 0 in the server HTML, so with JS off or failing, everything after the hero is invisible. Give it a no-JS fallback or a CSS-first reveal.
 - [ ] **Lighter analytics bundle.** posthog-js, including session replay, is imported eagerly in `instrumentation-client.ts` and ends up in the main first-load chunk. The page ships about 330 KB of gzipped JS for static content. Defer it or slim it down without losing the analytics we rely on. Keep the cookieless setup and the `/ingest` proxy working.
 
 ## 3. Content and hierarchy

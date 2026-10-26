@@ -6,10 +6,13 @@ import { HeroTitle } from "@/components/hero/hero-title"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LiveDot } from "@/components/live-dot"
 import { Marquee } from "@/components/motion/marquee"
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { Button } from "@/components/ui/button"
 import { hero, proof } from "@/content/site"
 import { stream } from "@/content/stack"
+import { cn } from "@/lib/utils"
+
+// Entrances are CSS so the hero shows before JS; literal delay classes so Tailwind sees them.
+const PROOF_DELAYS = ["delay-350", "delay-400", "delay-450", "delay-500"]
 
 export function Hero() {
   return (
@@ -21,13 +24,13 @@ export function Hero() {
 
       <Container className="relative grid items-center gap-10 xl:grid-cols-[minmax(0,1fr)_30rem] xl:gap-16">
         <div className="flex min-w-0 flex-col gap-8">
-          <Reveal as="p" onMount delay={0.08} className="inline-flex items-center gap-3 font-mono text-sm text-soft">
+          <p className="inline-flex items-center gap-3 font-mono text-sm text-soft motion-safe:animate-rise">
             <LiveDot /> {hero.eyebrow}
-          </Reveal>
+          </p>
 
           <HeroTitle />
 
-          <Reveal as="p" onMount delay={0.76} className="max-w-2xl text-xl/snug text-soft md:text-2xl/snug">
+          <p className="max-w-2xl text-xl/snug text-soft delay-200 motion-safe:animate-rise md:text-2xl/snug">
             {hero.intro.before}
             <span className="text-foreground">{hero.intro.emphasis}</span>
             {hero.intro.after}
@@ -35,9 +38,9 @@ export function Hero() {
               aria-hidden
               className="ml-1.5 inline-block h-[1em] w-[0.5em] translate-y-[0.14em] bg-primary motion-safe:animate-blink"
             />
-          </Reveal>
+          </p>
 
-          <Reveal onMount delay={0.88} className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 delay-300 motion-safe:animate-rise">
             <Button
               render={<a href={hero.primaryCta.href} />}
               nativeButton={false}
@@ -60,31 +63,28 @@ export function Hero() {
               <GithubIcon data-icon="inline-start" className="size-4.5" />
               {hero.secondaryCta.label}
             </Button>
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal onMount delay={0.4} className="mx-auto w-full max-w-md xl:max-w-none">
+        <div className="mx-auto w-full max-w-md delay-150 motion-safe:animate-rise xl:max-w-none">
           <AgentGraph />
-        </Reveal>
+        </div>
       </Container>
 
       <Container className="relative mt-14 md:mt-24">
-        <RevealGroup
-          as="ul"
-          onMount
-          delay={0.98}
-          gap={0.09}
-          className="grid border-t sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {proof.map((stat) => (
-            <RevealItem as="li" key={stat.label} className="flex flex-col gap-1.5 border-b py-7 pr-6">
+        <ul className="grid border-t sm:grid-cols-2 lg:grid-cols-4">
+          {proof.map((stat, i) => (
+            <li
+              key={stat.label}
+              className={cn("flex flex-col gap-1.5 border-b py-7 pr-6 motion-safe:animate-rise", PROOF_DELAYS[i])}
+            >
               <span className="font-display text-4xl leading-none font-semibold tracking-tight lg:text-5xl">
                 {stat.value}
               </span>
               <span className="max-w-60 text-sm text-muted-foreground">{stat.label}</span>
-            </RevealItem>
+            </li>
           ))}
-        </RevealGroup>
+        </ul>
       </Container>
 
       <Marquee className="mt-10 border-y border-foreground/7 py-4.5 font-mono text-sm text-faint">
