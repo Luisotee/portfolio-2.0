@@ -11,8 +11,9 @@ import { hero, proof } from "@/content/site"
 import { stream } from "@/content/stack"
 import { cn } from "@/lib/utils"
 
-// Entrances are CSS so the hero shows before JS; literal delay classes so Tailwind sees them.
-const PROOF_DELAYS = ["delay-250", "delay-300", "delay-350", "delay-400"]
+// Entrances are CSS so the hero shows before JS. Stat n rises at 250 + n * 50 ms; the delay-*
+// classes are safelisted in globals.css up to 1000.
+const proofDelay = (i: number) => `delay-${Math.min(250 + i * 50, 1000)}`
 
 /**
  * Who, what and proof in the first screen. Mobile stacks text, proof, CTAs, graph; from xl the
@@ -54,7 +55,7 @@ export function Hero() {
               key={stat.label}
               className={cn(
                 "grid grid-cols-[8.5rem_minmax(0,1fr)] items-center gap-4 border-b py-4 motion-safe:animate-rise sm:flex sm:flex-col sm:items-start sm:gap-1.5 sm:py-6 sm:pr-6",
-                PROOF_DELAYS[i],
+                proofDelay(i),
               )}
             >
               <span className="font-display text-3xl leading-none font-semibold tracking-tight sm:text-4xl lg:text-5xl">

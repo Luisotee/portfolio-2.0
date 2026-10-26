@@ -4,7 +4,10 @@ import { motion, stagger, type Variants } from "motion/react"
 
 export const EASE_OUT = [0.2, 0.8, 0.2, 1] as const
 
-/** Fade up. `custom` is an optional delay, only used when the element animates on its own. */
+/**
+ * Fade up. `custom` is an optional delay, only used when the element animates on its own.
+ * The CSS `rise` keyframe in globals.css mirrors it for above-the-fold content; edit them together.
+ */
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   visible: (delay?: number) => ({

@@ -61,7 +61,7 @@ export function AgentGraph() {
                 cy={CENTER}
                 r="3.5"
                 className={cn(
-                  "fill-primary opacity-0 animate-packet",
+                  "fill-primary opacity-0 motion-safe:animate-packet",
                   PACKET_DELAYS[i],
                   !node.outbound && "direction-reverse",
                 )}
@@ -72,7 +72,7 @@ export function AgentGraph() {
 
         <g className="font-mono text-xs" textAnchor="middle">
           {nodes.map((node, i) => (
-            <g key={node.label} className={cn("motion-safe:animate-rise", LABEL_DELAYS[i])}>
+            <g key={node.label} className={cn("motion-safe:animate-rise-sm", LABEL_DELAYS[i])}>
               <rect
                 x={node.x - 44}
                 y={node.y - 16}

@@ -64,7 +64,7 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 - **Animate only transform and opacity.** Generated shadcn components had `transition-all`/`transition` swapped for `transition-transform` or `transition-[transform,opacity]`, so hover color changes are instant. Re-apply that change to any new shadcn component.
 - **Reduced motion:** `MotionProvider` sets `MotionConfig reducedMotion="user"`. CSS loops must use `motion-safe:animate-*`, and purely decorative motion can use `motion-reduce:hidden`.
 - **Scroll reveals** use `Reveal`, or `RevealGroup` + `RevealItem` for staggers, from `components/motion/reveal.tsx`.
-- **Above-the-fold entrances are CSS**, so the server HTML shows before JS loads: `motion-safe:animate-rise` (or `animate-letter`, `animate-packet`) plus tw-animate-css's `delay-*`. Those animations live in an `@theme inline` block so `--tw-animation-delay` resolves on the element; keep new ones there. Delay classes must be literal, or safelisted like `delay-{0..1000..50}`.
+- **Above-the-fold entrances are CSS**, so the server HTML shows before JS loads: `motion-safe:animate-rise` (or `animate-letter`, `animate-packet`) plus tw-animate-css's `delay-*` (`animate-rise-sm` for small nested items). Those animations live in an `@theme inline` block so `--tw-animation-delay` resolves on the element; keep new ones there. Delay classes must be literal, or safelisted like `delay-{0..1000..50}`.
 - **Stagger delays:** child variants must not set their own `delay`, because that overrides the parent's `delayChildren: stagger()`.
 
 ## Base UI / shadcn notes
@@ -76,7 +76,7 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 
 ## Analytics
 
-- **PostHog** is initialized in `instrumentation-client.ts`, in production only and only when `NEXT_PUBLIC_POSTHOG_KEY` is set (see `.env.example`). posthog-js is loaded with a dynamic `import()` once the page is idle after `load`, so it stays out of first-load JS; keep it that way rather than importing it statically. It runs with `cookieless_mode: "always"`. Autocapture records clicks, page views, scroll depth, heatmaps and replays, so components need no tracking code.
+- **PostHog** is initialized in `instrumentation-client.ts`, in production only and only when `NEXT_PUBLIC_POSTHOG_KEY` is set (see `.env.example`). posthog-js is loaded with a dynamic `import()` at the first idle moment (`requestIdleCallback`, 1.5 s timeout), so it stays out of first-load JS; keep it that way rather than importing it statically. Trade-off: anything before init, usually the first second or so (an instant bounce, a very fast click), isn't captured, and replays start at init. It runs with `cookieless_mode: "always"`. Autocapture records clicks, page views, scroll depth, heatmaps and replays, so components need no tracking code.
 - **Proxy:** PostHog requests go through the `/ingest` rewrites in `next.config.ts`, to EU Cloud. `skipTrailingSlashRedirect` has to stay on, or capture breaks.
 - **Vercel:** `<Analytics />` and `<SpeedInsights />` sit in `app/layout.tsx`. Both are cookieless.
 - **No consent banner** is needed only while nothing is stored on the device. Don't call `posthog.identify()`, and don't add cookies or localStorage tracking, without adding a consent banner first.
