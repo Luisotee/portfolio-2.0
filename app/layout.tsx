@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next"
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
+import { Container } from "@/components/container"
 import { MotionProvider } from "@/components/motion/motion-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { labels, site } from "@/content/site"
@@ -30,12 +31,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("dark antialiased", geistSans.variable, geistMono.variable, bricolage.variable)}
     >
       <body className="min-h-svh overflow-x-clip">
-        <a
-          href="#main"
-          className="sr-only items-center rounded-full bg-primary font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:inline-flex focus:h-11 focus:px-5 focus:top-21 focus:left-4 focus:z-100 sm:focus:left-8 lg:focus:left-16"
-        >
-          {labels.skipToContent}
-        </a>
+        {/* Fixed Container so the focused link lines up with the page gutter, below the header. */}
+        <Container className="pointer-events-none fixed inset-x-0 top-21 z-100">
+          <a
+            href="#main"
+            className="pointer-events-auto sr-only items-center rounded-full bg-primary font-mono text-sm text-primary-foreground focus:not-sr-only focus:inline-flex focus:h-11 focus:px-5"
+          >
+            {labels.skipToContent}
+          </a>
+        </Container>
         <MotionProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </MotionProvider>
