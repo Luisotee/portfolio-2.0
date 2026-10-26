@@ -47,7 +47,7 @@ Adding an entry should never require touching a component. Keep it that way, and
 - `2` renders as `CompactCard`.
 - `3` renders as an archive row in `ProjectArchive`.
 
-Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags.
+Feature and compact cards share one running number (01, 02, …), with priority 1 first. Archive filters ("All" plus each tag, with counts) are built only from priority 3 tags. Archive rows flagged `minor: true` sort after all others, so they stay behind "Show more".
 
 **Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar`, `HeroTitle`, `AgentGraph` and `components/motion/*`. `ListRow` renders the archive rows.
 

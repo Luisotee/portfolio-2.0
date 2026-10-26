@@ -102,7 +102,7 @@ export const projects: Project[] = [
     tags: ["AI", "Open source"],
     problem: "Bring context-aware LLM answers into the chat app people already use every day.",
     built: [
-      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Calendar and Routes tools, voice messages, reminders and group chats.",
+      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain, with web search, Google Routes, voice messages, reminders and group chats, plus Google Calendar on OpenAI models.",
     ],
     stack: ["TypeScript", "Node.js", "LangChain", "Prisma", "Docker"],
     metric: { value: `${formatCount(wappai.stars)} ★`, label: `GitHub stars and ${formatCount(wappai.forks)} forks` },
@@ -167,6 +167,39 @@ export const projects: Project[] = [
       "Claude Code and Antigravity agents that hand work to each other across repos: expensive models plan, cheap models type, and you watch it all in herdr.",
     stack: ["Python", "Shell"],
     link: { href: "https://github.com/Luisotee/agent-mesh" },
+  },
+  {
+    priority: 3,
+    minor: true,
+    title: "Mindprint",
+    year: "2026",
+    tags: ["Frontend"],
+    summary:
+      "Free, private self-screening for ADHD traits, autistic traits and reasoning, in five languages. Runs entirely in the browser.",
+    stack: ["TypeScript", "Next.js"],
+    link: { href: "https://mindprint-lilac.vercel.app" },
+  },
+  {
+    priority: 3,
+    minor: true,
+    title: "BrightConnect Voicebot",
+    year: "2026",
+    tags: ["AI"],
+    summary:
+      "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
+    stack: ["TypeScript", "Vapi.ai"],
+    link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
+  },
+  {
+    priority: 3,
+    minor: true,
+    title: "SENTINEL onboarding assessment",
+    year: "2026",
+    tags: ["Full-stack"],
+    summary:
+      "Take-home: a client onboarding risk assessment that derives the risk tier from regulatory criteria and keeps an attributable compliance record.",
+    stack: ["TypeScript", "Next.js"],
+    link: { href: "https://challenge-new-page.vercel.app" },
   },
   {
     priority: 3,
@@ -467,36 +500,5 @@ export const projects: Project[] = [
       "Firefighter robot that searches a four-room maze for a candle and puts it out. 2nd place at the TecnoFacens tournament.",
     stack: ["C++", "Arduino"],
     link: { href: "https://github.com/Luisotee/BombeiroTARS" },
-  },
-  // Minor work, kept last so it sits behind "Show more" in every archive filter.
-  {
-    priority: 3,
-    title: "Mindprint",
-    year: "2026",
-    tags: ["Frontend"],
-    summary:
-      "Free, private self-screening for ADHD traits, autistic traits and reasoning, in five languages. Runs entirely in the browser.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://mindprint-lilac.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "BrightConnect Voicebot",
-    year: "2026",
-    tags: ["AI"],
-    summary:
-      "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
-    stack: ["TypeScript", "Vapi.ai"],
-    link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
-  },
-  {
-    priority: 3,
-    title: "SENTINEL onboarding assessment",
-    year: "2026",
-    tags: ["Full-stack"],
-    summary:
-      "Take-home: a client onboarding risk assessment that derives the risk tier from regulatory criteria and keeps an attributable compliance record.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://challenge-new-page.vercel.app" },
   },
 ]
