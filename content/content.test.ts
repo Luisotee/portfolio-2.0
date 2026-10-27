@@ -133,6 +133,15 @@ describe("stats", () => {
     }
   })
 
+  // Hand-kept GitHub counts can only fall behind, so they render as floors.
+  it("GitHub counts render as floors", () => {
+    for (const s of githubStats) expect(s.value, s.label).toMatch(/\+$/)
+    for (const r of pinnedRepos) {
+      if (r.stars) expect(r.stars, r.name).toMatch(/\+$/)
+      if (r.forks) expect(r.forks, r.name).toMatch(/\+$/)
+    }
+  })
+
   it("pinned languages match the pinned repos, within the grow-{1..12} safelist", () => {
     const counts = new Map<string, number>()
     for (const r of pinnedRepos) counts.set(r.lang, (counts.get(r.lang) ?? 0) + 1)

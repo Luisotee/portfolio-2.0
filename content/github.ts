@@ -13,12 +13,16 @@ export const repoCounts = {
   earthDefenders: { stars: 13 },
 }
 
-export const formatCount = (n: number) => n.toLocaleString("en-US")
+/** Public repositories on the profile, kept by hand like the counts above. */
+export const publicRepoCount = 47
+
+/** A hand-kept count shown as a floor ("125+"), so it stays true as the real number grows. Keep it at or below GitHub's. */
+export const formatCount = (n: number) => `${n.toLocaleString("en-US")}+`
 
 const { wappai, earthDefenders } = repoCounts
 
 export const githubStats: Stat[] = [
-  { value: "48", label: "public repositories" },
+  { value: formatCount(publicRepoCount), label: "public repositories" },
   { value: formatCount(wappai.stars), label: "stars on WAppAI/assistant" },
   { value: formatCount(wappai.forks), label: "forks of WAppAI/assistant" },
   { value: formatCount(earthDefenders.stars), label: "stars on earth-defenders-assistant" },
