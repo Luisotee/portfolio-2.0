@@ -1,6 +1,6 @@
 // next.config.ts loads this file: keep its imports relative and dependency-free (no `@/` aliases,
 // React or packages), or the config fails to load.
-import { formatCount, repoCounts } from "./github"
+import { formatFloor, repoCounts } from "./github"
 import type { GraphNode, SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
 const name = "Luis Otavio"
@@ -84,7 +84,7 @@ export const proof: Stat[] = [
   { value: "10,000+", label: "users on Tapnote's web app, which I built as sole developer" },
   { value: "3rd place", label: "in the Amazon Challenge with Terra Krya, R$ 100,000 in funding" },
   { value: "3+ years", label: "shipping production software, since Jan 2023" },
-  { value: formatCount(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
+  { value: formatFloor(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
 ]
 
 export const sections = {

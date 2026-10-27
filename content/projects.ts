@@ -1,4 +1,4 @@
-import { formatCount, repoCounts } from "./github"
+import { formatFloor, repoCounts, repoCountsSource } from "./github"
 import type { Project } from "./types"
 
 const { wappai } = repoCounts
@@ -66,8 +66,11 @@ export const projects: Project[] = [
       "Forked from my open-source AI Agent Boilerplate, with 2,300+ pytest and Vitest tests and Sentry monitoring.",
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    // Usage figures: FleetView totals, 2026-10-26.
-    metric: { value: "84 users", label: "and 8,500+ messages across 10 brigade groups of 30+ people" },
+    metric: {
+      value: "84 users",
+      label: "and 8,500+ messages across 10 brigade groups of 30+ people",
+      source: { from: "FleetView", asOf: "2026-10-26" },
+    },
     impact: [
       "Field reports reach the platform straight from the group chat",
       "Brigades are notified when a fire is registered in their area",
@@ -89,8 +92,11 @@ export const projects: Project[] = [
       "The Caderno da Safra harvest survey answered by conversation, plus operator broadcasts paced to stay clear of spam detection.",
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    // Usage figures: FleetView totals, 2026-10-26.
-    metric: { value: "34 users", label: "and 400+ messages across 5 producer groups of 10+ people" },
+    metric: {
+      value: "34 users",
+      label: "and 400+ messages across 5 producer groups of 10+ people",
+      source: { from: "FleetView", asOf: "2026-10-26" },
+    },
     impact: [
       "Prices shared across regions every week, from the platform's own data",
       "Harvest survey filled in without leaving WhatsApp",
@@ -149,8 +155,12 @@ export const projects: Project[] = [
       "Lead developer across 150+ commits.",
     ],
     stack: ["TypeScript", "Node.js", "LangChain", "LangGraph", "Prisma", "Docker"],
-    metric: { value: `${formatCount(wappai.stars)} ★`, label: `GitHub stars and ${formatCount(wappai.forks)} forks` },
-    impact: ["Most-starred repository on my profile", `Forked ${formatCount(wappai.forks)} times by other developers`],
+    metric: {
+      value: `${formatFloor(wappai.stars)} ★`,
+      label: `GitHub stars and ${formatFloor(wappai.forks)} forks`,
+      source: repoCountsSource,
+    },
+    impact: ["Most-starred repository on my profile"],
     link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
@@ -199,7 +209,6 @@ export const projects: Project[] = [
     ],
     stack: ["LangChain", "Smolagents", "Mem0", "Python"],
     metric: { value: "3rd place", label: "Amazon Challenge, R$ 100,000 in funding" },
-    impact: ["Placed 3rd in the Amazon Challenge", "Secured R$ 100,000 in funding"],
     link: { href: "https://www.desafiopelaamazonia.com.br", label: "desafiopelaamazonia.com.br" },
   },
   {

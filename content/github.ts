@@ -1,4 +1,4 @@
-import type { Achievement, Language, Repo, Stat } from "./types"
+import type { Achievement, Language, Repo, Stat, StatSource } from "./types"
 
 export const github = {
   profile: { href: "https://github.com/Luisotee", label: "@Luisotee on GitHub" },
@@ -13,15 +13,22 @@ export const repoCounts = {
   earthDefenders: { stars: 13 },
 }
 
-export const formatCount = (n: number) => n.toLocaleString("en-US")
+/** When the hand-kept counts were last checked against GitHub. Update it with them. */
+export const repoCountsSource: StatSource = { from: "GitHub", asOf: "2026-10-27" }
+
+/** Public repositories on the profile, kept by hand like the counts above. */
+export const publicRepoCount = 47
+
+/** A hand-kept count shown as a floor ("125+"), so it stays true as the real number grows. Keep it at or below GitHub's. */
+export const formatFloor = (n: number) => `${n.toLocaleString("en-US")}+`
 
 const { wappai, earthDefenders } = repoCounts
 
 export const githubStats: Stat[] = [
-  { value: "48", label: "public repositories" },
-  { value: formatCount(wappai.stars), label: "stars on WAppAI/assistant" },
-  { value: formatCount(wappai.forks), label: "forks of WAppAI/assistant" },
-  { value: formatCount(earthDefenders.stars), label: "stars on earth-defenders-assistant" },
+  { value: formatFloor(publicRepoCount), label: "public repositories" },
+  { value: formatFloor(wappai.stars), label: "stars on WAppAI/assistant" },
+  { value: formatFloor(wappai.forks), label: "forks of WAppAI/assistant" },
+  { value: formatFloor(earthDefenders.stars), label: "stars on earth-defenders-assistant" },
 ]
 
 export const achievements: Achievement[] = [
@@ -44,8 +51,8 @@ export const pinnedRepos: Repo[] = [
     href: "https://github.com/WAppAI/assistant",
     desc: "A WhatsApp AI assistant on LangChain: pick an LLM provider, with web search, Google Routes and voice messages, plus Google Calendar on OpenAI models.",
     lang: "TypeScript",
-    stars: formatCount(wappai.stars),
-    forks: formatCount(wappai.forks),
+    stars: formatFloor(wappai.stars),
+    forks: formatFloor(wappai.forks),
     badge: "Archived",
   },
   {
@@ -79,6 +86,6 @@ export const pinnedRepos: Repo[] = [
     href: "https://github.com/digidem/earth-defenders-assistant",
     desc: "A platform for audio-first AI assistants that can work offline, built on a plugin architecture.",
     lang: "Python",
-    stars: formatCount(earthDefenders.stars),
+    stars: formatFloor(earthDefenders.stars),
   },
 ]

@@ -13,11 +13,14 @@ pnpm dev                     # dev server
 pnpm build                   # production build; also type-checks
 pnpm start                   # serve the build
 pnpm lint                    # eslint
+pnpm test                    # vitest: content invariants (node only, no DOM)
 pnpm exec tsc --noEmit       # type-check only (LayoutProps types appear after a dev/build run)
 pnpm dlx shadcn@latest add <component>
 ```
 
-There is no test suite.
+`pnpm test` runs `content/*.test.ts` in Node: plain data checks, no component tests. CI (`.github/workflows/ci.yml`) runs lint, test, build, then `tsc` on every push to `main` and every PR.
+
+`content/claims.test.ts` checks featured figures against the private résumé. It reads `RESUME_TEX`, or `../Resume/resume.tex` next to the repo, and is skipped when neither exists (CI and Vercel). Run it locally with `RESUME_TEX=~/projects/Resume/resume.tex pnpm test` from a worktree.
 
 ## Tasks
 
@@ -41,6 +44,7 @@ Adding an entry should never require touching a component. Keep it that way, and
 **Copy rules.** This repo is public.
 - Luis's location is Essen, Germany (CET/CEST). Use that wherever copy, metadata or structured data gives a location or timezone.
 - Brazil as where Luis is from or has worked (Huawei, freelance, Terra Krya) is fine to mention. He is an EU citizen.
+- Every figure on a priority 1/2 card (`metric`, `impact`, `built`) is on the résumé, or sits in a `Stat` whose `source` says where it came from (`{ from, asOf }`). Never change a figure to make the check pass.
 - Mindprint and BrightConnect Voicebot are throwaway projects. Keep them as priority 3 archive rows and never feature them.
 
 **Project priority system.** `Project` is a union keyed on `priority`. `lib/projects.ts` derives every view from it:
