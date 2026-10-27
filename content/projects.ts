@@ -54,10 +54,10 @@ export const projects: Project[] = [
     title: "Curupira",
     client: "Terra Krya, Brazil",
     year: "2026",
-    role: "Bot developer",
+    role: "AI Engineer",
     tags: ["AI", "Full-stack"],
     problem:
-      "Volunteer fire brigades in central Brazil coordinate in group chats, far from the Caminho do Fogo platform where alerts, fires and field actions are recorded. I build the bot; Terra Krya brings it to the brigades.",
+      "Volunteer fire brigades in central Brazil coordinate in group chats, far from the Caminho do Fogo platform where alerts, fires and field actions are recorded. I build the AI agent; Terra Krya brings it to the brigades.",
     built: [
       "WhatsApp and Telegram agent with one shared memory: brigade members sign in from the chat, then report alerts and fires with a location pin and photos, each write confirmed before it is saved.",
       "Fire status updates, field actions, area notifications and the INPE fire-risk forecast up to three days ahead, all by conversation.",
@@ -77,10 +77,10 @@ export const projects: Project[] = [
     title: "OCA IÊ",
     client: "Terra Krya, Brazil",
     year: "2026",
-    role: "Bot developer",
+    role: "AI Engineer",
     tags: ["AI", "Full-stack"],
     problem:
-      "Brazil-nut (castanha) collectors in northern Brazil sell with little visibility into what the harvest is fetching in other regions. I build the bot; Terra Krya brings it to the communities.",
+      "Brazil-nut (castanha) collectors in northern Brazil sell with little visibility into what the harvest is fetching in other regions. I build the AI agent; Terra Krya brings it to the communities.",
     built: [
       "WhatsApp agent on the IE Sociobio platform: producers log prices just by talking, and compare their region with others.",
       "A weekly regional recap posted to each group, with prices, harvest counters and phase, rewritten or rescheduled by asking the bot.",
