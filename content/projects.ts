@@ -209,7 +209,6 @@ export const projects: Project[] = [
     ],
     stack: ["LangChain", "Smolagents", "Mem0", "Python"],
     metric: { value: "3rd place", label: "Amazon Challenge, R$ 100,000 in funding" },
-    impact: ["Placed 3rd in the Amazon Challenge", "Secured R$ 100,000 in funding"],
     link: { href: "https://www.desafiopelaamazonia.com.br", label: "desafiopelaamazonia.com.br" },
   },
   {

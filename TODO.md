@@ -19,8 +19,8 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 - [x] **Résumé link.** `/resume` redirects (307) to the PDF on Google Drive, which stays synced with the LaTeX source. It's linked from a hero button and a contact card; change `resume.driveUrl` in `content/site.ts` if the file ever moves.
 - [x] **X cards must follow each page's Open Graph.** `app/layout.tsx` sets `twitter.title` and `twitter.description`. Next copies those from `openGraph` only when `twitter` has none (`postProcessMetadata` in `next/dist/lib/metadata/metadata-resolution-primitives.js`), so any future subpage that sets only `openGraph` would share on X with the home title. Reduce the root to `twitter: { card: "summary_large_image" }`. The home output stays the same. *(peer round 2026-10-27, alemoraru-research)*
 - [x] **Tell the browser the site is dark.** There is no `viewport` export, so there's no `theme-color` and no `color-scheme` meta; `color-scheme: dark` exists only in CSS. Add `export const viewport = { themeColor: <the --background value>, colorScheme: "dark" }` to `app/layout.tsx`. *(mldangelo-research)*
-- [ ] **Cut repeated copy.** The Amazon Challenge card's `impact` lines repeat its `metric` word for word (`content/projects.ts`). Replace them with an outcome or drop them. *(mldangelo-research)*
-  - 🙋 The GitHub card's achievement badges (Pull Shark, YOLO, …) read as trivia to a hiring manager. Luis decides whether to drop them.
+- [x] **Cut repeated copy.** The Amazon Challenge card's `impact` lines repeated its `metric` word for word. Compact cards don't render `impact`, so dropping them is a data cleanup with no visible change; the file holds no other outcome to put there. *(mldangelo-research)*
+- [ ] 🙋 **Achievement badges.** The GitHub card's achievement badges (Pull Shark, YOLO, …) read as trivia to a hiring manager. Luis decides whether to drop them. *(mldangelo-research)*
 - [ ] **Show hand-kept GitHub counts as minimums.** `content/github.ts` counts (stars, forks, public repos) are exact today but kept by hand. Render them as floors ("125+ ★") so they stay true as they grow. *(mldangelo-research)*
 
 ## 2. Performance
