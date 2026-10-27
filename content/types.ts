@@ -3,9 +3,18 @@ export type Link = {
   label: string
 }
 
+/** Where a figure that isn't on the résumé comes from. Data only: nothing renders it. */
+export type StatSource = {
+  from: "FleetView" | "GitHub"
+  /** The day the figure was read, YYYY-MM-DD. */
+  asOf: `${number}-${number}-${number}`
+}
+
 export type Stat = {
   value: string
   label: string
+  /** Required by the résumé check (content/claims.test.ts) for any figure the résumé doesn't carry. */
+  source?: StatSource
 }
 
 /** One box around the hero graph's core; packets run toward the core ("in") or away from it ("out"). */

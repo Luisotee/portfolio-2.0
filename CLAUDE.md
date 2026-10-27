@@ -20,6 +20,8 @@ pnpm dlx shadcn@latest add <component>
 
 `pnpm test` runs `content/*.test.ts` in Node: plain data checks, no component tests. CI (`.github/workflows/ci.yml`) runs lint, test, build, then `tsc` on every push to `main` and every PR.
 
+`content/claims.test.ts` checks featured figures against the private résumé. It reads `RESUME_TEX`, or `../Resume/resume.tex` next to the repo, and is skipped when neither exists (CI and Vercel). Run it locally with `RESUME_TEX=~/projects/Resume/resume.tex pnpm test` from a worktree.
+
 ## Tasks
 
 `TODO.md` is the project's running task list. Tasks there are goals, not specs, so choose the implementation within the rules in this file. A task flagged 🙋 needs something from Luis, such as a file, a figure, a decision or an account action. Build the code side and leave a clear placeholder, or ask. Tick or remove a task when it's done, and add new ones as they come up.
@@ -42,6 +44,7 @@ Adding an entry should never require touching a component. Keep it that way, and
 **Copy rules.** This repo is public.
 - Luis's location is Essen, Germany (CET/CEST). Use that wherever copy, metadata or structured data gives a location or timezone.
 - Brazil as where Luis is from or has worked (Huawei, freelance, Terra Krya) is fine to mention. He is an EU citizen.
+- Every figure on a priority 1/2 card (`metric`, `impact`, `built`) is on the résumé, or sits in a `Stat` whose `source` says where it came from (`{ from, asOf }`). Never change a figure to make the check pass.
 - Mindprint and BrightConnect Voicebot are throwaway projects. Keep them as priority 3 archive rows and never feature them.
 
 **Project priority system.** `Project` is a union keyed on `priority`. `lib/projects.ts` derives every view from it:
