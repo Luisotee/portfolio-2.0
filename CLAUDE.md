@@ -13,11 +13,12 @@ pnpm dev                     # dev server
 pnpm build                   # production build; also type-checks
 pnpm start                   # serve the build
 pnpm lint                    # eslint
+pnpm test                    # vitest: content invariants (node only, no DOM)
 pnpm exec tsc --noEmit       # type-check only (LayoutProps types appear after a dev/build run)
 pnpm dlx shadcn@latest add <component>
 ```
 
-There is no test suite.
+`pnpm test` runs `content/*.test.ts` in Node: plain data checks, no component tests. CI (`.github/workflows/ci.yml`) runs lint, test, build, then `tsc` on every push to `main` and every PR.
 
 ## Tasks
 
