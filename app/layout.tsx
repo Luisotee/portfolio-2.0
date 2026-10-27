@@ -1,11 +1,10 @@
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
 import { Container } from "@/components/container"
 import { MotionProvider } from "@/components/motion/motion-provider"
-import { PersonJsonLd } from "@/components/person-json-ld"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { labels, site } from "@/content/site"
 import { openGraph } from "@/lib/metadata"
@@ -27,11 +26,14 @@ export const metadata: Metadata = {
   description: site.description,
   authors: [{ name: site.name, url: site.url }],
   openGraph,
-  twitter: {
-    card: "summary_large_image",
-    title: site.title,
-    description: site.description,
-  },
+  // Title, description and image come from each page's openGraph.
+  twitter: { card: "summary_large_image" },
+}
+
+export const viewport: Viewport = {
+  // Mirrors --background in :root of app/globals.css.
+  themeColor: "#0b0c0e",
+  colorScheme: "dark",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -50,7 +52,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {labels.skipToContent}
           </a>
         </Container>
-        <PersonJsonLd />
         <MotionProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </MotionProvider>
