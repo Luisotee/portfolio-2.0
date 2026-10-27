@@ -52,6 +52,8 @@ Feature and compact cards share one running number (01, 02, …), with priority 
 
 **Page composition.** `app/page.tsx` stacks the sections. Each section in `components/<section>/` is a server component that pulls its heading from `sections` in `site.ts` through `SectionHeading`. Client components are limited to state and motion: `ProjectArchive`, `RolesList`, `MobileNav`, `CopyEmailButton`, `LanguageBar` and `components/motion/*`. `ListRow` renders the archive rows.
 
+**Structured data.** `lib/json-ld.ts` builds the schema.org nodes, typed with `schema-dts`. The layout emits none: each page renders its own `<JsonLd data={jsonLdGraph(...pageNodes)} />`, which adds the site-wide Person and WebSite, so a new route must opt in. Pages reference the Person by `@id` and never repeat it. Don't add dates from `new Date()`.
+
 **Links.** External links open in the same tab: no `target="_blank"`. Visitors who want a new tab can middle-click or ⌘-click, and Back restores the page from the back-forward cache.
 
 ## Styling rules
