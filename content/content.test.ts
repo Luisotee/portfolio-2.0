@@ -44,12 +44,11 @@ describe("projects", () => {
 
 describe("archive", () => {
   it("filter counts match the priority 3 data", () => {
-    const tags = [...new Set(archive.flatMap((p) => p.tags))]
-    const expected = [
-      { value: "All", count: archive.length },
-      ...tags.map((tag) => ({ value: tag, count: archive.filter((p) => p.tags.includes(tag)).length })),
-    ]
-    expect(archiveFilters).toEqual(expected)
+    const expected = new Map<string, number>([["All", archive.length]])
+    for (const tag of archive.flatMap((p) => p.tags)) expected.set(tag, archive.filter((p) => p.tags.includes(tag)).length)
+    expect(archiveFilters[0]).toEqual({ value: "All", count: archive.length })
+    expect(new Map(archiveFilters.map((f) => [f.value, f.count]))).toEqual(expected)
+    expect(archiveFilters).toHaveLength(expected.size)
   })
 
   it("holds every priority 3 project, minor rows last", () => {
@@ -97,22 +96,25 @@ describe("links", () => {
 
 describe("experience", () => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-  const parse = (s: string) => {
-    const [month, year] = s.split(" ")
-    expect(months, s).toContain(month)
-    return Number(year) * 12 + months.indexOf(month)
+  /** "Jul 2026 – Present" → months since year 0; throws, naming the period, when it doesn't parse. */
+  const parse = (period: string) => {
+    const month = (s: string) => {
+      const [name, year] = s.split(" ")
+      if (!months.includes(name) || !/^\d{4}$/.test(year ?? "")) throw new Error(`unparseable period: "${period}"`)
+      return Number(year) * 12 + months.indexOf(name)
+    }
+    const [start, end] = period.split(" – ")
+    if (end === undefined) throw new Error(`unparseable period: "${period}"`)
+    return { start: month(start), end: end === "Present" ? Infinity : month(end) }
   }
-  const periods = roles.map((r) => {
-    const [start, end] = r.period.split(" – ")
-    return { start: parse(start), end: end === "Present" ? Infinity : parse(end) }
-  })
 
-  it("periods parse and start before they end", () => {
-    for (const p of periods) expect(p.start).toBeLessThanOrEqual(p.end)
+  it.each(roles)("$company: period parses and starts before it ends", ({ period }) => {
+    const { start, end } = parse(period)
+    expect(start, period).toBeLessThanOrEqual(end)
   })
 
   it("roles are sorted newest first", () => {
-    const starts = periods.map((p) => p.start)
+    const starts = roles.map((r) => parse(r.period).start)
     expect(starts).toEqual([...starts].sort((a, b) => b - a))
   })
 

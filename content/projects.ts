@@ -1,4 +1,4 @@
-import { formatCount, repoCounts } from "./github"
+import { formatFloor, repoCounts, repoCountsSource } from "./github"
 import type { Project } from "./types"
 
 const { wappai } = repoCounts
@@ -156,11 +156,11 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Node.js", "LangChain", "LangGraph", "Prisma", "Docker"],
     metric: {
-      value: `${formatCount(wappai.stars)} ★`,
-      label: `GitHub stars and ${formatCount(wappai.forks)} forks`,
-      source: { from: "GitHub", asOf: "2026-10-27" },
+      value: `${formatFloor(wappai.stars)} ★`,
+      label: `GitHub stars and ${formatFloor(wappai.forks)} forks`,
+      source: repoCountsSource,
     },
-    impact: ["Most-starred repository on my profile", `Forked ${formatCount(wappai.forks)} times by other developers`],
+    impact: ["Most-starred repository on my profile"],
     link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
