@@ -5,7 +5,6 @@ import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
 import { Container } from "@/components/container"
 import { MotionProvider } from "@/components/motion/motion-provider"
-import { PersonJsonLd } from "@/components/person-json-ld"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { labels, site } from "@/content/site"
 import { openGraph } from "@/lib/metadata"
@@ -53,7 +52,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {labels.skipToContent}
           </a>
         </Container>
-        <PersonJsonLd />
         <MotionProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </MotionProvider>
