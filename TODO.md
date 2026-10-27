@@ -33,7 +33,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 - [x] **Proof above the fold.** The proof row sits in the first screen at 1440×900 and 390×844, and the headline says what Luis builds. The "where" part comes with the availability/status line task above (`hero.status` in `content/site.ts` renders under the eyebrow once set).
 - [ ] **Metrics that are outcomes.** Some feature-card metrics described the work, not results. Synced with the résumé on 2026-10-27: Tapnote now shows its 10,000+ web users, Akdo the 50+ courses its LLM tools helped produce, and Curupira and OCA IÊ FleetView's message totals.
-  - agent-mesh now shows 85+ PRs merged from mesh workers across 12 repos (91 opened, 86 merged, counted on GitHub over `mesh/*` branches on 2026-10-27). Recount with `gh pr list --state all` per repo and keep the figure a floor.
+  - agent-mesh now shows 85+ PRs merged from mesh workers across 9 repos (counted on GitHub over `mesh/*` branches on 2026-10-27: 91 opened across 12 repos, 86 merged across 9, 49 of them in agent-mesh itself). Recount merged PRs and their repos with `gh api search/issues -f q='is:pr is:merged head:mesh/ involves:Luisotee'`, and keep the figure a floor.
   - Still work-shaped: Google Routes (565 merged lines), AI Agent Boilerplate (2,400+ tests) and TourLore (30 languages, pre-launch).
   - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups.
 - [ ] ⏸ **Later.** **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.

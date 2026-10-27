@@ -141,7 +141,7 @@ export const projects: Project[] = [
     stack: ["Python", "Shell", "Claude Code", "Antigravity", "GitHub Copilot", "git worktrees", "herdr"],
     metric: {
       value: "85+ PRs",
-      label: "merged from mesh workers across 12 repos",
+      label: "merged from mesh workers across 9 repos",
       source: { from: "GitHub", asOf: "2026-10-27" },
     },
     impact: ["Expensive models plan, cheap models type", "Used day to day across my repos, this portfolio included"],

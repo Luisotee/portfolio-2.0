@@ -50,26 +50,24 @@ describe.skipIf(!tex)("figures match the résumé (runs only with RESUME_TEX or 
 
   it.each(featured)("$title", (project) => {
     const { metric } = project
-    const sourced = new Set([
-      ...(metric.source ? figures(`${metric.value} ${metric.label}`) : []),
-      ...Object.keys(project.figureSources ?? {}),
-    ])
+    const metricLine = `${metric.value} ${metric.label}`
+    const fromMetric = metric.source ? figures(metricLine) : []
+    // figureSources covers built and impact lines only: a metric figure needs its own source.
+    const fromLines = [...fromMetric, ...Object.keys(project.figureSources ?? {})]
     const pending = pendingSource.filter((p) => p.project === project.title).map((p) => p.figure)
-    const lines = [`${metric.value} ${metric.label}`, ...(project.impact ?? []), ...project.built]
+    const lines = [metricLine, ...(project.impact ?? []), ...project.built]
 
-    const missing = lines.flatMap((line) =>
-      figures(line)
-        .filter((n) => !onResume.has(n) && !sourced.has(n) && !pending.includes(n))
+    const missing = lines.flatMap((line) => {
+      const sourced = line === metricLine ? fromMetric : fromLines
+      return figures(line)
+        .filter((n) => !onResume.has(n) && !sourced.includes(n) && !pending.includes(n))
         .map((n) => `${n} in "${line}"`)
-    )
-    expect(missing, "add the figure to the résumé or a source to the metric").toEqual([])
+    })
+    expect(missing, "add the figure to the résumé, or a source to the metric or figureSources").toEqual([])
 
     const shown = new Set(lines.flatMap(figures))
-    const stale = pending.filter((n) => onResume.has(n) || sourced.has(n) || !shown.has(n))
+    const stale = pending.filter((n) => onResume.has(n) || fromLines.includes(n) || !shown.has(n))
     expect(stale, "now sourced: remove from pendingSource").toEqual([])
-
-    const unused = Object.keys(project.figureSources ?? {}).filter((n) => !shown.has(n))
-    expect(unused, "figureSources names a figure the card doesn't show").toEqual([])
   })
 
   it.each(proof)("hero proof: $value $label", (stat) => {
@@ -87,12 +85,23 @@ describe("figures()", () => {
   })
 })
 
+describe("figureSources", () => {
+  it.each(featured.filter((p) => p.figureSources))("$title names only figures its built or impact lines show", (project) => {
+    const shown = new Set([...(project.impact ?? []), ...project.built].flatMap(figures))
+    const unused = Object.keys(project.figureSources ?? {}).filter((n) => !shown.has(n))
+    expect(unused, "a key must be a figure as figures() reads it (\"8500\", not \"8,500+\"), still on the card").toEqual([])
+  })
+})
+
 describe("stat sources", () => {
   // Dates are written in Luis's timezone, so "today" is Essen's.
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date())
   const sources = [
     ...[...featured.map((p) => p.metric), ...proof].flatMap((s: Stat) =>
       s.source ? [{ name: `${s.value} ${s.label}`, ...s.source }] : []
+    ),
+    ...featured.flatMap((p) =>
+      Object.entries(p.figureSources ?? {}).map(([figure, source]) => ({ name: `${p.title} ${figure}`, ...source }))
     ),
     { name: "repoCountsSource", ...repoCountsSource },
   ]

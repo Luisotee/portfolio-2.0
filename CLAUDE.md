@@ -44,7 +44,7 @@ Adding an entry should never require touching a component. Keep it that way, and
 **Copy rules.** This repo is public.
 - Luis's location is Essen, Germany (CET/CEST). Use that wherever copy, metadata or structured data gives a location or timezone.
 - Brazil as where Luis is from or has worked (Huawei, freelance, Terra Krya) is fine to mention. He is an EU citizen.
-- Every figure on a priority 1/2 card (`metric`, `impact`, `built`) is on the résumé, or sits in a `Stat` whose `source` says where it came from (`{ from, asOf }`). A figure in `built` or `impact` records its source in the project's `figureSources`. Never change a figure to make the check pass.
+- Every figure on a priority 1/2 card (`metric`, `impact`, `built`) is on the résumé, or sits in a `Stat` whose `source` says where it came from (`{ from, asOf }`). A figure in `built` or `impact` that isn't on the résumé records its source in the project's `figureSources`. Never change a figure to make the check pass.
 - Mindprint and BrightConnect Voicebot are throwaway projects. Keep them as priority 3 archive rows and never feature them.
 
 **Project priority system.** `Project` is a union keyed on `priority`. `lib/projects.ts` derives every view from it:
