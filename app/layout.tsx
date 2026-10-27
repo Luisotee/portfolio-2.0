@@ -27,11 +27,8 @@ export const metadata: Metadata = {
   description: site.description,
   authors: [{ name: site.name, url: site.url }],
   openGraph,
-  twitter: {
-    card: "summary_large_image",
-    title: site.title,
-    description: site.description,
-  },
+  // Title, description and image come from each page's openGraph.
+  twitter: { card: "summary_large_image" },
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
