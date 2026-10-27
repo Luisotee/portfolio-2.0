@@ -16,6 +16,8 @@ export const stream = [
   "FastAPI",
   "Python",
   "React Native",
+  "Expo",
+  "Pydantic AI",
   "LangChain",
   "Redis Streams",
 ]

@@ -4,7 +4,7 @@ import { formatCount, repoCounts } from "./github"
 import type { GraphNode, SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
 const name = "Luis Otavio"
-const jobTitle = "Full-stack Engineer"
+const jobTitle = "Full-stack & AI Engineer"
 /** The one canonical origin. Metadata, the sitemap and the domain redirect derive from it. */
 const url = "https://www.luisotee.com"
 
@@ -48,7 +48,7 @@ export const nav = [
 ]
 
 export const hero = {
-  eyebrow: "Full-stack engineer · Frontend, backend and AI",
+  eyebrow: "Full-stack & AI engineer · Web, mobile and LLM agents",
   /** Availability and location, one line each under the eyebrow. */
   status: [
     "Open to contract and B2B work · Remote, hybrid or on-site",
@@ -81,7 +81,7 @@ export const hero = {
 }
 
 export const proof: Stat[] = [
-  { value: "30,000+", label: "active subscribers on Tapnote, whose web app I built as sole developer" },
+  { value: "10,000+", label: "users on Tapnote's web app, which I built as sole developer" },
   { value: "3rd place", label: "in the Amazon Challenge with Terra Krya, R$ 100,000 in funding" },
   { value: "3+ years", label: "shipping production software, since Jan 2023" },
   { value: formatCount(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
@@ -101,7 +101,7 @@ export const sections = {
     number: "02",
     eyebrow: "Experience",
     titleLines: ["Where I have", "worked."],
-    intro: "Remote with teams in Poland, Germany, Italy and the US, after starting on-site at Huawei in Brazil.",
+    intro: "Remote with teams in Germany, Poland, Italy, the US and Brazil, after starting on-site at Huawei.",
   },
   github: {
     id: "github",

@@ -27,13 +27,13 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 ## 3. Content and hierarchy
 
 - [x] **Proof above the fold.** The proof row sits in the first screen at 1440×900 and 390×844, and the headline says what Luis builds. The "where" part comes with the availability/status line task above (`hero.status` in `content/site.ts` renders under the eyebrow once set).
-- [ ] **Metrics that are outcomes.** Some feature-card metrics describe the work, not results: "Multi-tenant" (Akdo), "Merged" (Google Routes). Tapnote's 30k counts users of the app it extends. Reframe or replace these.
-  - 🙋 Luis provides real figures where they exist, such as users, adoption or time saved.
-  - Curupira and OCA IÊ now show FleetView's message totals (2026-10-26). Akdo, Google Routes and Tapnote are still open.
+- [ ] **Metrics that are outcomes.** Some feature-card metrics described the work, not results. Synced with the résumé on 2026-10-27: Tapnote now shows its 10,000+ web users, Akdo the 50+ courses its LLM tools helped produce, and Curupira and OCA IÊ FleetView's message totals.
+  - Still work-shaped: Google Routes (565 merged lines), agent-mesh (640 tests), AI Agent Boilerplate (2,400+ tests) and TourLore (30 languages, pre-launch).
+  - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups or agent-mesh adoption.
 - [ ] ⏸ **Later.** **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.
   - 🙋 Luis provides material for anything behind a login (Tapnote web, Akdo, the bots' chats). Public sites can be captured by an agent.
-- [ ] **Short stints and the "3+ years" stat.** Tapnote (5 months) and Akdo (7 months) read as short stays. Label the contract roles as contracts if they were. The "3+ years" stat counts the Huawei internship.
-  - 🙋 Luis confirms the contract types and how he wants the years framed.
+- [ ] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo is unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
+  - 🙋 Luis confirms whether Akdo was full-time and whether to keep counting the internship.
 - [ ] **Link the hero graph to Curupira's case study.** The graph now shows Curupira's architecture at a high level; link it to the case study once that page exists. Blocked on the case-study pages below.
 
 ## 4. Bigger additions
