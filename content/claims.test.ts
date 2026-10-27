@@ -1,4 +1,4 @@
-// Every figure on a featured card must be on the résumé, or sit in a Stat that records its source.
+// Every figure on a featured card must be on the résumé, or sit in a Stat (or `figureSources`) that records its source.
 // The résumé repo is private, so this reads a local checkout and skips when there is none (CI, Vercel).
 // It proves the site agrees with the résumé, not that either is true. Limits: figures match by value alone, so a
 // small number (a lone 5) matches loosely and "+" is ignored; a year is stripped only after a month name or in a
@@ -38,7 +38,7 @@ const figures = (text: string) =>
   (text.replace(dates, " ").match(/\d+(?:[.,]\d+)*/g) ?? []).map((t) => t.replace(/,/g, ""))
 
 /** Figures with no recorded source yet. Each has a 🙋 item in TODO.md; remove the entry once it's sourced. */
-const pendingSource = [{ project: "Curupira", figure: "68" }]
+const pendingSource: { project: string; figure: string }[] = []
 
 const tex = resumePath()
 const featured = projects.filter((p): p is FeatureProject => p.priority !== 3)
@@ -50,7 +50,10 @@ describe.skipIf(!tex)("figures match the résumé (runs only with RESUME_TEX or 
 
   it.each(featured)("$title", (project) => {
     const { metric } = project
-    const sourced = new Set(metric.source ? figures(`${metric.value} ${metric.label}`) : [])
+    const sourced = new Set([
+      ...(metric.source ? figures(`${metric.value} ${metric.label}`) : []),
+      ...Object.keys(project.figureSources ?? {}),
+    ])
     const pending = pendingSource.filter((p) => p.project === project.title).map((p) => p.figure)
     const lines = [`${metric.value} ${metric.label}`, ...(project.impact ?? []), ...project.built]
 
@@ -64,6 +67,9 @@ describe.skipIf(!tex)("figures match the résumé (runs only with RESUME_TEX or 
     const shown = new Set(lines.flatMap(figures))
     const stale = pending.filter((n) => onResume.has(n) || sourced.has(n) || !shown.has(n))
     expect(stale, "now sourced: remove from pendingSource").toEqual([])
+
+    const unused = Object.keys(project.figureSources ?? {}).filter((n) => !shown.has(n))
+    expect(unused, "figureSources names a figure the card doesn't show").toEqual([])
   })
 
   it.each(proof)("hero proof: $value $label", (stat) => {

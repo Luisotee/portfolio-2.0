@@ -1,9 +1,8 @@
 import { LanguageBar } from "@/components/github/language-bar"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { CardLabel } from "@/components/work/card-label"
-import { achievements, githubStats, pinnedLanguages } from "@/content/github"
+import { githubStats, pinnedLanguages } from "@/content/github"
 import { labels } from "@/content/site"
 
 export function StatsCard() {
@@ -18,22 +17,6 @@ export function StatsCard() {
             </div>
           ))}
         </dl>
-
-        <Separator className="bg-foreground/8" />
-
-        <div>
-          <CardLabel>{labels.achievements}</CardLabel>
-          <ul className="flex flex-wrap gap-2">
-            {achievements.map((a) => (
-              <li key={a.name}>
-                <Badge variant="secondary" className="h-auto rounded-full px-3 py-1.5 font-mono text-xs font-normal">
-                  {a.name}
-                  {a.times && <span className="text-primary">{a.times}</span>}
-                </Badge>
-              </li>
-            ))}
-          </ul>
-        </div>
 
         <Separator className="bg-foreground/8" />
 
