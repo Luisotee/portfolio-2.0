@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google"
 
 import { Container } from "@/components/container"
@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   openGraph,
   // Title, description and image come from each page's openGraph.
   twitter: { card: "summary_large_image" },
+}
+
+export const viewport: Viewport = {
+  // Mirrors --background in :root of app/globals.css.
+  themeColor: "#0b0c0e",
+  colorScheme: "dark",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
