@@ -15,7 +15,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 - [x] **Search Console.** Domain property `sc-domain:luisotee.com` is verified (Cloudflare TXT record) and owned by Luis's Google account. `/sitemap.xml` was submitted on 2026-10-26 and read with no errors.
   - 🙋 Optional: click "Request indexing" for `https://www.luisotee.com/` under URL Inspection. Google last crawled it on 2026-10-13, before the new metadata.
-- [x] **Say what Luis is looking for, and where he is.** `hero.status` shows two lines under the eyebrow: contract and B2B work, remote, hybrid or on-site; Essen, Germany (CET), EU citizen, open to relocation.
+- [x] **Say what Luis is looking for, and where he is.** `hero.status` shows two lines under the eyebrow: full-time, contract and B2B work, remote, hybrid or on-site; Essen, Germany (CET), EU citizen, open to relocation.
 - [x] **Résumé link.** `/resume` redirects (307) to the PDF on Google Drive, which stays synced with the LaTeX source. It's linked from a hero button and a contact card; change `resume.driveUrl` in `content/site.ts` if the file ever moves.
 
 ## 2. Performance
@@ -32,8 +32,8 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups or agent-mesh adoption.
 - [ ] ⏸ **Later.** **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.
   - 🙋 Luis provides material for anything behind a login (Tapnote web, Akdo, the bots' chats). Public sites can be captured by an agent.
-- [ ] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo is unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
-  - 🙋 Luis confirms whether Akdo was full-time and whether to keep counting the internship.
+- [ ] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo was full-time, so it stays unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
+  - 🙋 Luis decides whether to keep counting the internship.
 - [ ] **Link the hero graph to Curupira's case study.** The graph now shows Curupira's architecture at a high level; link it to the case study once that page exists. Blocked on the case-study pages below.
 
 ## 4. Bigger additions

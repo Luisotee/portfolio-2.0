@@ -51,7 +51,7 @@ export const hero = {
   eyebrow: "Full-stack & AI engineer · Web, mobile and LLM agents",
   /** Availability and location, one line each under the eyebrow. */
   status: [
-    "Open to contract and B2B work · Remote, hybrid or on-site",
+    "Open to full-time, contract and B2B work · Remote, hybrid or on-site",
     "Essen, Germany (CET) · EU citizen, open to relocation",
   ],
   intro: {
