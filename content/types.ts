@@ -60,6 +60,8 @@ export type FeatureProject = ProjectBase & {
   built: string[]
   metric: Stat
   impact?: string[]
+  /** Sources for figures in `built` or `impact` that the résumé doesn't carry, keyed by the figure as the résumé check reads it ("68", "8500"). Data only. */
+  figureSources?: Record<string, StatSource>
   link?: Link
 }
 
@@ -99,11 +101,6 @@ export type Repo = {
   stars?: string
   forks?: string
   badge?: string
-}
-
-export type Achievement = {
-  name: string
-  times?: string
 }
 
 export type Social = {

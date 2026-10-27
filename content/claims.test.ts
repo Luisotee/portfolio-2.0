@@ -1,4 +1,4 @@
-// Every figure on a featured card must be on the résumé, or sit in a Stat that records its source.
+// Every figure on a featured card must be on the résumé, or sit in a Stat (or `figureSources`) that records its source.
 // The résumé repo is private, so this reads a local checkout and skips when there is none (CI, Vercel).
 // It proves the site agrees with the résumé, not that either is true. Limits: figures match by value alone, so a
 // small number (a lone 5) matches loosely and "+" is ignored; a year is stripped only after a month name or in a
@@ -38,7 +38,7 @@ const figures = (text: string) =>
   (text.replace(dates, " ").match(/\d+(?:[.,]\d+)*/g) ?? []).map((t) => t.replace(/,/g, ""))
 
 /** Figures with no recorded source yet. Each has a 🙋 item in TODO.md; remove the entry once it's sourced. */
-const pendingSource = [{ project: "Curupira", figure: "68" }]
+const pendingSource: { project: string; figure: string }[] = []
 
 const tex = resumePath()
 const featured = projects.filter((p): p is FeatureProject => p.priority !== 3)
@@ -50,19 +50,23 @@ describe.skipIf(!tex)("figures match the résumé (runs only with RESUME_TEX or 
 
   it.each(featured)("$title", (project) => {
     const { metric } = project
-    const sourced = new Set(metric.source ? figures(`${metric.value} ${metric.label}`) : [])
+    const metricLine = `${metric.value} ${metric.label}`
+    const fromMetric = metric.source ? figures(metricLine) : []
+    // figureSources covers built and impact lines only: a metric figure needs its own source.
+    const fromLines = [...fromMetric, ...Object.keys(project.figureSources ?? {})]
     const pending = pendingSource.filter((p) => p.project === project.title).map((p) => p.figure)
-    const lines = [`${metric.value} ${metric.label}`, ...(project.impact ?? []), ...project.built]
+    const lines = [metricLine, ...(project.impact ?? []), ...project.built]
 
-    const missing = lines.flatMap((line) =>
-      figures(line)
-        .filter((n) => !onResume.has(n) && !sourced.has(n) && !pending.includes(n))
+    const missing = lines.flatMap((line) => {
+      const sourced = line === metricLine ? fromMetric : fromLines
+      return figures(line)
+        .filter((n) => !onResume.has(n) && !sourced.includes(n) && !pending.includes(n))
         .map((n) => `${n} in "${line}"`)
-    )
-    expect(missing, "add the figure to the résumé or a source to the metric").toEqual([])
+    })
+    expect(missing, "add the figure to the résumé, or a source to the metric or figureSources").toEqual([])
 
     const shown = new Set(lines.flatMap(figures))
-    const stale = pending.filter((n) => onResume.has(n) || sourced.has(n) || !shown.has(n))
+    const stale = pending.filter((n) => onResume.has(n) || fromLines.includes(n) || !shown.has(n))
     expect(stale, "now sourced: remove from pendingSource").toEqual([])
   })
 
@@ -81,12 +85,23 @@ describe("figures()", () => {
   })
 })
 
+describe("figureSources", () => {
+  it.each(featured.filter((p) => p.figureSources))("$title names only figures its built or impact lines show", (project) => {
+    const shown = new Set([...(project.impact ?? []), ...project.built].flatMap(figures))
+    const unused = Object.keys(project.figureSources ?? {}).filter((n) => !shown.has(n))
+    expect(unused, "a key must be a figure as figures() reads it (\"8500\", not \"8,500+\"), still on the card").toEqual([])
+  })
+})
+
 describe("stat sources", () => {
   // Dates are written in Luis's timezone, so "today" is Essen's.
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date())
   const sources = [
     ...[...featured.map((p) => p.metric), ...proof].flatMap((s: Stat) =>
       s.source ? [{ name: `${s.value} ${s.label}`, ...s.source }] : []
+    ),
+    ...featured.flatMap((p) =>
+      Object.entries(p.figureSources ?? {}).map(([figure, source]) => ({ name: `${p.title} ${figure}`, ...source }))
     ),
     { name: "repoCountsSource", ...repoCountsSource },
   ]

@@ -14,13 +14,13 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 ## 1. Quick fixes
 
 - [x] **Search Console.** Domain property `sc-domain:luisotee.com` is verified (Cloudflare TXT record) and owned by Luis's Google account. `/sitemap.xml` was submitted on 2026-10-26 and read with no errors.
-  - 🙋 Optional: click "Request indexing" for `https://www.luisotee.com/` under URL Inspection. Google last crawled it on 2026-10-13, before the new metadata.
+  - 🙋 Optional: click "Request indexing" for `https://www.luisotee.com/` under URL Inspection. Google last crawled it on 2026-10-13, before the new metadata. Only the Search Console UI can do this: the URL Inspection API is read-only, and the Indexing API only accepts job-posting and livestream pages.
 - [x] **Say what Luis is looking for, and where he is.** `hero.status` shows two lines under the eyebrow: full-time, contract and B2B work, remote, hybrid or on-site; Essen, Germany (CET), EU citizen, open to relocation.
 - [x] **Résumé link.** `/resume` redirects (307) to the PDF on Google Drive, which stays synced with the LaTeX source. It's linked from a hero button and a contact card; change `resume.driveUrl` in `content/site.ts` if the file ever moves.
 - [x] **X cards must follow each page's Open Graph.** `app/layout.tsx` sets `twitter.title` and `twitter.description`. Next copies those from `openGraph` only when `twitter` has none (`postProcessMetadata` in `next/dist/lib/metadata/metadata-resolution-primitives.js`), so any future subpage that sets only `openGraph` would share on X with the home title. Reduce the root to `twitter: { card: "summary_large_image" }`. The home output stays the same. *(peer round 2026-10-27, alemoraru-research)*
 - [x] **Tell the browser the site is dark.** There is no `viewport` export, so there's no `theme-color` and no `color-scheme` meta; `color-scheme: dark` exists only in CSS. Add `export const viewport = { themeColor: <the --background value>, colorScheme: "dark" }` to `app/layout.tsx`. *(mldangelo-research)*
 - [x] **Cut repeated copy.** The Amazon Challenge card's `impact` lines repeated its `metric` word for word. Compact cards don't render `impact`, so dropping them is a data cleanup with no visible change; the file holds no other outcome to put there. *(mldangelo-research)*
-- [ ] 🙋 **Achievement badges.** The GitHub card's achievement badges (Pull Shark, YOLO, …) read as trivia to a hiring manager. Luis decides whether to drop them. *(mldangelo-research)*
+- [x] **Achievement badges.** Dropped from the GitHub card: the research found they read as trivia to a hiring manager. *(mldangelo-research)*
 - [x] **Show hand-kept GitHub counts as minimums.** `content/github.ts` counts (stars, forks, public repos) are kept by hand and render as floors ("125+ ★") through `formatFloor`, so they stay true as they grow. Keep each at or below GitHub's live count (public repos went 48 → 47 on 2026-10-27). *(mldangelo-research)*
 
 ## 2. Performance
@@ -33,12 +33,13 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 
 - [x] **Proof above the fold.** The proof row sits in the first screen at 1440×900 and 390×844, and the headline says what Luis builds. The "where" part comes with the availability/status line task above (`hero.status` in `content/site.ts` renders under the eyebrow once set).
 - [ ] **Metrics that are outcomes.** Some feature-card metrics described the work, not results. Synced with the résumé on 2026-10-27: Tapnote now shows its 10,000+ web users, Akdo the 50+ courses its LLM tools helped produce, and Curupira and OCA IÊ FleetView's message totals.
-  - Still work-shaped: Google Routes (565 merged lines), agent-mesh (640 tests), AI Agent Boilerplate (2,400+ tests) and TourLore (30 languages, pre-launch).
-  - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups or agent-mesh adoption.
+  - agent-mesh now shows 85+ PRs merged from mesh workers across 9 repos (counted on GitHub over `mesh/*` branches on 2026-10-27: 91 opened across 12 repos, 86 merged across 9, 49 of them in agent-mesh itself). Recount merged PRs and their repos with `gh api search/issues -f q='is:pr is:merged head:mesh/ involves:Luisotee'`, and keep the figure a floor.
+  - Still work-shaped: Google Routes (565 merged lines), AI Agent Boilerplate (2,400+ tests) and TourLore (30 languages, pre-launch).
+  - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups.
 - [ ] ⏸ **Later.** **Visuals for featured work.** The page has zero images, so about 6,000px of text-only cards is hard to skim. Add a screenshot, short clip or diagram per featured project. Design how they fit the cards.
   - 🙋 Luis provides material for anything behind a login (Tapnote web, Akdo, the bots' chats). Public sites can be captured by an agent.
-- [ ] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo was full-time, so it stays unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
-  - 🙋 Luis decides whether to keep counting the internship.
+- [x] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo was full-time, so it stays unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
+  - Luis decided on 2026-10-27 to keep counting the internship.
 - [ ] **Link the hero graph to Curupira's case study.** The graph now shows Curupira's architecture at a high level; link it to the case study once that page exists. Blocked on the case-study pages below.
 
 ## 4. Bigger additions
@@ -51,8 +52,9 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
     - **One publish gate.** A `publishedCaseStudies` list in `lib/` feeds `generateStaticParams`, the sitemap, card links, JSON-LD and the OG route, so an unapproved page can't leak anywhere.
     - **Route traps:** `dynamicParams` fails the build under `cacheComponents`; call `notFound()` for unknown slugs. The root `app/opengraph-image.tsx` applies to child routes, so `app/work/[slug]/opengraph-image.tsx` is required, with its own `generateStaticParams`. Don't spread the profile `openGraph` as is: set `type: "article"`, `url` and `alternates.canonical` per page. No `new Date()` in render, sitemap or JSON-LD; use `updated`. Format dates as UTC on the server.
     - **Page:** a ToC rendered on the server from section ids, prev/next between case studies (no "Related" until there are 4+), a "Read the case study" label in `labels`, `Article` JSON-LD with `author` → the Person `@id`, plus a `BreadcrumbList`.
-- [ ] **A bot people can try.** A public demo of one of the bots, such as a Telegram demo bot, or failing that a short recording of a real conversation. Don't link the production Curupira or OCA IÊ bots: they are client deployments, not demos. A demo needs its own instance with demo data.
+- [ ] ⏸ **Later.** **A bot people can try.** A public demo of one of the bots, such as a Telegram demo bot, or failing that a short recording of a real conversation. Don't link the production Curupira or OCA IÊ bots: they are client deployments, not demos. A demo needs its own instance with demo data.
   - 🙋 Luis creates the bot account/token or records the conversation, and decides what the demo is allowed to do.
+  - On hold (2026-10-27): Luis plans a bot that chats about his résumé or speaks as him, which may become this demo.
 - [ ] ⏸ **Later.** **Writing.** Add 3–5 short notes on real problems, for example lessons from building WhatsApp agents, evals for a group-chat bot, or how agent-mesh works. Decide on the format and where it lives on the site.
   - 🙋 Luis writes or approves the content.
 - [ ] ⏸ **Later.** **Testimonials.** Add one or two named quotes from Terra Krya or past clients/employers, with name, role and org.
@@ -65,9 +67,9 @@ From the peer research round of 2026-10-27 (`portfolios` group: `mldangelo-resea
 
 - [x] **Content tests and CI.** There is no test suite and no `.github/`; Vercel's build is the only gate and it doesn't lint. Add Vitest (node environment, no jsdom) with `content/content.test.ts`: unique project titles, every `href` parses and is `https:`, every priority 1/2 project has a `metric`, Mindprint and BrightConnect stay priority 3, archive filter counts match `lib/projects.ts`, `visibleRoles` fits the roles list. Add `.github/workflows/ci.yml` running lint, test, build, then `tsc` (build first, since it generates the route types). Update the "There is no test suite" line in `CLAUDE.md`. *(alemoraru, chanhdai, mldangelo)*
 - [x] **Check site figures against the résumé.** Every number in a priority 1/2 `metric`, `impact` or `built` must appear in `../Resume/resume.tex`, or sit in a `Stat` that records where it came from (`source: { from, asOf }`). Strip years and ranges first. The Resume repo is private, so read the local checkout when it exists and skip the test otherwise (Vercel and CI won't have it). A dry run on 2026-10-27 found `experience.ts` in sync; the per-bot FleetView figures (34/84 users, 400/8,500 messages) and the 68 brigade docs need a `source`. *(mldangelo-research)*
-  - 🙋 **Source for Curupira's "68 brigade documents".** No record says where the figure comes from, so `content/claims.test.ts` lists it in `pendingSource`. Luis confirms it (and its date) or it comes off the card; then drop the entry.
+  - Curupira's "68 brigade documents" comes from FleetView (confirmed by Luis on 2026-10-27) and is recorded in the project's `figureSources`.
 - [x] **Linked structured data.** `components/person-json-ld.tsx` emits a Person with no `@id`. Give it `@id: ${site.url}/#person`, add a `WebSite` and a home `ProfilePage` whose `mainEntity` points at it, in one `@graph`, built in `lib/` with a shared `JsonLd` script component (keep the `<` escaping and the off-site `sameAs` filter). Type it with `schema-dts` (dev dependency). No `dateModified` from `new Date()`. *(chanhdai, mldangelo, erlandv-case)*
 
 ## Deliberately skipped
 
-The research flagged these as gimmicks for this audience, so they're not on the list: "chat with my portfolio" bot, ⌘K command palette, full PT/EN translation, 3D or gamified effects, sound or custom cursors, `llms.txt` (cheap but near-zero value; fine to add if a case-study pass touches it anyway).
+The research flagged these as gimmicks for this audience, so they're not on the list (a "chat with my résumé" bot was among them, but Luis plans one; see "A bot people can try"): ⌘K command palette, full PT/EN translation, 3D or gamified effects, sound or custom cursors, `llms.txt` (cheap but near-zero value; fine to add if a case-study pass touches it anyway).

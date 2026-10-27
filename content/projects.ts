@@ -71,6 +71,7 @@ export const projects: Project[] = [
       label: "and 8,500+ messages across 10 brigade groups of 30+ people",
       source: { from: "FleetView", asOf: "2026-10-26" },
     },
+    figureSources: { "68": { from: "FleetView", asOf: "2026-10-27" } },
     impact: [
       "Field reports reach the platform straight from the group chat",
       "Brigades are notified when a fire is registered in their area",
@@ -138,7 +139,11 @@ export const projects: Project[] = [
       "Every PR gets cross-agent reviews from Claude Code, Gemini (Antigravity) and GitHub Copilot, and every agent runs in a terminal pane you can watch and type into.",
     ],
     stack: ["Python", "Shell", "Claude Code", "Antigravity", "GitHub Copilot", "git worktrees", "herdr"],
-    metric: { value: "640 tests", label: "pytest tests over a 9,000+ line Python CLI" },
+    metric: {
+      value: "85+ PRs",
+      label: "merged from mesh workers across 9 repos",
+      source: { from: "GitHub", asOf: "2026-10-27" },
+    },
     impact: ["Expensive models plan, cheap models type", "Used day to day across my repos, this portfolio included"],
     link: { href: "https://github.com/Luisotee/agent-mesh", label: "Luisotee/agent-mesh" },
   },

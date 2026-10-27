@@ -1,4 +1,4 @@
-import type { Achievement, Language, Repo, Stat, StatSource } from "./types"
+import type { Language, Repo, Stat, StatSource } from "./types"
 
 export const github = {
   profile: { href: "https://github.com/Luisotee", label: "@Luisotee on GitHub" },
@@ -29,14 +29,6 @@ export const githubStats: Stat[] = [
   { value: formatFloor(wappai.stars), label: "stars on WAppAI/assistant" },
   { value: formatFloor(wappai.forks), label: "forks of WAppAI/assistant" },
   { value: formatFloor(earthDefenders.stars), label: "stars on earth-defenders-assistant" },
-]
-
-export const achievements: Achievement[] = [
-  { name: "Pair Extraordinaire", times: "×4" },
-  { name: "Pull Shark", times: "×3" },
-  { name: "Quickdraw" },
-  { name: "YOLO" },
-  { name: "Arctic Code Vault" },
 ]
 
 /** Pinned-repository language split, in pinned repo counts. */

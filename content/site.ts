@@ -152,7 +152,6 @@ export const labels = {
   problem: "Problem",
   built: "What I built",
   impact: "Impact",
-  achievements: "Achievements",
   pinnedLanguages: "Pinned languages",
   stars: "stars",
   forks: "forks",
