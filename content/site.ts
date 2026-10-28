@@ -20,7 +20,7 @@ export const site = {
   jobTitle,
   title: `${name}, ${jobTitle}`,
   description:
-    "Full-stack & AI engineer. I build whole products end to end: React and React Native apps, Node and Python APIs, and the LLM agents behind them.",
+    "I build whole products end to end: React and React Native apps, Node and Python APIs, and the LLM agents behind them.",
   copyright: "© 2026 Luis Otavio",
 }
 

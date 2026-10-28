@@ -22,12 +22,12 @@ export const projects: Project[] = [
     problem:
       "Tapnote, a Polish AI study app with 30,000+ subscribers, lived on mobile. Students needed the same tutor on the web.",
     built: [
-      "Built the web app on my own, frontend to backend, and brought it to feature parity with the native mobile app.",
-      "AI tutoring with LLMs and RAG, for context-aware homework help and personalized study assistance.",
+      "Built the web app on my own, frontend to backend, at feature parity with the native mobile app.",
+      "Built AI tutoring with LLMs and RAG on PostgreSQL / Supabase for homework help and personalized study assistance.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "AWS", "PostgreSQL", "Supabase", "LLMs", "RAG"],
     metric: { value: "10,000+", label: "users on the web app, for a study app with 30,000+ subscribers" },
-    impact: ["Feature parity with the native mobile app", "Context-aware tutoring grounded with RAG"],
+    impact: ["Students get the same tutor in the browser as on their phone"],
     link: { href: "https://web.tapnote.app", label: "web.tapnote.app (sign-in required)" },
   },
   {
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     built: [
       "Curupira: brigade members sign in from the chat, report alerts and fires with a location pin and photos (each write confirmed before it is saved), check the INPE fire-risk forecast and ask questions answered by RAG over 68 brigade documents, with citations.",
       "OCA IÊ: producers log harvest prices just by talking and compare regions; a weekly regional recap goes to each group, rewritten or rescheduled by asking the bot.",
-      "Both forked from my open-source AI Agent Boilerplate: one Python agent behind WhatsApp and Telegram clients, voice notes in and out, 2,300+ pytest and Vitest tests and Sentry monitoring.",
+      "Both forked from my open-source AI Agent Boilerplate: one Python agent with voice notes in and out, on WhatsApp (Curupira on Telegram too), 2,300+ pytest and Vitest tests and Sentry monitoring.",
       "FleetView, a Next.js dashboard I built to watch the fleet's health, conversations and knowledge bases.",
     ],
     stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker", "Next.js"],
@@ -148,10 +148,9 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Node.js", "LangChain", "LangGraph", "Prisma", "Docker"],
     metric: {
       value: `${formatFloor(wappai.stars)} ★`,
-      label: `GitHub stars and ${formatFloor(wappai.forks)} forks`,
+      label: `GitHub stars and ${formatFloor(wappai.forks)} forks, my most-starred repository`,
       source: repoCountsSource,
     },
-    impact: ["Most-starred repository on my profile"],
     link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
