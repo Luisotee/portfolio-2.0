@@ -32,7 +32,8 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
 ## 3. Content and hierarchy
 
 - [x] **Proof above the fold.** The proof row sits in the first screen at 1440×900 and 390×844, and the headline says what Luis builds. The "where" part comes with the availability/status line task above (`hero.status` in `content/site.ts` renders under the eyebrow once set).
-- [ ] **Metrics that are outcomes.** Some feature-card metrics described the work, not results. Synced with the résumé on 2026-10-27: Tapnote now shows its 10,000+ web users, Akdo the 50+ courses its LLM tools helped produce, and Curupira and OCA IÊ FleetView's message totals.
+- [ ] **Metrics that are outcomes.** Some feature-card metrics described the work, not results. Synced with the résumé on 2026-10-27: Tapnote now shows its 10,000+ web users, Akdo the 50+ courses its LLM tools helped produce, and the merged Curupira & OCA IÊ card the résumé's 118 users and 8,900+ messages.
+  - 🙋 Tapnote and Akdo cards say what was built but not what was hard. Luis supplies one concrete detail each (e.g. how Tapnote's RAG tutoring is grounded, how Akdo isolates tenants) to replace the generic `built` lines.
   - agent-mesh now shows 85+ PRs merged from mesh workers across 9 repos (counted on GitHub over `mesh/*` branches on 2026-10-27: 91 opened across 12 repos, 86 merged across 9, 49 of them in agent-mesh itself). Recount merged PRs and their repos with `gh api search/issues -f q='is:pr is:merged head:mesh/ involves:Luisotee'`, and keep the figure a floor.
   - Still work-shaped: Google Routes (565 merged lines), AI Agent Boilerplate (2,400+ tests) and TourLore (30 languages, pre-launch).
   - 🙋 Luis provides outcome figures as they appear, such as TourLore waitlist sign-ups.
@@ -40,6 +41,7 @@ Tasks describe goals, not specs. Pick the approach you think is best, within the
   - 🙋 Luis provides material for anything behind a login (Tapnote web, Akdo, the bots' chats). Public sites can be captured by an agent.
 - [x] **Short stints and the "3+ years" stat.** Contract and freelance roles now carry the résumé's labels: Terra Krya and the self-employed stint (Freelance), Tapnote, Underdogs and Awana (Contract). Akdo was full-time, so it stays unlabeled, as on the résumé. The "3+ years" stat still counts the Huawei internship, as the résumé does.
   - Luis decided on 2026-10-27 to keep counting the internship.
+- [x] **Hiring-review edits (2026-10-27).** Experience now comes before Work, so roles start right after the hero. Curupira and OCA IÊ merged into one card; WAppAI moved to a compact card; 7 feature cards became 5. The hero row shows the bots' 8,900+ messages instead of repeating WAppAI's stars, and names Meta's challenge instead of "Amazon Challenge". The hero intro names Siemens Energy and Henkel, and the meta description pitches full-stack and AI together. Dropped the SENTINEL take-home and the tutorial-era archive rows (Frontend Mentor challenges, to-do list, planner, Express starter).
 - [ ] **Link the hero graph to Curupira's case study.** The graph now shows Curupira's architecture at a high level; link it to the case study once that page exists. Blocked on the case-study pages below.
 
 ## 4. Bigger additions

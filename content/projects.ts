@@ -22,8 +22,8 @@ export const projects: Project[] = [
     problem:
       "Tapnote, a Polish AI study app with 30,000+ subscribers, lived on mobile. Students needed the same tutor on the web.",
     built: [
-      "Architected the full-stack web app with Next.js, React, TypeScript, Tailwind CSS, Node.js and AWS, reaching feature parity with the native mobile app.",
-      "Engineered AI tutoring features with LLMs and RAG on a PostgreSQL / Supabase backend for context-aware homework help and personalized study assistance.",
+      "Built the web app on my own, frontend to backend, and brought it to feature parity with the native mobile app.",
+      "AI tutoring with LLMs and RAG, for context-aware homework help and personalized study assistance.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "AWS", "PostgreSQL", "Supabase", "LLMs", "RAG"],
     metric: { value: "10,000+", label: "users on the web app, for a study app with 30,000+ subscribers" },
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     problem:
       "Enterprises such as Siemens Energy, Henkel and Essity needed a training platform where courses could be drafted automatically, with each organization's users and data strictly isolated.",
     built: [
-      "Architected the platform in Next.js, TypeScript and AWS, with LLM course generation and AI-assisted authoring tools.",
+      "Built LLM course generation and AI-assisted authoring tools, so a course starts as a draft instead of a blank page.",
       "Owned multi-organization authentication and tenant isolation with Better Auth.",
       "Designed and shipped a peer review system so training creators receive structured feedback and ratings.",
       "Implemented ISO/IEC 27001 controls with Kertos, supporting the company's certification.",
@@ -52,57 +52,27 @@ export const projects: Project[] = [
   },
   {
     priority: 1,
-    title: "Curupira",
+    title: "Curupira & OCA IÊ",
     client: "Terra Krya, Brazil",
     year: "2026",
     role: "AI Engineer",
     tags: ["AI", "Full-stack"],
     problem:
-      "Volunteer fire brigades in central Brazil coordinate in group chats, far from the Caminho do Fogo platform where alerts, fires and field actions are recorded. I build the AI agent; Terra Krya brings it to the brigades.",
+      "Volunteer fire brigades in central Brazil and Brazil-nut collectors in the north both coordinate in WhatsApp groups, far from the platforms where their data lives: Caminho do Fogo for fires, IE Sociobio for harvest prices. I build the AI agents; Terra Krya brings them to the communities.",
     built: [
-      "WhatsApp and Telegram agent with one shared memory: brigade members sign in from the chat, then report alerts and fires with a location pin and photos, each write confirmed before it is saved.",
-      "Fire status updates, field actions, area notifications and the INPE fire-risk forecast up to three days ahead, all by conversation.",
-      "RAG over 68 brigade documents with citations, plus voice notes in and out.",
-      "Forked from my open-source AI Agent Boilerplate, with 2,300+ pytest and Vitest tests and Sentry monitoring.",
+      "Curupira: brigade members sign in from the chat, report alerts and fires with a location pin and photos (each write confirmed before it is saved), check the INPE fire-risk forecast and ask questions answered by RAG over 68 brigade documents, with citations.",
+      "OCA IÊ: producers log harvest prices just by talking and compare regions; a weekly regional recap goes to each group, rewritten or rescheduled by asking the bot.",
+      "Both forked from my open-source AI Agent Boilerplate: one Python agent behind WhatsApp and Telegram clients, voice notes in and out, 2,300+ pytest and Vitest tests and Sentry monitoring.",
+      "FleetView, a Next.js dashboard I built to watch the fleet's health, conversations and knowledge bases.",
     ],
-    stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    metric: {
-      value: "84 users",
-      label: "and 8,500+ messages across 10 brigade groups of 30+ people",
-      source: { from: "FleetView", asOf: "2026-10-26" },
-    },
+    stack: ["TypeScript", "Fastify", "Baileys", "grammY", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker", "Next.js"],
+    metric: { value: "118 users", label: "and 8,900+ messages across 15 groups, on 2 production agents" },
     figureSources: { "68": { from: "FleetView", asOf: "2026-10-27" } },
     impact: [
-      "Field reports reach the platform straight from the group chat",
-      "Brigades are notified when a fire is registered in their area",
+      "Field reports reach the fire platform straight from the group chat",
+      "Harvest prices shared across regions every week, from the platform's own data",
     ],
     link: { href: "https://caminhodofogo.com.br", label: "caminhodofogo.com.br" },
-  },
-  {
-    priority: 1,
-    title: "OCA IÊ",
-    client: "Terra Krya, Brazil",
-    year: "2026",
-    role: "AI Engineer",
-    tags: ["AI", "Full-stack"],
-    problem:
-      "Brazil-nut (castanha) collectors in northern Brazil sell with little visibility into what the harvest is fetching in other regions. I build the AI agent; Terra Krya brings it to the communities.",
-    built: [
-      "WhatsApp agent on the IE Sociobio platform: producers log prices just by talking, and compare their region with others.",
-      "A weekly regional recap posted to each group, with prices, harvest counters and phase, rewritten or rescheduled by asking the bot.",
-      "The Caderno da Safra harvest survey answered by conversation, plus operator broadcasts paced to stay clear of spam detection.",
-    ],
-    stack: ["TypeScript", "Fastify", "Baileys", "Python", "FastAPI", "Pydantic AI", "Gemini", "PostgreSQL", "pgvector", "Redis Streams", "Docker"],
-    metric: {
-      value: "34 users",
-      label: "and 400+ messages across 5 producer groups of 10+ people",
-      source: { from: "FleetView", asOf: "2026-10-26" },
-    },
-    impact: [
-      "Prices shared across regions every week, from the platform's own data",
-      "Harvest survey filled in without leaving WhatsApp",
-    ],
-    link: { href: "https://iesociobio.org", label: "iesociobio.org" },
   },
   {
     priority: 1,
@@ -148,27 +118,6 @@ export const projects: Project[] = [
     link: { href: "https://github.com/Luisotee/agent-mesh", label: "Luisotee/agent-mesh" },
   },
   {
-    priority: 1,
-    title: "WhatsApp Chatbot Assistant",
-    client: "Open source, WAppAI",
-    year: "OSS",
-    role: "Owner and lead developer",
-    tags: ["AI", "Open source"],
-    problem: "Bring context-aware LLM answers into the chat app people already use every day.",
-    built: [
-      "Open-source WhatsApp assistant that brings LLMs from OpenAI, Anthropic, Google, Groq or OpenRouter into chats through LangChain and LangGraph, with web search, Google Routes, voice messages and group chats, plus Google Calendar on OpenAI models.",
-      "Lead developer across 150+ commits.",
-    ],
-    stack: ["TypeScript", "Node.js", "LangChain", "LangGraph", "Prisma", "Docker"],
-    metric: {
-      value: `${formatFloor(wappai.stars)} ★`,
-      label: `GitHub stars and ${formatFloor(wappai.forks)} forks`,
-      source: repoCountsSource,
-    },
-    impact: ["Most-starred repository on my profile"],
-    link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
-  },
-  {
     priority: 2,
     title: "AI Agent Boilerplate",
     client: "Open source",
@@ -183,6 +132,27 @@ export const projects: Project[] = [
     stack: ["Python", "FastAPI", "Pydantic AI", "pgvector", "TypeScript", "Redis Streams"],
     metric: { value: "2,400+ tests", label: "pytest and Vitest; the base Curupira and OCA IÊ were forked from" },
     link: { href: "https://github.com/Luisotee/ai-boilerplate", label: "Luisotee/ai-boilerplate" },
+  },
+  {
+    priority: 2,
+    title: "WhatsApp Chatbot Assistant",
+    client: "Open source, WAppAI",
+    year: "OSS",
+    role: "Owner and lead developer",
+    tags: ["AI", "Open source"],
+    problem: "Bring context-aware LLM answers into the chat app people already use every day.",
+    built: [
+      "Open-source WhatsApp assistant on LangChain and LangGraph: pick OpenAI, Anthropic, Google, Groq or OpenRouter, with web search, voice messages and group chats.",
+      "Lead developer across 150+ commits.",
+    ],
+    stack: ["TypeScript", "Node.js", "LangChain", "LangGraph", "Prisma", "Docker"],
+    metric: {
+      value: `${formatFloor(wappai.stars)} ★`,
+      label: `GitHub stars and ${formatFloor(wappai.forks)} forks`,
+      source: repoCountsSource,
+    },
+    impact: ["Most-starred repository on my profile"],
+    link: { href: "https://github.com/WAppAI/assistant", label: "WAppAI/assistant" },
   },
   {
     priority: 2,
@@ -202,7 +172,7 @@ export const projects: Project[] = [
   },
   {
     priority: 2,
-    title: "Amazon Challenge with Terra Krya",
+    title: "Meta WhatsApp Challenge",
     client: "Awana Digital, USA",
     year: "2024",
     role: "AI Engineer",
@@ -213,7 +183,7 @@ export const projects: Project[] = [
       "Led a 7-person team on Terra Krya's entry to Meta's Desafio WhatsApp pela Amazônia.",
     ],
     stack: ["LangChain", "Smolagents", "Mem0", "Python"],
-    metric: { value: "3rd place", label: "Amazon Challenge, R$ 100,000 in funding" },
+    metric: { value: "3rd place", label: "R$ 100,000 in funding for Terra Krya" },
     link: { href: "https://www.desafiopelaamazonia.com.br", label: "desafiopelaamazonia.com.br" },
   },
   {
@@ -253,17 +223,6 @@ export const projects: Project[] = [
       "Customer support voicebot on Vapi.ai: conversational design, provider stack reasoning and a real tool-calling backend.",
     stack: ["TypeScript", "Vapi.ai"],
     link: { href: "https://github.com/Luisotee/brightconnect-voicebot" },
-  },
-  {
-    priority: 3,
-    minor: true,
-    title: "SENTINEL onboarding assessment",
-    year: "2026",
-    tags: ["Full-stack"],
-    summary:
-      "Take-home: a client onboarding risk assessment that derives the risk tier from regulatory criteria and keeps an attributable compliance record.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://challenge-new-page.vercel.app" },
   },
   {
     priority: 3,
@@ -417,16 +376,6 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
-    title: "project-simple.js",
-    year: "2024",
-    tags: ["Learning"],
-    summary:
-      "Express and EJS starter page.",
-    stack: ["JavaScript", "Express", "EJS"],
-    link: { href: "https://project-simple-js.vercel.app" },
-  },
-  {
-    priority: 3,
     title: "First portfolio",
     year: "2023–24",
     tags: ["Frontend"],
@@ -467,16 +416,6 @@ export const projects: Project[] = [
   },
   {
     priority: 3,
-    title: "IP address tracker",
-    year: "2022–23",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "Looks up an IP address or domain and shows its location on a map.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://github.com/Luisotee/ip-address-tracker" },
-  },
-  {
-    priority: 3,
     title: "AC2 App",
     year: "2022",
     tags: ["Mobile",  "Learning"],
@@ -484,56 +423,6 @@ export const projects: Project[] = [
       "University React Native app to register students, teachers, classes and subjects.",
     stack: ["TypeScript", "React Native"],
     link: { href: "https://github.com/Luisotee/AC2_App" },
-  },
-  {
-    priority: 3,
-    title: "Interactive card form",
-    year: "2022",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "Frontend Mentor challenge: interactive card details form, built with React and Mantine.",
-    stack: ["TypeScript", "React", "Mantine"],
-    link: { href: "https://interactive-card-jxmj4ex9w-luisotee.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "Product preview card",
-    year: "2022",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "Frontend Mentor challenge: responsive product preview card.",
-    stack: ["TypeScript", "React"],
-    link: { href: "https://product-preview-card-olive.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "Interactive rating component",
-    year: "2022",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "Frontend Mentor challenge: interactive rating component.",
-    stack: ["TypeScript", "React"],
-    link: { href: "https://interactive-rating-component-main-sage.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "Planner App",
-    year: "2022",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "Basic Trello-like planner.",
-    stack: ["TypeScript", "Next.js"],
-    link: { href: "https://planner-app-next-js.vercel.app" },
-  },
-  {
-    priority: 3,
-    title: "To-do list",
-    year: "2022",
-    tags: ["Frontend",  "Learning"],
-    summary:
-      "To-do list app, built to learn Next.js.",
-    stack: ["JavaScript", "Next.js"],
-    link: { href: "https://to-do-list-next-js-chi.vercel.app" },
   },
   {
     priority: 3,

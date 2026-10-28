@@ -23,8 +23,8 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <WorkSection />
         <ExperienceSection />
+        <WorkSection />
         <GithubSection />
         <ContactSection />
       </main>
