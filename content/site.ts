@@ -1,6 +1,5 @@
 // next.config.ts loads this file: keep its imports relative and dependency-free (no `@/` aliases,
 // React or packages), or the config fails to load.
-import { formatFloor, repoCounts } from "./github"
 import type { GraphNode, SectionHeading, Social, SpokenLanguage, Stat } from "./types"
 
 const name = "Luis Otavio"
@@ -21,7 +20,7 @@ export const site = {
   jobTitle,
   title: `${name}, ${jobTitle}`,
   description:
-    "I build web products end to end: polished React frontends, solid backends and APIs, and AI features where they earn their place.",
+    "I build whole products end to end: React and React Native apps, Node and Python APIs, and the LLM agents behind them.",
   copyright: "© 2026 Luis Otavio",
 }
 
@@ -42,8 +41,8 @@ export const seo = {
 }
 
 export const nav = [
-  { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
+  { href: "#work", label: "Work" },
   { href: "#github", label: "GitHub" },
 ]
 
@@ -55,14 +54,14 @@ export const hero = {
     "Essen, Germany (CET) · EU citizen, open to relocation",
   ],
   intro: {
-    before: "I build AI products end to end: ",
-    emphasis: "the web app, the API and the LLM agent behind them",
-    after: ", from an AI tutor on the web to WhatsApp bots for fire brigades.",
+    before: "I build whole products end to end: ",
+    emphasis: "the app, the API and the LLM agent behind them",
+    after: ", from training software used by Siemens Energy to WhatsApp bots for fire brigades.",
   },
   primaryCta: { label: "Start a conversation", href: `mailto:${site.email}` },
   resumeCta: { label: "Résumé", href: resume.path },
   secondaryCta: { label: "github.com/Luisotee", href: "https://github.com/Luisotee" },
-  /** Curupira's shape at a high level, from its card in projects.ts. Six nodes, clockwise from the top. */
+  /** Curupira's shape at a high level, from the "Curupira & OCA IÊ" card in projects.ts. Six nodes, clockwise from the top. */
   graph: {
     core: "agent",
     nodes: [
@@ -82,15 +81,15 @@ export const hero = {
 
 export const proof: Stat[] = [
   { value: "10,000+", label: "users on Tapnote's web app, which I built as sole developer" },
-  { value: "3rd place", label: "in the Amazon Challenge with Terra Krya, R$ 100,000 in funding" },
+  { value: "3rd place", label: "in Meta's WhatsApp challenge for the Amazon, leading a team of 7" },
   { value: "3+ years", label: "shipping production software, since Jan 2023" },
-  { value: formatFloor(repoCounts.wappai.stars), label: "GitHub stars on my open-source WhatsApp assistant" },
+  { value: "8,900+", label: "messages handled by the 2 production AI agents I build and run, for 118 people" },
 ]
 
 export const sections = {
   work: {
     id: "work",
-    number: "01",
+    number: "02",
     eyebrow: "Selected work",
     titleLines: ["Things I have", "shipped."],
     intro:
@@ -98,7 +97,7 @@ export const sections = {
   },
   experience: {
     id: "experience",
-    number: "02",
+    number: "01",
     eyebrow: "Experience",
     titleLines: ["Where I have", "worked."],
     intro: "Remote with teams in Germany, Poland, Italy, the US and Brazil, after starting on-site at Huawei.",
